@@ -103,3 +103,13 @@ export const MapListData = [
     img: require('../assets/Home/tp2.png'),
   },
 ];
+
+export const MartyrProfileListData = [
+  require('../assets/Home/q1.png'),
+  require('../assets/Home/q2.png'),
+  require('../assets/Home/q3.png'),
+  require('../assets/Home/q4.png'),
+  require('../assets/Home/q5.png'),
+  require('../assets/Home/q7.png'),
+  require('../assets/Home/q9.png'),
+];
