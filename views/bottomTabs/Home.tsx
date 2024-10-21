@@ -34,11 +34,16 @@ const Home = () => {
             <TopDataRender />
           </View>
           <NewsView />
+          <MapListView />
         </View>
         <View style={{height: vh(15)}} />
       </ScrollView>
     </SafeAreaView>
   );
+};
+
+const MapListView: React.FC = () => {
+  return <View></View>;
 };
 
 const NewsView: React.FC = () => {

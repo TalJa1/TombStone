@@ -90,3 +90,10 @@ export const HomeNewsData = [
     description: 'H. Đak Pơ, tỉnh Gia Lai',
   },
 ];
+
+export const MapListData = [
+  {
+    title: 'H.Hường Hóa',
+    city: 'Quảng Trị',
+  },
+];
