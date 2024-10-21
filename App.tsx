@@ -96,15 +96,15 @@ const App = () => {
             component={AddPage}
             options={{
               headerShown: false,
-              tabBarIcon: ({color, focused}) => {
+              tabBarIcon: ({focused}) => {
                 const iconSize = vw(8);
 
                 return (
                   <View style={styles.plusSurround}>
                     <View style={[styles.plusContainer]}>
                       {focused
-                        ? plusIcon(iconSize, iconSize, color)
-                        : plusIcon(iconSize, iconSize, color)}
+                        ? plusIcon(iconSize, iconSize, '#ECF3A3')
+                        : plusIcon(iconSize, iconSize, '#ECF3A3')}
                     </View>
                   </View>
                 );
