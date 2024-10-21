@@ -11,7 +11,7 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {centerAll, vh, vw} from '../../services/styleSheet';
-import {bellIcon, nextIcon, plusIcon} from '../../assets/svgXML';
+import {bellIcon, nextIcon, plusIcon, readMoreIcon} from '../../assets/svgXML';
 import {loadData, saveData} from '../../services/storage';
 import {
   FoundMartyrProfileItem,
@@ -29,10 +29,34 @@ const Home = () => {
             <Header />
             <TopDataRender />
           </View>
+          <NewsView />
         </View>
         <View style={{height: vh(10)}} />
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const NewsView: React.FC = () => {
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: vw(5),
+          marginVertical: vh(1),
+        }}>
+        <Text style={{color: '#547958', fontSize: 18, fontWeight: '700'}}>
+          Mới nhất
+        </Text>
+        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
+          {readMoreIcon(vw(5), vw(5))}
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
