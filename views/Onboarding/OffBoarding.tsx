@@ -7,6 +7,7 @@ import {CheckStartPage} from '../../services/renderData';
 import {vh, vw} from '../../services/styleSheet';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {saveData} from '../../services/storage';
 
 const OffBoarding = () => {
   useStatusBar('#547958');
@@ -14,6 +15,7 @@ const OffBoarding = () => {
   const renderData = CheckStartPage;
 
   const handleStart = () => {
+    saveData('isMain', true);
     navigation.navigate('Main');
   };
 

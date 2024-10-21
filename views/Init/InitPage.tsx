@@ -1,23 +1,36 @@
 /* eslint-disable react-native/no-inline-styles */
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {centerAll, vw} from '../../services/styleSheet';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {loadData} from '../../services/storage';
 
 const InitPage = () => {
   useStatusBar('#547958');
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const [isMain, setIsMain] = useState(false);
+
+  const fetchData = async () => {
+    await loadData<boolean>('isMain')
+      .then(res => {
+        setIsMain(res);
+      })
+      .catch(() => {
+        setIsMain(false);
+      });
+  };
 
   useEffect(() => {
+    fetchData();
     const timer = setTimeout(() => {
-      navigation.navigate('Onboarding');
-    }, 2000);
+      isMain ? navigation.replace('Main') : navigation.replace('Onboarding');
+    }, 3000);
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
-  }, [navigation]);
+  }, [navigation, isMain]);
 
   return (
     <SafeAreaView style={styles.container}>
