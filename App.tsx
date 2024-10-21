@@ -23,6 +23,7 @@ import MapPage from './views/bottomTabs/MapPage';
 import CommunityPage from './views/bottomTabs/CommunityPage';
 import useHideTabBar from './services/useHideTabBar';
 import AddPage from './views/bottomTabs/AddPage';
+import InitPage from './views/Init/InitPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -160,10 +161,17 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Onboarding">
+      <Stack.Navigator initialRouteName="Init">
         <Stack.Screen
           name="Main"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+
+        {/* Init */}
+        <Stack.Screen
+          name="Init"
+          component={InitPage}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
