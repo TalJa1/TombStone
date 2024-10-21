@@ -37,3 +37,27 @@ export const CheckStartPage = {
     'Hãy bắt đầu hành trình của bạn để tìm lại người thân và hỗ trợ cộng đồng cùng “Dấu chân Ký Ức"',
   img: require('../assets/Onboarding/o6.png'),
 };
+
+export const MartyrProfile = [
+  {
+    giayBaoTu: null,
+    banTrichLuc: null,
+    giayNoiHisinh: null,
+    giayKhac: null,
+    giayToCoChuVietLietSi: [],
+    name: 'Lâm Hữu Sinh',
+    birthYear: '1930',
+    sex: 'Nam',
+    hometown: 'Xã Tượng Văn, huyện Công Nống, tỉnh Thanh Hóa',
+    armyJoinDate: '7/1949',
+    level: 'Trung sĩ',
+    position: 'Đội trưởng',
+    unit: 'Đội 2, Tiểu đoàn 1, Sư đoàn 308',
+    deathDate: '10/1952',
+    deathPlace: 'Nghệ An',
+    deathReason: 'Máu đổ',
+    otherName: 'Lâm Hữu Huy',
+    relationship: 'Anh',
+    otherInfor: 'Đã có 2 con trai',
+  },
+];
