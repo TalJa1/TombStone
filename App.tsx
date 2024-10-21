@@ -83,6 +83,30 @@ const App = () => {
           />
 
           <Tab.Screen
+            name="Thêm"
+            component={SearchPage}
+            options={{
+              headerShown: false,
+              tabBarIcon: ({color, focused}) => {
+                const iconSize = focused ? vw(8) : vw(8);
+
+                return (
+                  <View style={[styles.iconContainer]}>
+                    {focused
+                      ? searchFilledIcon(iconSize, iconSize, color)
+                      : searchIcon(iconSize, iconSize, color)}
+                    {focused ? (
+                      <Text style={[{color: color}, styles.label]}>
+                        Tìm kiếm
+                      </Text>
+                    ) : null}
+                  </View>
+                );
+              },
+            }}
+          />
+
+          <Tab.Screen
             name="Bản đồ"
             component={MapPage}
             options={{
