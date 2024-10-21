@@ -13,6 +13,7 @@ import {
   homeIcon,
   mapFilledIcon,
   mapIcon,
+  plusIcon,
   searchFilledIcon,
   searchIcon,
 } from './assets/svgXML';
@@ -20,21 +21,26 @@ import Home from './views/bottomTabs/Home';
 import SearchPage from './views/bottomTabs/SearchPage';
 import MapPage from './views/bottomTabs/MapPage';
 import CommunityPage from './views/bottomTabs/CommunityPage';
+import useHideTabBar from './services/useHideTabBar';
+import AddPage from './views/bottomTabs/AddPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   const TabNavigator = () => {
+    useHideTabBar('Thêm');
+
     return (
       <View style={styles.tabnavigationStyle}>
         <Tab.Navigator
           initialRouteName="Home"
-          screenOptions={{
+          screenOptions={({route}) => ({
             tabBarActiveTintColor: '#547958',
             tabBarShowLabel: false,
-            tabBarStyle: styles.tabBar,
-          }}>
+            tabBarStyle:
+              route.name === 'Thêm' ? {display: 'none'} : styles.tabBar,
+          })}>
           <Tab.Screen
             name="Trang chủ"
             component={Home}
@@ -84,22 +90,17 @@ const App = () => {
 
           <Tab.Screen
             name="Thêm"
-            component={SearchPage}
+            component={AddPage}
             options={{
               headerShown: false,
               tabBarIcon: ({color, focused}) => {
-                const iconSize = focused ? vw(8) : vw(8);
+                const iconSize = vw(8);
 
                 return (
-                  <View style={[styles.iconContainer]}>
+                  <View style={[styles.plusContainer]}>
                     {focused
-                      ? searchFilledIcon(iconSize, iconSize, color)
-                      : searchIcon(iconSize, iconSize, color)}
-                    {focused ? (
-                      <Text style={[{color: color}, styles.label]}>
-                        Tìm kiếm
-                      </Text>
-                    ) : null}
+                      ? plusIcon(iconSize, iconSize, color)
+                      : plusIcon(iconSize, iconSize, color)}
                   </View>
                 );
               },
@@ -154,9 +155,9 @@ const App = () => {
       </View>
     );
   };
+
   return (
     <NavigationContainer>
-      {/* Main || Onboarding */}
       <Stack.Navigator initialRouteName="Onboarding">
         <Stack.Screen
           name="Main"
@@ -195,5 +196,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     position: 'relative',
     top: vh(0.5),
+  },
+  plusContainer: {
+    borderRadius: vw(50),
+    backgroundColor: '#547958',
+    padding: vw(2.5),
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });

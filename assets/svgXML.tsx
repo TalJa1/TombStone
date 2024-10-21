@@ -34,22 +34,8 @@ export const searchIcon = (w?: any, h?: any, color?: any) => {
 };
 
 export const plusIcon = (w?: any, h?: any, color?: any) => {
-  const xml = `<svg width="79" height="79" viewBox="0 0 79 79" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_53_997)">
-<rect x="12" y="8" width="55" height="55" rx="27.5" fill="#547958"/>
-<path d="M32 36H48M40 28V44" stroke="#ECF3A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<filter id="filter0_d_53_997" x="0" y="0" width="79" height="79" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="6"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0.435294 0 0 0 0 0.627451 0 0 0 0 0.470588 0 0 0 0.67 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_53_997"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_53_997" result="shape"/>
-</filter>
-</defs>
+  const xml = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 12H20M12 4V20" stroke="#ECF3A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
