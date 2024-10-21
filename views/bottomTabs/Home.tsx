@@ -20,6 +20,7 @@ import {
 import {
   FoundMartyrProfile,
   HomeNewsData,
+  MapListData,
   MartyrProfile,
 } from '../../services/renderData';
 
@@ -43,7 +44,42 @@ const Home = () => {
 };
 
 const MapListView: React.FC = () => {
-  return <View></View>;
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: vw(5),
+          marginVertical: vh(1),
+        }}>
+        <Text style={{color: '#547958', fontSize: 18, fontWeight: '700'}}>
+          Bản đồ nghĩa trang liệt sĩ
+        </Text>
+        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
+          {readMoreIcon(vw(5), vw(5))}
+        </TouchableOpacity>
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
+        {MapListData.map((item, index) => {
+          return (
+            <View key={index} style={styles.mapListContainer}>
+              <Image source={item.img} style={styles.mapListImg} />
+              <View style={styles.cityContainer}>
+                <Text style={styles.cityTxt}>{item.city}</Text>
+              </View>
+              <Text style={styles.titleTxt}>{item.title}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
+    </View>
+  );
 };
 
 const NewsView: React.FC = () => {
@@ -429,5 +465,37 @@ const styles = StyleSheet.create({
   newsDescription: {
     color: '#343434',
     fontSize: 12,
+  },
+  mapListContainer: {
+    width: vw(55),
+    backgroundColor: '#547958',
+    borderRadius: 12,
+    overflow: 'hidden',
+    alignItems: 'center',
+    padding: vw(2),
+  },
+  mapListImg: {
+    height: vw(40),
+    width: '100%',
+    resizeMode: 'cover',
+    borderRadius: 12,
+  },
+  cityContainer: {
+    padding: vw(2),
+    backgroundColor: '#FFFFFFB3',
+    borderRadius: 8,
+    position: 'absolute',
+    top: vw(4),
+    right: vw(4),
+  },
+  cityTxt: {
+    color: '#547958',
+    fontSize: 10,
+  },
+  titleTxt: {
+    color: '#EEF2EE',
+    fontSize: 16,
+    fontWeight: '700',
+    paddingVertical: vh(1),
   },
 });

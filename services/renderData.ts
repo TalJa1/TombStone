@@ -95,5 +95,11 @@ export const MapListData = [
   {
     title: 'H.Hường Hóa',
     city: 'Quảng Trị',
+    img: require('../assets/Home/tp1.png'),
+  },
+  {
+    title: 'H. Vĩnh Linh',
+    city: 'Quảng Trị',
+    img: require('../assets/Home/tp2.png'),
   },
 ];
