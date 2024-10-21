@@ -17,7 +17,11 @@ import {
   FoundMartyrProfileItem,
   MartyrProfileItem,
 } from '../../services/typeProps';
-import {FoundMartyrProfile, MartyrProfile} from '../../services/renderData';
+import {
+  FoundMartyrProfile,
+  HomeNewsData,
+  MartyrProfile,
+} from '../../services/renderData';
 
 const Home = () => {
   useStatusBar('#547958');
@@ -31,7 +35,7 @@ const Home = () => {
           </View>
           <NewsView />
         </View>
-        <View style={{height: vh(10)}} />
+        <View style={{height: vh(15)}} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -55,6 +59,42 @@ const NewsView: React.FC = () => {
           <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
           {readMoreIcon(vw(5), vw(5))}
         </TouchableOpacity>
+      </View>
+      <View style={{paddingHorizontal: vw(5)}}>
+        {HomeNewsData.map((item, index) => {
+          return (
+            <View key={index} style={styles.news}>
+              <Image source={item.img} style={styles.newsImg} />
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'space-between',
+                  height: vw(30),
+                }}>
+                <View style={styles.topNewsGrp}>
+                  <View
+                    style={
+                      item.status === 'Tìm mộ thành công'
+                        ? styles.statusSuccess
+                        : styles.statusStrange
+                    }>
+                    <Text
+                      style={
+                        item.status === 'Tìm mộ thành công'
+                          ? styles.statusTxtSuccess
+                          : styles.statusTxtStrange
+                      }>
+                      {item.status}
+                    </Text>
+                  </View>
+                  <Text style={styles.newsDate}>{item.date}</Text>
+                </View>
+                <Text style={styles.newsTitle}>{item.title}</Text>
+                <Text style={styles.newsDescription}>{item.description}</Text>
+              </View>
+            </View>
+          );
+        })}
       </View>
     </View>
   );
@@ -328,5 +368,61 @@ const styles = StyleSheet.create({
   addBtnTxt: {
     color: 'black',
     fontSize: 16,
+  },
+  news: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: vh(1),
+    padding: vw(3),
+    backgroundColor: '#EEF2EE',
+    borderRadius: 8,
+    overflow: 'hidden',
+    columnGap: vw(2),
+  },
+  newsImg: {
+    height: vw(30),
+    width: vw(27),
+    resizeMode: 'cover',
+    borderRadius: 8,
+  },
+  newsContent: {
+    flex: 1,
+    marginLeft: vw(3),
+  },
+  topNewsGrp: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  statusSuccess: {
+    backgroundColor: '#ECF3A3',
+    padding: vw(1),
+    borderRadius: 8,
+  },
+  statusStrange: {
+    backgroundColor: '#6FA078',
+    padding: vw(1),
+    borderRadius: 8,
+  },
+  statusTxtSuccess: {
+    fontSize: 12,
+    color: '#547958',
+  },
+  statusTxtStrange: {
+    fontSize: 12,
+    color: 'white',
+  },
+  newsDate: {
+    color: '#547958',
+    fontSize: 12,
+  },
+  newsTitle: {
+    color: '#547958',
+    fontSize: 18,
+    fontWeight: '500',
+  },
+  newsDescription: {
+    color: '#343434',
+    fontSize: 12,
   },
 });

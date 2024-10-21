@@ -73,3 +73,20 @@ export const FoundMartyrProfile = [
     hometown: 'Liên Sơn, Bái Thạch, Vĩnh Phúc',
   },
 ];
+
+export const HomeNewsData = [
+  {
+    img: require('../assets/Home/1.png'),
+    status: 'Tìm mộ thành công',
+    date: '19/10/2024',
+    title: 'Liệt sĩ Mai Xuân Tiếp',
+    description: 'Đồng Tâm, Bá Thước, Thanh Hóa',
+  },
+  {
+    img: require('../assets/Home/2.png'),
+    status: 'Phát hiện mộ lạ',
+    date: '19/10/2024',
+    title: 'Phát hiện hố chôn tập thể nghi mộ liệt sĩ cạnh quốc lộ 19',
+    description: 'H. Đak Pơ, tỉnh Gia Lai',
+  },
+];
