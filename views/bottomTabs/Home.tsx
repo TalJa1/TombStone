@@ -1,10 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {vh, vw} from '../../services/styleSheet';
-import {bellIcon} from '../../assets/svgXML';
+import {centerAll, vh, vw} from '../../services/styleSheet';
+import {bellIcon, nextIcon} from '../../assets/svgXML';
+import {loadData, saveData} from '../../services/storage';
+import {MartyrProfileItem} from '../../services/typeProps';
+import {MartyrProfile} from '../../services/renderData';
 
 const Home = () => {
   useStatusBar('#547958');
@@ -23,14 +33,77 @@ const Home = () => {
   );
 };
 
+const TombSearchingListView: React.FC<{item: MartyrProfileItem}> = ({item}) => {
+  return (
+    <View style={styles.tombView}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text style={styles.nameTxt}>{item.name}</Text>
+        <View
+          style={[
+            {
+              backgroundColor: '#D4D4D4',
+              paddingHorizontal: vw(2),
+              paddingVertical: vh(0.5),
+              borderRadius: vw(20),
+            },
+            centerAll,
+          ]}>
+          <Text style={styles.statusTxt}>{item.status}</Text>
+        </View>
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+        <View style={{width: '80%'}}>
+          <Text style={styles.martyrInfoText}>
+            {item.birthYear} - {item.armyJoinDate}
+          </Text>
+          <Text style={styles.martyrInfoText}>{item.hometown}</Text>
+        </View>
+        <TouchableOpacity style={styles.viewBtn}>
+          {nextIcon(vw(6), vw(6), '#ECF3A3')}
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
 const TopDataRender: React.FC = () => {
+  const [renderData, setRenderData] = useState<MartyrProfileItem[]>([]);
+
+  const fetchData = async () => {
+    await loadData<MartyrProfileItem[]>('martyrProfileStorage')
+      .then(data => {
+        setRenderData(data);
+      })
+      .catch(() => {
+        setRenderData(MartyrProfile);
+        saveData('martyrProfileStorage', MartyrProfile);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <View>
       <Text style={styles.followText}>Theo dõi “Dấu tích” </Text>
       <Text style={styles.subFollowText}>
         Yêu cầu tìm kiếm mộ liệt sĩ, người thân của bạn:
       </Text>
-      <View></View>
+      <View>
+        {renderData.map((item, index) => {
+          return (
+            <View key={index}>
+              <TombSearchingListView item={item} />
+            </View>
+          );
+        })}
+      </View>
     </View>
   );
 };
@@ -99,5 +172,31 @@ const styles = StyleSheet.create({
   subFollowText: {
     color: '#D4D4D4',
     fontSize: 12,
+  },
+  nameTxt: {
+    color: '#000000',
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  statusTxt: {
+    color: '#343434',
+    fontSize: 10,
+  },
+  martyrInfoText: {
+    color: '#000000',
+    fontSize: 14,
+  },
+  viewBtn: {
+    backgroundColor: '#547958',
+    padding: vw(1.5),
+    borderRadius: vw(50),
+    alignSelf: 'flex-end',
+  },
+  tombView: {
+    backgroundColor: '#ECF3A3',
+    padding: vw(4),
+    rowGap: vh(1),
+    borderRadius: 20,
+    marginVertical: vh(1),
   },
 });

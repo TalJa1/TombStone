@@ -24,4 +24,5 @@ export interface MartyrProfileItem {
   otherName: string;
   relationship: string;
   otherInfor: string;
+  status: string;
 }

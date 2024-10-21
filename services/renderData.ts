@@ -59,5 +59,6 @@ export const MartyrProfile = [
     otherName: 'Lâm Hữu Huy',
     relationship: 'Anh',
     otherInfor: 'Đã có 2 con trai',
+    status: 'Đang xử lý',
   },
 ];
