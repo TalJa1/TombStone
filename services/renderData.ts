@@ -62,3 +62,14 @@ export const MartyrProfile = [
     status: 'Đang xử lý',
   },
 ];
+
+export const FoundMartyrProfile = [
+  {
+    name: 'Nguyễn Văn Đức',
+    status: 'Đã tìm thấy',
+    img: require('../assets/Home/foundMartyr.png'),
+    birthYear: '1947',
+    armyJoinDate: '11/1966',
+    hometown: 'Liên Sơn, Bái Thạch, Vĩnh Phúc',
+  },
+];

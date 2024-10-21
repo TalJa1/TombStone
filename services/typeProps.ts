@@ -26,3 +26,12 @@ export interface MartyrProfileItem {
   otherInfor: string;
   status: string;
 }
+
+export interface FoundMartyrProfileItem {
+  name: string;
+  status: string;
+  img: any; // You can replace 'any' with the specific type if you know it
+  birthYear: string;
+  armyJoinDate: string;
+  hometown: string;
+}

@@ -11,10 +11,13 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {centerAll, vh, vw} from '../../services/styleSheet';
-import {bellIcon, nextIcon} from '../../assets/svgXML';
+import {bellIcon, nextIcon, plusIcon} from '../../assets/svgXML';
 import {loadData, saveData} from '../../services/storage';
-import {MartyrProfileItem} from '../../services/typeProps';
-import {MartyrProfile} from '../../services/renderData';
+import {
+  FoundMartyrProfileItem,
+  MartyrProfileItem,
+} from '../../services/typeProps';
+import {FoundMartyrProfile, MartyrProfile} from '../../services/renderData';
 
 const Home = () => {
   useStatusBar('#547958');
@@ -63,7 +66,7 @@ const TombSearchingListView: React.FC<{item: MartyrProfileItem}> = ({item}) => {
           </Text>
           <Text style={styles.martyrInfoText}>{item.hometown}</Text>
         </View>
-        <TouchableOpacity style={styles.viewBtn}>
+        <TouchableOpacity style={styles.viewBtn} disabled>
           {nextIcon(vw(6), vw(6), '#ECF3A3')}
         </TouchableOpacity>
       </View>
@@ -71,16 +74,84 @@ const TombSearchingListView: React.FC<{item: MartyrProfileItem}> = ({item}) => {
   );
 };
 
+const TombFoundListView: React.FC<{item: FoundMartyrProfileItem}> = ({
+  item,
+}) => {
+  return (
+    <View>
+      <View
+        style={[
+          styles.tombView,
+          {
+            backgroundColor: 'transparent',
+            borderWidth: 1,
+            borderColor: '#D4F7E5',
+            flexDirection: 'row',
+          },
+        ]}>
+        <Image
+          source={item.img}
+          style={{height: '100%', resizeMode: 'contain'}}
+        />
+        <View style={{flex: 1, marginLeft: vw(1)}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={[styles.nameTxt, {color: '#EEF2EE'}]}>
+              {item.name}
+            </Text>
+            <View
+              style={[
+                {
+                  backgroundColor: '#D4F7E5',
+                  paddingHorizontal: vw(2),
+                  paddingVertical: vh(0.5),
+                  borderRadius: vw(20),
+                },
+                centerAll,
+              ]}>
+              <Text style={styles.statusTxt}>{item.status}</Text>
+            </View>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View style={{width: '50%'}}>
+              <Text style={[styles.martyrInfoText, {color: '#EEF2EE'}]}>
+                {item.birthYear} - {item.armyJoinDate}
+              </Text>
+              <Text style={[styles.martyrInfoText, {color: '#EEF2EE'}]}>
+                {item.hometown}
+              </Text>
+            </View>
+            <TouchableOpacity
+              disabled
+              style={[styles.viewBtn, {backgroundColor: '#6FA078'}]}>
+              {nextIcon(vw(6), vw(6), '#ECF3A3')}
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
+
 const TopDataRender: React.FC = () => {
-  const [renderData, setRenderData] = useState<MartyrProfileItem[]>([]);
+  const [renderDataSearching, setRenderDataSearching] = useState<
+    MartyrProfileItem[]
+  >([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [renderFoundData, setRenderFoundData] =
+    useState<FoundMartyrProfileItem[]>(FoundMartyrProfile);
 
   const fetchData = async () => {
     await loadData<MartyrProfileItem[]>('martyrProfileStorage')
       .then(data => {
-        setRenderData(data);
+        setRenderDataSearching(data);
       })
       .catch(() => {
-        setRenderData(MartyrProfile);
+        setRenderDataSearching(MartyrProfile);
         saveData('martyrProfileStorage', MartyrProfile);
       });
   };
@@ -96,7 +167,7 @@ const TopDataRender: React.FC = () => {
         Yêu cầu tìm kiếm mộ liệt sĩ, người thân của bạn:
       </Text>
       <View>
-        {renderData.map((item, index) => {
+        {renderDataSearching.map((item, index) => {
           return (
             <View key={index}>
               <TombSearchingListView item={item} />
@@ -104,6 +175,27 @@ const TopDataRender: React.FC = () => {
           );
         })}
       </View>
+      <View>
+        {renderFoundData.map((item, i) => {
+          return (
+            <View key={i}>
+              <TombFoundListView item={item} />
+            </View>
+          );
+        })}
+      </View>
+      <TouchableOpacity style={styles.addBtn}>
+        <Text style={styles.addBtnTxt}>Thêm yêu cầu tìm kiếm</Text>
+        <View
+          style={{
+            padding: vw(2),
+            backgroundColor: '#899A5A',
+            alignSelf: 'flex-end',
+            borderRadius: vw(50),
+          }}>
+          {plusIcon(vw(5), vw(5), 'white')}
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -198,5 +290,19 @@ const styles = StyleSheet.create({
     rowGap: vh(1),
     borderRadius: 20,
     marginVertical: vh(1),
+  },
+  addBtn: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    columnGap: vw(3),
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    paddingHorizontal: vw(4),
+    paddingVertical: vh(1),
+    borderRadius: 12,
+  },
+  addBtnTxt: {
+    color: 'black',
+    fontSize: 16,
   },
 });
