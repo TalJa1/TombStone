@@ -29,10 +29,11 @@ export const OnboardingData = [
       'Tạo không gian để các gia đình có thể hỗ trợ và chia sẻ kinh nghiệm trong việc tìm kiếm và tưởng niệm người thân',
     img: require('../assets/Onboarding/o5.png'),
   },
-  {
-    title: 'Hành trình tìm lại yêu thương bắt đầu',
-    description:
-      'Hãy bắt đầu hành trình của bạn để tìm lại người thân và hỗ trợ cộng đồng cùng “Dấu chân Ký Ức"',
-    img: require('../assets/Onboarding/o6.png'),
-  },
 ];
+
+export const CheckStartPage = {
+  title: 'Hành trình tìm lại yêu thương bắt đầu',
+  description:
+    'Hãy bắt đầu hành trình của bạn để tìm lại người thân và hỗ trợ cộng đồng cùng “Dấu chân Ký Ức"',
+  img: require('../assets/Onboarding/o6.png'),
+};
