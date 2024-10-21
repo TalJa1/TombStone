@@ -97,10 +97,12 @@ const App = () => {
                 const iconSize = vw(8);
 
                 return (
-                  <View style={[styles.plusContainer]}>
-                    {focused
-                      ? plusIcon(iconSize, iconSize, color)
-                      : plusIcon(iconSize, iconSize, color)}
+                  <View style={styles.plusSurround}>
+                    <View style={[styles.plusContainer]}>
+                      {focused
+                        ? plusIcon(iconSize, iconSize, color)
+                        : plusIcon(iconSize, iconSize, color)}
+                    </View>
                   </View>
                 );
               },
@@ -196,6 +198,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     position: 'relative',
     top: vh(0.5),
+  },
+  plusSurround: {
+    position: 'absolute',
+    top: -vh(3.5),
+    padding: vw(1.5),
+    backgroundColor: 'white',
+    borderRadius: vw(50),
   },
   plusContainer: {
     borderRadius: vw(50),
