@@ -14,9 +14,12 @@ import {OnboardingData} from '../../services/renderData';
 import {OnboardingItem} from '../../services/typeProps';
 import {vh, vw} from '../../services/styleSheet';
 import {nextIcon} from '../../assets/svgXML';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const OnboardingPage = () => {
   useStatusBar('black');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
@@ -45,6 +48,8 @@ const OnboardingPage = () => {
       const nextIndex = currentIndex + 1;
       setCurrentIndex(nextIndex);
       flatListRef.current?.scrollToIndex({index: nextIndex});
+    } else {
+      navigation.navigate('OffBoarding');
     }
   };
 

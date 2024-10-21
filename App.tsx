@@ -25,6 +25,7 @@ import useHideTabBar from './services/useHideTabBar';
 import AddPage from './views/bottomTabs/AddPage';
 import InitPage from './views/Init/InitPage';
 import OnboardingPage from './views/Onboarding/OnboardingPage';
+import OffBoarding from './views/Onboarding/OffBoarding';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -180,6 +181,11 @@ const App = () => {
         <Stack.Screen
           name="Onboarding"
           component={OnboardingPage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OffBoarding"
+          component={OffBoarding}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
