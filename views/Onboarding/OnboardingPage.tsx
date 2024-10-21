@@ -40,9 +40,20 @@ const OnboardingPage = () => {
     </View>
   );
 
+  const handleNextPress = () => {
+    if (currentIndex < OnboardingData.length - 1) {
+      const nextIndex = currentIndex + 1;
+      setCurrentIndex(nextIndex);
+      flatListRef.current?.scrollToIndex({index: nextIndex});
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
+        <TouchableOpacity style={styles.btnSkip}>
+          <Text style={styles.btnSkipText}>Bỏ qua</Text>
+        </TouchableOpacity>
         <FlatList
           data={OnboardingData}
           renderItem={renderItem}
@@ -71,7 +82,7 @@ const OnboardingPage = () => {
             />
           ))}
         </View>
-        <TouchableOpacity style={styles.btnNext}>
+        <TouchableOpacity style={styles.btnNext} onPress={handleNextPress}>
           <Text style={styles.btnNextText}>{nextIcon(vw(8), vw(8))}</Text>
         </TouchableOpacity>
       </View>
@@ -144,5 +155,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     zIndex: 1,
+  },
+  btnSkip: {
+    position: 'absolute',
+    top: vh(5),
+    right: vw(5),
+    zIndex: 2,
+    paddingHorizontal: vw(3),
+    paddingVertical: vh(1),
+    backgroundColor: '#fff1',
+    borderRadius: 8,
+  },
+  btnSkipText: {
+    fontSize: 16,
+    color: '#fff',
   },
 });
