@@ -33,11 +33,7 @@ const App = () => {
           screenOptions={{
             tabBarActiveTintColor: '#547958',
             tabBarShowLabel: false,
-            tabBarStyle: {
-              borderTopColor: '#FFFFFF',
-              backgroundColor: '#FFFFFF',
-              height: vh(10),
-            },
+            tabBarStyle: styles.tabBar,
           }}>
           <Tab.Screen
             name="Trang chủ"
@@ -152,6 +148,23 @@ export default App;
 
 const styles = StyleSheet.create({
   tabnavigationStyle: {backgroundColor: '#1A1A1A', flex: 1},
+  tabBar: {
+    position: 'absolute',
+    bottom: vh(0.5),
+    left: 0,
+    right: 0,
+    borderTopColor: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
+    height: vh(10),
+    borderRadius: 30,
+    paddingHorizontal: vw(5),
+    paddingBottom: vh(1),
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 10},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
   iconContainer: {
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -161,7 +174,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 12,
     fontWeight: '700',
-    position :'relative',
+    position: 'relative',
     top: vh(0.5),
   },
 });
