@@ -14,8 +14,8 @@ import {OnboardingData} from '../../services/renderData';
 import {OnboardingItem} from '../../services/typeProps';
 import {vh, vw} from '../../services/styleSheet';
 import {nextIcon} from '../../assets/svgXML';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const OnboardingPage = () => {
   useStatusBar('black');
@@ -53,10 +53,14 @@ const OnboardingPage = () => {
     }
   };
 
+  const handleSkip = () => {
+    navigation.navigate('OffBoarding');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <TouchableOpacity style={styles.btnSkip}>
+        <TouchableOpacity style={styles.btnSkip} onPress={handleSkip}>
           <Text style={styles.btnSkipText}>Bỏ qua</Text>
         </TouchableOpacity>
         <FlatList
