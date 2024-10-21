@@ -1,12 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {centerAll, vw} from '../../services/styleSheet';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const InitPage = () => {
   useStatusBar('#547958');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('Onboarding');
+    }, 2000);
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, [navigation]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={[{flex: 1}, centerAll]}>
