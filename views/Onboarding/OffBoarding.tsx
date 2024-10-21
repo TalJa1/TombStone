@@ -5,10 +5,17 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {CheckStartPage} from '../../services/renderData';
 import {vh, vw} from '../../services/styleSheet';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const OffBoarding = () => {
   useStatusBar('#547958');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const renderData = CheckStartPage;
+
+  const handleStart = () => {
+    navigation.navigate('Main');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,7 +25,7 @@ const OffBoarding = () => {
           <Image source={renderData.img} style={styles.image} />
           <Text style={styles.des}>{renderData.description}</Text>
         </View>
-        <TouchableOpacity style={styles.btnStart}>
+        <TouchableOpacity style={styles.btnStart} onPress={handleStart}>
           <Text style={styles.btnStartText}>Bắt đầu</Text>
         </TouchableOpacity>
       </View>
