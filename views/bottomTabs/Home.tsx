@@ -22,6 +22,7 @@ import {
   HomeNewsData,
   MapListData,
   MartyrProfile,
+  MartyrProfileListData,
 } from '../../services/renderData';
 
 const Home = () => {
@@ -36,10 +37,60 @@ const Home = () => {
           </View>
           <NewsView />
           <MapListView />
+          <LocationView />
         </View>
         <View style={{height: vh(15)}} />
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const LocationView: React.FC = () => {
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: vw(5),
+          marginVertical: vh(1),
+        }}>
+        <Text style={{color: '#547958', fontSize: 18, fontWeight: '700'}}>
+          Bản đồ nghĩa trang liệt sĩ
+        </Text>
+        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
+          {readMoreIcon(vw(5), vw(5))}
+        </TouchableOpacity>
+      </View>
+      <View
+        style={[
+          {
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            paddingHorizontal: vw(5),
+          },
+          centerAll,
+        ]}>
+        {MartyrProfileListData.map((item, index) => {
+          return (
+            <Image
+              key={index}
+              source={item}
+              style={{
+                width: vw(17),
+                height: vw(17),
+                resizeMode: 'cover',
+                borderRadius: 12,
+                overflow: 'hidden',
+                margin: vw(1),
+              }}
+            />
+          );
+        })}
+      </View>
+    </View>
   );
 };
 
