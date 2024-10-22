@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Modal} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Modal,
+  Image,
+} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {cameraIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const Page1: React.FC = () => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
@@ -23,6 +31,21 @@ const Page1: React.FC = () => {
       console.log(data.uri);
       handleCameraClose();
     }
+  };
+
+  const handleImagePicker = () => {
+    launchImageLibrary({mediaType: 'photo'}, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+      } else {
+        if (response.assets && response.assets.length > 0) {
+          console.log('Image URI: ', response.assets[0].uri);
+        }
+        handleCameraClose();
+      }
+    });
   };
 
   return (
@@ -76,6 +99,11 @@ const Page1: React.FC = () => {
             captureAudio={false}>
             {({camera}) => (
               <View style={styles.captureContainer}>
+                <TouchableOpacity
+                  onPress={handleImagePicker}
+                  style={styles.libraryButton}>
+                  <Image source={require('../../assets/Home/imgPicker.png')} />
+                </TouchableOpacity>
                 <View style={styles.borderCapture}>
                   <TouchableOpacity
                     onPress={() => handleCapture(camera)}
@@ -170,8 +198,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 20,
+    width: vw(100),
   },
-  borderCapture:{
+  borderCapture: {
     borderRadius: vw(200),
     padding: 2,
     borderWidth: 2,
@@ -199,5 +228,10 @@ const styles = StyleSheet.create({
   },
   closeText: {
     fontSize: 14,
+  },
+  libraryButton: {
+    alignSelf: 'center',
+    position: 'absolute',
+    left: vw(5),
   },
 });
