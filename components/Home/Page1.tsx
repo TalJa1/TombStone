@@ -76,10 +76,12 @@ const Page1: React.FC = () => {
             captureAudio={false}>
             {({camera}) => (
               <View style={styles.captureContainer}>
-                <TouchableOpacity
-                  onPress={() => handleCapture(camera)}
-                  style={styles.capture}
-                />
+                <View style={styles.borderCapture}>
+                  <TouchableOpacity
+                    onPress={() => handleCapture(camera)}
+                    style={styles.capture}
+                  />
+                </View>
               </View>
             )}
           </RNCamera>
@@ -168,6 +170,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 20,
+  },
+  borderCapture:{
+    borderRadius: vw(200),
+    padding: 2,
+    borderWidth: 2,
+    borderColor: '#fff',
   },
   capture: {
     backgroundColor: '#fff',
