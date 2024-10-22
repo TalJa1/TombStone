@@ -171,6 +171,13 @@ const App = () => {
           options={{headerShown: false}}
         />
 
+        {/* Home */}
+        <Stack.Screen
+          name="AddPage"
+          component={AddPage}
+          options={{headerShown: false}}
+        />
+
         {/* Searching */}
         <Stack.Screen
           name="TombList"

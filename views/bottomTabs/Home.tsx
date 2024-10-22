@@ -24,11 +24,16 @@ import {
   MartyrProfile,
   MartyrProfileListData,
 } from '../../services/renderData';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const Home = () => {
   useStatusBar('#547958');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-  const handleAdd = () => {};
+  const handleAdd = () => {
+    navigation.navigate('AddPage');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
