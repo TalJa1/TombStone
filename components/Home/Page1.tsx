@@ -78,14 +78,8 @@ const Page1: React.FC = () => {
               <View style={styles.captureContainer}>
                 <TouchableOpacity
                   onPress={() => handleCapture(camera)}
-                  style={styles.capture}>
-                  <Text style={styles.captureText}> SNAP </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleCameraClose}
-                  style={styles.close}>
-                  <Text style={styles.closeText}> CLOSE </Text>
-                </TouchableOpacity>
+                  style={styles.capture}
+                />
               </View>
             )}
           </RNCamera>
@@ -176,13 +170,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   capture: {
-    flex: 0,
     backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
+    borderRadius: vw(200),
+    height: vw(15),
+    width: vw(15),
     paddingHorizontal: 20,
     alignSelf: 'center',
-    margin: 20,
   },
   captureText: {
     fontSize: 14,
