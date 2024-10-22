@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
   upTxt: {
     color: '#969696',
     fontSize: 16,
-    marginLeft: vw(2),
   },
   label: {
     color: '#484848',
