@@ -27,6 +27,9 @@ import {
 
 const Home = () => {
   useStatusBar('#547958');
+
+  const handleAdd = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -36,7 +39,10 @@ const Home = () => {
             <TopDataRender />
           </View>
           <View style={styles.topGrpBottom}>
-            <TouchableOpacity style={styles.addBtn} activeOpacity={0.9}>
+            <TouchableOpacity
+              style={styles.addBtn}
+              activeOpacity={0.9}
+              onPress={handleAdd}>
               <Text style={styles.addBtnTxt}>Thêm yêu cầu tìm kiếm</Text>
               <View
                 style={{

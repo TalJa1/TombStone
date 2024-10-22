@@ -35,3 +35,7 @@ export interface FoundMartyrProfileItem {
   armyJoinDate: string;
   hometown: string;
 }
+
+export interface HeaderComponentProps {
+  title: string;
+}

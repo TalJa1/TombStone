@@ -11,17 +11,11 @@ import {
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {
-  backIcon,
-  dropdownIcon,
-  readMoreIcon,
-  searchIcon,
-} from '../../assets/svgXML';
+import {dropdownIcon, readMoreIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
 import {MapListData, ProvinceList} from '../../services/renderData';
+import HeaderComponent from '../../components/HeaderComponent';
 
 const TombList = () => {
   useStatusBar('white');
@@ -29,7 +23,7 @@ const TombList = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
-          <Header />
+          <HeaderComponent title="Danh sách nghĩa trang" />
           <SearchView />
           <MapListView />
           <MapListView2 />
@@ -156,43 +150,12 @@ const SearchView: React.FC = () => {
   );
 };
 
-const Header: React.FC = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  return (
-    <View style={styles.header}>
-      <TouchableOpacity
-        style={styles.headerBtn}
-        onPress={() => navigation.goBack()}>
-        {backIcon(vw(7), vw(7))}
-      </TouchableOpacity>
-      <Text style={styles.headerTitle}>Danh sách nghĩa trang</Text>
-    </View>
-  );
-};
-
 export default TombList;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: vw(5),
-    columnGap: vw(5),
-    paddingHorizontal: vw(5),
-  },
-  headerBtn: {
-    backgroundColor: '#91A89526',
-    borderRadius: vw(50),
-    padding: vw(2),
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#547958',
   },
   searchContainer: {
     marginTop: vh(2),
