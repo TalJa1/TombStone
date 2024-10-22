@@ -113,3 +113,13 @@ export const MartyrProfileListData = [
   require('../assets/Home/q7.png'),
   require('../assets/Home/q9.png'),
 ];
+
+export const ProvinceList = [
+  {label: 'Hà Nội', value: 'hanoi'},
+  {label: 'Hồ Chí Minh', value: 'hochiminh'},
+  {label: 'Đà Nẵng', value: 'danang'},
+  {label: 'Hải Phòng', value: 'haiphong'},
+  {label: 'Cần Thơ', value: 'cantho'},
+  {label: 'Quảng Ninh', value: 'quangninh'},
+  {label: 'Khánh Hòa', value: 'khanhhoa'},
+];

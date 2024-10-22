@@ -10,10 +10,12 @@ import {
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {backIcon, searchIcon} from '../../assets/svgXML';
+import {backIcon, dropdownIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
+import {ProvinceList} from '../../services/renderData';
 
 const TombList = () => {
   useStatusBar('white');
@@ -40,6 +42,24 @@ const SearchView: React.FC = () => {
           style={styles.searchInput}
           placeholder="Nhập tên nghĩa trang"
           placeholderTextColor="#6FA078"
+        />
+      </View>
+      <View style={styles.pickerWrapper}>
+        <RNPickerSelect
+          onValueChange={(value: any) => console.log(value)}
+          items={ProvinceList}
+          style={{
+            ...pickerSelectStyles,
+            iconContainer: {
+              top: vh(2), // Adjust this value to position the icon vertically
+              right: vw(3.5), // Adjust this value to position the icon horizontally
+            },
+          }}
+          placeholder={{
+            label: 'Trực thuộc tỉnh',
+            value: null,
+          }}
+          Icon={() => dropdownIcon(vw(5), vw(5), '#547958')}
         />
       </View>
     </View>
@@ -94,11 +114,43 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
+    paddingVertical: vh(0.7),
   },
   searchInput: {
     flex: 1,
     height: 40,
     paddingLeft: 10,
     color: '#547958',
+  },
+  pickerWrapper: {
+    marginTop: vh(2),
+    borderWidth: 1,
+    borderColor: '#547958',
+    borderRadius: 5,
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    borderWidth: 0.5,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    color: '#6FA078',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  iconContainer: {
+    top: 10, // Adjust this value to position the icon vertically
+    right: 12, // Adjust this value to position the icon horizontally
   },
 });
