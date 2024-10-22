@@ -2,7 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {cameraIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
-import {Page1TopData} from '../../services/renderData';
+import {Page1BottomData, Page1TopData} from '../../services/renderData';
 
 const Page1: React.FC = () => {
   return (
@@ -17,6 +17,25 @@ const Page1: React.FC = () => {
               </View>
             );
           })}
+        </View>
+      </View>
+      <View>
+        <Text style={styles.title}>Các vật phẩm liên quan của liệt sĩ</Text>
+        <View style={styles.row}>
+          {Page1BottomData.map((item, index) => {
+            return (
+              <View key={index} style={styles.itemContainer}>
+                <ImagePickerView label={item} />
+              </View>
+            );
+          })}
+        </View>
+        <View style={styles.imagePickerContainer}>
+          <TouchableOpacity style={styles.iconContainer}>
+            {cameraIcon(vw(8), vw(8))}
+            <Text style={styles.upTxt}>Tải lên</Text>
+          </TouchableOpacity>
+          <Text style={styles.label}>Tiêu đề</Text>
         </View>
       </View>
     </View>

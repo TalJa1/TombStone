@@ -130,3 +130,5 @@ export const Page1TopData = [
   'Giấy xác nhận thông tin nơi hi sinh',
   'Giấy tờ khác',
 ];
+
+export const Page1BottomData = ['Ảnh', 'Thư tay (chữ viết)'];
