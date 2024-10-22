@@ -35,6 +35,20 @@ const Home = () => {
             <Header />
             <TopDataRender />
           </View>
+          <View style={styles.topGrpBottom}>
+            <TouchableOpacity style={styles.addBtn} activeOpacity={0.9}>
+              <Text style={styles.addBtnTxt}>Thêm yêu cầu tìm kiếm</Text>
+              <View
+                style={{
+                  padding: vw(2),
+                  backgroundColor: '#899A5A',
+                  alignSelf: 'flex-end',
+                  borderRadius: vw(50),
+                }}>
+                {plusIcon(vw(5), vw(5), 'white')}
+              </View>
+            </TouchableOpacity>
+          </View>
           <NewsView />
           <MapListView />
           <LocationView />
@@ -340,18 +354,6 @@ const TopDataRender: React.FC = () => {
           );
         })}
       </View>
-      <TouchableOpacity style={styles.addBtn}>
-        <Text style={styles.addBtnTxt}>Thêm yêu cầu tìm kiếm</Text>
-        <View
-          style={{
-            padding: vw(2),
-            backgroundColor: '#899A5A',
-            alignSelf: 'flex-end',
-            borderRadius: vw(50),
-          }}>
-          {plusIcon(vw(5), vw(5), 'white')}
-        </View>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -389,9 +391,17 @@ const styles = StyleSheet.create({
   topGrp: {
     paddingHorizontal: vw(5),
     backgroundColor: '#547958',
-    paddingBottom: vh(2),
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+  },
+  topGrpBottom: {
+    backgroundColor: '#547958',
+    height: vh(5),
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    borderLeftWidth: 0.5,
+    borderBottomWidth: 3,
+    borderRightWidth: 0.5,
+    borderColor: 'black',
+    marginBottom: vh(3),
   },
   headerImg: {
     width: vw(10),
@@ -456,6 +466,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw(4),
     paddingVertical: vh(1),
     borderRadius: 12,
+    position: 'absolute',
+    bottom: vh(-3),
+    zIndex: 3,
+    borderWidth: 3,
+    borderColor: 'black',
   },
   addBtnTxt: {
     color: 'black',
