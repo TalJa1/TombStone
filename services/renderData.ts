@@ -123,3 +123,10 @@ export const ProvinceList = [
   {label: 'Quảng Ninh', value: 'quangninh'},
   {label: 'Khánh Hòa', value: 'khanhhoa'},
 ];
+
+export const Page1TopData = [
+  'Giấy báo tử',
+  'Bản trích lục',
+  'Giấy xác nhận thông tin nơi hi sinh',
+  'Giấy tờ khác',
+];

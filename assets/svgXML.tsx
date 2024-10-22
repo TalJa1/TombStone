@@ -11,6 +11,16 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const cameraIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35.75 21.6666C35.75 17.2222 34.9167 13.3333 34.0833 12.7778C33.5492 12.4217 30.9614 12.0656 27.4167 11.8558C25.4305 11.7383 29.0833 8.33331 20.75 8.33331C12.4167 8.33331 16.0695 11.7383 14.0833 11.8558C10.5386 12.0656 7.95075 12.4217 7.41667 12.7778C6.58333 13.3333 5.75 17.2222 5.75 21.6666C5.75 26.1111 6.58333 30 7.41667 30.5555C8.25 31.1111 14.0833 31.6666 20.75 31.6666C27.4167 31.6666 33.25 31.1111 34.0833 30.5555C34.9167 30 35.75 26.1111 35.75 21.6666Z" stroke="#969696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.75 26.6666C23.5114 26.6666 25.75 24.4281 25.75 21.6666C25.75 18.9052 23.5114 16.6666 20.75 16.6666C17.9886 16.6666 15.75 18.9052 15.75 21.6666C15.75 24.4281 17.9886 26.6666 20.75 26.6666Z" stroke="#969696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const arrowBackIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10.07 5.93L4 12L10.07 18.07" stroke=${
