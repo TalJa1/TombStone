@@ -15,6 +15,9 @@ import {launchImageLibrary} from 'react-native-image-picker';
 
 const Page1: React.FC = () => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
+  const [imageUri, setImageUri] = useState<string | null>(null);
+
+  console.log('Image URI: ', imageUri);
 
   const handleCameraOpen = () => {
     setIsCameraVisible(true);
@@ -29,6 +32,7 @@ const Page1: React.FC = () => {
       const options = {quality: 0.5, base64: true};
       const data = await camera.takePictureAsync(options);
       console.log(data.uri);
+      setImageUri(data.uri);
       handleCameraClose();
     }
   };
@@ -42,6 +46,9 @@ const Page1: React.FC = () => {
       } else {
         if (response.assets && response.assets.length > 0) {
           console.log('Image URI: ', response.assets[0].uri);
+          if (response.assets[0].uri) {
+            setImageUri(response.assets[0].uri);
+          }
         }
         handleCameraClose();
       }
