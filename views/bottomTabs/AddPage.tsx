@@ -2,7 +2,6 @@
 import {
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -12,6 +11,12 @@ import useStatusBar from '../../services/useStatusBar';
 import HeaderComponent from '../../components/HeaderComponent';
 import {arrowBackIcon, arrowNextIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
+import Page1 from '../../components/Home/Page1';
+import Page2 from '../../components/Home/Page2';
+import Page3 from '../../components/Home/Page3';
+import Page4 from '../../components/Home/Page4';
+import Page5 from '../../components/Home/Page5';
+import Page6 from '../../components/Home/Page6';
 
 const AddPage = () => {
   useStatusBar('white');
@@ -65,7 +70,6 @@ const AddPage = () => {
                 />
               ))}
             </View>
-            <Text style={styles.title}>Các giấy tờ xác nhận</Text>
             {renderPage()}
             <View style={styles.btnGrp}>
               <TouchableOpacity
@@ -94,16 +98,6 @@ const AddPage = () => {
   );
 };
 
-const Page1: React.FC = () => {
-  return <View></View>;
-};
-
-const Page2: React.FC = () => <Text>Page 2 Content</Text>;
-const Page3: React.FC = () => <Text>Page 3 Content</Text>;
-const Page4: React.FC = () => <Text>Page 4 Content</Text>;
-const Page5: React.FC = () => <Text>Page 5 Content</Text>;
-const Page6: React.FC = () => <Text>Page 6 Content</Text>;
-
 export default AddPage;
 
 const styles = StyleSheet.create({
@@ -121,12 +115,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     overflow: 'hidden',
   },
-  title: {
-    textAlign: 'center',
-    color: '#D8672E',
-    fontSize: 18,
-    fontWeight: '800',
-  },
+
   dotsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -147,6 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: vw(5),
+    marginBottom: vh(2),
   },
   btnBack: {
     backgroundColor: '#ECF3A3',
