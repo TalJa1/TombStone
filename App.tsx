@@ -26,6 +26,7 @@ import AddPage from './views/bottomTabs/AddPage';
 import InitPage from './views/Init/InitPage';
 import OnboardingPage from './views/Onboarding/OnboardingPage';
 import OffBoarding from './views/Onboarding/OffBoarding';
+import TombList from './views/Searching/TombList';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -167,6 +168,13 @@ const App = () => {
         <Stack.Screen
           name="Main"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+
+        {/* Searching */}
+        <Stack.Screen
+          name="TombList"
+          component={TombList}
           options={{headerShown: false}}
         />
 

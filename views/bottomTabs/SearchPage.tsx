@@ -3,9 +3,12 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {vh, vw} from '../../services/styleSheet';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const SearchPage = () => {
   useStatusBar('black');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const dataStr = [
     'Nghĩa trang Liệt sĩ',
@@ -17,7 +20,7 @@ const SearchPage = () => {
   const handleCLick = (index: number) => {
     switch (index) {
       case 0:
-        // navigate to Liệt sĩ
+        navigation.navigate('TombList');
         break;
       case 1:
         // navigate to Hồ sơ liệt sĩ
