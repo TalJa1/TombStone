@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,25 +11,110 @@ import {
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {backIcon, dropdownIcon, searchIcon} from '../../assets/svgXML';
+import {
+  backIcon,
+  dropdownIcon,
+  readMoreIcon,
+  searchIcon,
+} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
-import {ProvinceList} from '../../services/renderData';
+import {MapListData, ProvinceList} from '../../services/renderData';
 
 const TombList = () => {
   useStatusBar('white');
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <View style={{flex: 1, paddingHorizontal: vw(5)}}>
+        <View style={{flex: 1}}>
           <Header />
           <SearchView />
-          <Text> TombList </Text>
+          <MapListView />
+          <MapListView2 />
         </View>
+        <View style={{height: vh(5)}} />
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const MapListView2: React.FC = () => {
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: vw(5),
+          marginVertical: vh(2),
+        }}>
+        <Text style={{color: '#547958', fontSize: 18, fontWeight: '700'}}>
+          Nghĩa trang bạn đã qua
+        </Text>
+        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
+          {readMoreIcon(vw(5), vw(5))}
+        </TouchableOpacity>
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
+        {MapListData.map((item, index) => {
+          return (
+            <View key={index} style={styles.mapListContainer}>
+              <Image source={item.img} style={styles.mapListImg} />
+              <View style={styles.cityContainer}>
+                <Text style={styles.cityTxt}>{item.city}</Text>
+              </View>
+              <Text style={styles.titleTxt}>{item.title}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
+    </View>
+  );
+};
+
+const MapListView: React.FC = () => {
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: vw(5),
+          marginVertical: vh(2),
+        }}>
+        <Text style={{color: '#547958', fontSize: 18, fontWeight: '700'}}>
+          Nghĩa trang gần bạn
+        </Text>
+        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
+          {readMoreIcon(vw(5), vw(5))}
+        </TouchableOpacity>
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
+        {MapListData.map((item, index) => {
+          return (
+            <View key={index} style={styles.mapListContainer}>
+              <Image source={item.img} style={styles.mapListImg} />
+              <View style={styles.cityContainer}>
+                <Text style={styles.cityTxt}>{item.city}</Text>
+              </View>
+              <Text style={styles.titleTxt}>{item.title}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
+    </View>
   );
 };
 
@@ -58,10 +144,14 @@ const SearchView: React.FC = () => {
           placeholder={{
             label: 'Trực thuộc tỉnh',
             value: null,
+            color: '#547958',
           }}
           Icon={() => dropdownIcon(vw(5), vw(5), '#547958')}
         />
       </View>
+      <TouchableOpacity style={styles.btnSearch}>
+        <Text style={styles.btnSearchTxt}>Tìm kiếm</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -92,6 +182,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: vw(5),
     columnGap: vw(5),
+    paddingHorizontal: vw(5),
   },
   headerBtn: {
     backgroundColor: '#91A89526',
@@ -106,6 +197,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     marginTop: vh(2),
     marginHorizontal: vw(5),
+    paddingHorizontal: vw(5),
   },
   searchWrapper: {
     flexDirection: 'row',
@@ -127,6 +219,50 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#547958',
     borderRadius: 5,
+  },
+  btnSearch: {
+    backgroundColor: '#547958',
+    paddingVertical: vh(2),
+    borderRadius: 16,
+    marginTop: vh(2),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnSearchTxt: {
+    color: 'white',
+    fontSize: 16,
+  },
+  mapListContainer: {
+    width: vw(55),
+    backgroundColor: '#547958',
+    borderRadius: 12,
+    overflow: 'hidden',
+    alignItems: 'center',
+    padding: vw(2),
+  },
+  mapListImg: {
+    height: vw(40),
+    width: '100%',
+    resizeMode: 'cover',
+    borderRadius: 12,
+  },
+  cityContainer: {
+    padding: vw(2),
+    backgroundColor: '#FFFFFFB3',
+    borderRadius: 8,
+    position: 'absolute',
+    top: vw(4),
+    right: vw(4),
+  },
+  cityTxt: {
+    color: '#547958',
+    fontSize: 10,
+  },
+  titleTxt: {
+    color: '#EEF2EE',
+    fontSize: 16,
+    fontWeight: '700',
+    paddingVertical: vh(1),
   },
 });
 
