@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "762789018944",
+    "project_id": "tombstone-2b667",
+    "storage_bucket": "tombstone-2b667.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762789018944:android:a923b68229200411580ea5",
+        "android_client_info": {
+          "package_name": "com.tombstone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-2xGqnqlxKHlk2sVkufePJKINqP7gUQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
