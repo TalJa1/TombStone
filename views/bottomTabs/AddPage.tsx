@@ -14,6 +14,7 @@ import Page5 from '../../components/Home/Page5';
 import Page6 from '../../components/Home/Page6';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
 import HeaderCheckInfor from '../../components/HeaderCheckInfor';
+import {MartyrProfileItem} from '../../services/typeProps';
 
 const AddPage = () => {
   useStatusBar('white');
@@ -25,6 +26,31 @@ const AddPage = () => {
     ...Page1TopData.map(() => null),
     ...Page1BottomData.map(() => null),
   ]);
+  const [inforData, setInforData] = useState<MartyrProfileItem>({
+    giayBaoTu: null,
+    banTrichLuc: null,
+    giayNoiHisinh: null,
+    giayKhac: null,
+    img: null,
+    letterImg: null,
+    titleImg: null,
+    name: '',
+    birthYear: '',
+    sex: '',
+    hometown: '',
+    armyJoinDate: '',
+    level: '',
+    unit: '',
+    deathDate: '',
+    deathUnit: '',
+    deathReason: '',
+    firstTomb: '',
+    fatherName: '',
+    motherName: '',
+    yourRelationshipWithMartyr: '',
+    description: '',
+    status: 0,
+  });
 
   const renderPage = () => {
     switch (currentPage) {
@@ -42,7 +68,7 @@ const AddPage = () => {
           />
         );
       case 1:
-        return <Page2 />;
+        return <Page2 data={inforData} setData={setInforData} />;
       case 2:
         return <Page3 />;
       case 3:

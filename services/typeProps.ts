@@ -53,3 +53,20 @@ export interface Page1Props {
   setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
   setImages: React.Dispatch<React.SetStateAction<(string | null)[]>>;
 }
+
+export interface AddPageState {
+  martyrProfile: MartyrProfileItem;
+}
+
+export interface TextInputComponentProps {
+  label: string;
+  setValue: (value: string) => void;
+  type: 'text' | 'date' | 'select' | 'fullDate' | 'number'; // Add 'number' type
+  value: string;
+  width?: string | number;
+  options?: {label: string; value: string}[]; // Add options prop for select type
+}
+export interface PageProps {
+  data: MartyrProfileItem;
+  setData: React.Dispatch<React.SetStateAction<MartyrProfileItem>>;
+}
