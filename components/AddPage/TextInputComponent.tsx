@@ -84,7 +84,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
               <DateTimePicker
                 value={value ? new Date(value) : new Date()}
                 mode="date"
-                display="default"
+                display="calendar"
                 onChange={handleDateChange}
               />
             )}
