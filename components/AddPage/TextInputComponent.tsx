@@ -26,7 +26,10 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
   const handleDateChange = (event: any, selectedDate: Date | undefined) => {
     setShowDatePicker(false);
     if (selectedDate) {
-      setValue(selectedDate.toISOString().split('T')[0]); // Format date as YYYY-MM-DD
+      const formattedDate = `${
+        selectedDate.getMonth() + 1
+      }/${selectedDate.getFullYear()}`;
+      setValue(formattedDate); // Format date as MM/YYYY
     }
   };
 
