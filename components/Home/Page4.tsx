@@ -20,6 +20,7 @@ const Page4: React.FC<PageProps> = ({data, setData}) => {
   const handleFirstTombChange = (value: string) => {
     setData({...data, firstTomb: value});
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Thông tin cá nhân của liệt sĩ</Text>

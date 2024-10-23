@@ -18,10 +18,9 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
   type,
   value,
   width,
-  options, // Add options prop for select type
+  options,
 }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
 
   const handleDateChange = (event: any, selectedDate: Date | undefined) => {
     setShowDatePicker(false);
@@ -29,17 +28,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
       const formattedDate = `${
         selectedDate.getMonth() + 1
       }/${selectedDate.getFullYear()}`;
-      setValue(formattedDate); // Format date as MM/YYYY
-    }
-  };
-
-  const handleFullDateChange = (event: any, selectedDate: Date | undefined) => {
-    setShowDatePicker(false);
-    if (selectedDate) {
-      const formattedDate = `${selectedDate.getDate()}/${
-        selectedDate.getMonth() + 1
-      }/${selectedDate.getFullYear()}`;
-      setValue(formattedDate); // Format date as DD/MM/YYYY
+      setValue(formattedDate);
     }
   };
 
@@ -106,19 +95,19 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
         {type === 'fullDate' && (
           <>
             <TouchableOpacity
-              onPress={() => setShowTimePicker(true)}
+              onPress={() => setShowDatePicker(true)}
               style={styles.input}>
               <Text style={styles.input}>{value || 'Select Date'}</Text>
             </TouchableOpacity>
             <View style={styles.iconContainer}>
               {textInputIcon(vw(8), vw(8))}
             </View>
-            {showTimePicker && (
+            {showDatePicker && (
               <DateTimePicker
                 value={value ? new Date(value) : new Date()}
                 mode="date"
                 display="calendar"
-                onChange={handleFullDateChange}
+                onChange={handleDateChange}
               />
             )}
           </>
