@@ -78,7 +78,7 @@ const AddPage = () => {
       case 2:
         return <Page3 data={inforData} setData={setInforData} />;
       case 3:
-        return <Page4 />;
+        return <Page4 data={inforData} setData={setInforData} />;
       case 4:
         return <Page5 />;
       case 5:
