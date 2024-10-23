@@ -1,10 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
@@ -17,15 +12,34 @@ import Page3 from '../../components/Home/Page3';
 import Page4 from '../../components/Home/Page4';
 import Page5 from '../../components/Home/Page5';
 import Page6 from '../../components/Home/Page6';
+import {Page1BottomData, Page1TopData} from '../../services/renderData';
 
 const AddPage = () => {
   useStatusBar('white');
   const [currentPage, setCurrentPage] = useState(0);
+  const [isCameraVisible, setIsCameraVisible] = useState(false);
+  const [imageUri, setImageUri] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [images, setImages] = useState<(string | null)[]>([
+    ...Page1TopData.map(() => null),
+    ...Page1BottomData.map(() => null),
+  ]);
 
   const renderPage = () => {
     switch (currentPage) {
       case 0:
-        return <Page1 />;
+        return (
+          <Page1
+            isCameraVisible={isCameraVisible}
+            imageUri={imageUri}
+            selectedIndex={selectedIndex}
+            images={images}
+            setIsCameraVisible={setIsCameraVisible}
+            setImageUri={setImageUri}
+            setSelectedIndex={setSelectedIndex}
+            setImages={setImages}
+          />
+        );
       case 1:
         return <Page2 />;
       case 2:
@@ -36,8 +50,6 @@ const AddPage = () => {
         return <Page5 />;
       case 5:
         return <Page6 />;
-      default:
-        return <Page1 />;
     }
   };
 

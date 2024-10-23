@@ -39,3 +39,14 @@ export interface FoundMartyrProfileItem {
 export interface HeaderComponentProps {
   title: string;
 }
+
+export interface Page1Props {
+  isCameraVisible: boolean;
+  imageUri: string | null;
+  selectedIndex: number | null;
+  images: (string | null)[];
+  setIsCameraVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setImageUri: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setImages: React.Dispatch<React.SetStateAction<(string | null)[]>>;
+}

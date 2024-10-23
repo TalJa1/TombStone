@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,16 +14,18 @@ import {vh, vw} from '../../services/styleSheet';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {ImageFilter} from 'react-native-image-filter-kit';
+import { Page1Props } from '../../services/typeProps';
 
-const Page1: React.FC = () => {
-  const [isCameraVisible, setIsCameraVisible] = useState(false);
-  const [imageUri, setImageUri] = useState<string | null>(null);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [images, setImages] = useState<(string | null)[]>([
-    ...Page1TopData.map(() => null),
-    ...Page1BottomData.map(() => null),
-  ]);
-
+const Page1: React.FC<Page1Props> = ({
+  isCameraVisible,
+  imageUri,
+  selectedIndex,
+  images,
+  setIsCameraVisible,
+  setImageUri,
+  setSelectedIndex,
+  setImages,
+}) => {
   const handleCameraOpen = (index: number) => {
     setSelectedIndex(index);
     setIsCameraVisible(true);
