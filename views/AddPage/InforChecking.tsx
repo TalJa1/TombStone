@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -89,6 +90,17 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
             label="Giấy tờ khác"
             existed={data.letterImg || data.giayKhac === null ? false : true}
           />
+          <View>
+            <ImageCheckRender
+              label="Ảnh liệt sĩ"
+              existed={data.img === null ? false : true}
+            />
+            {data.img && (
+              <Image source={{uri: data.img}} style={styles.image} />
+            )}
+          </View>
+
+          <ImageCheckRender label="Xác nhận lấy mẫu ADN" existed={false} />
         </View>
       </View>
       <View>
@@ -281,5 +293,10 @@ const styles = StyleSheet.create({
     columnGap: vw(3),
     paddingHorizontal: vw(5),
     rowGap: vh(1),
+  },
+  image: {
+    width: vw(20), // Set the desired width
+    height: vw(20), // Set the desired height
+    resizeMode: 'cover', // Adjust the resize mode as needed
   },
 });
