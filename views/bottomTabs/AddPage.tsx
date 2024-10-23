@@ -69,7 +69,7 @@ const AddPage = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.whole}>
-          <HeaderComponent title="Thêm hồ sơ liệt sĩ" />
+          {currentPage === 0 && <HeaderComponent title="Thêm hồ sơ liệt sĩ" />}
           <View style={styles.body}>
             <View style={styles.dotsContainer}>
               {[...Array(5)].map((_, index) => (
