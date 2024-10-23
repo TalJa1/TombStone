@@ -21,9 +21,12 @@ import Page6 from '../../components/Home/Page6';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
 import HeaderCheckInfor from '../../components/HeaderCheckInfor';
 import {MartyrProfileItem} from '../../services/typeProps';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const AddPage = () => {
   useStatusBar('white');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [currentPage, setCurrentPage] = useState(0);
   const [isCameraVisible, setIsCameraVisible] = useState(false);
   const [imageUri, setImageUri] = useState<string | null>(null);
@@ -89,6 +92,8 @@ const AddPage = () => {
   const handleNext = () => {
     if (currentPage < 5) {
       setCurrentPage(currentPage + 1);
+    } else {
+      navigation.navigate('InforChecking', {data: inforData});
     }
   };
 

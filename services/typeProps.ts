@@ -70,3 +70,7 @@ export interface PageProps {
   data: MartyrProfileItem;
   setData: React.Dispatch<React.SetStateAction<MartyrProfileItem>>;
 }
+
+export type InforDetail = {
+  Martyr: MartyrProfileItem;
+};

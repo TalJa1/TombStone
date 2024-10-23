@@ -27,6 +27,7 @@ import InitPage from './views/Init/InitPage';
 import OnboardingPage from './views/Onboarding/OnboardingPage';
 import OffBoarding from './views/Onboarding/OffBoarding';
 import TombList from './views/Searching/TombList';
+import InforChecking from './views/AddPage/InforChecking';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -168,6 +169,13 @@ const App = () => {
         <Stack.Screen
           name="Main"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+
+        {/* AddPage */}
+        <Stack.Screen
+          name="InforChecking"
+          component={InforChecking}
           options={{headerShown: false}}
         />
 
