@@ -72,5 +72,7 @@ export interface PageProps {
 }
 
 export type InforDetail = {
-  Martyr: MartyrProfileItem;
+  Martyr: {
+    data: MartyrProfileItem;
+  };
 };

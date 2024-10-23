@@ -10,28 +10,62 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import {InforDetail} from '../../services/typeProps';
-import {cancelIcon} from '../../assets/svgXML';
+import {InforDetail, MartyrProfileItem} from '../../services/typeProps';
+import {cancelIcon, textInputIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const InforChecking = () => {
   useStatusBar('white');
   const route = useRoute<RouteProp<InforDetail, 'Martyr'>>();
-
-  const {...data} = route.params;
-
-  console.log(data);
+  const data = route.params.data;
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header />
-          <Text>InforChecking</Text>
+          <MainView data={{...data}} />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
+  return (
+    <View style={styles.main}>
+      <View>
+        <TitleRender label="Thông tin cá nhân của LS" />
+        <View>
+          <DataRender label="Họ và tên liệt sĩ:" value={data.name} />
+          <DataRender label="Sinh năm:" value={data.birthYear} />
+          <DataRender label="Giới tính:" value={data.sex} />
+          <DataRender label="Quê quán:" value={data.hometown} />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const DataRender: React.FC<{label: string; value: string; isPic?: any}> = ({
+  label,
+  value,
+}) => {
+  return (
+    <View style={styles.datarender}>
+      <Text style={styles.datarenderLabel}>{label}</Text>
+      <Text style={styles.dataRenderValue}>{value}</Text>
+    </View>
+  );
+};
+
+const TitleRender: React.FC<{label: string}> = ({label}) => {
+  return (
+    <View style={styles.titlerender}>
+      <Text style={styles.titlerenderTxt}>{label}</Text>
+      {textInputIcon(vw(7), vw(7))}
+    </View>
   );
 };
 
@@ -82,5 +116,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  main: {
+    flex: 1,
+    backgroundColor: '#EEF2EE',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: 'hidden',
+  },
+  titlerender: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: vw(5),
+  },
+  titlerenderTxt: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#547958',
+    textDecorationLine: 'underline',
+  },
+  datarender: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: vw(5),
+  },
+  datarenderLabel: {
+    fontSize: 16,
+    color: '#91A895',
+  },
+  dataRenderValue: {
+    fontSize: 16,
+    color: 'black',
   },
 });
