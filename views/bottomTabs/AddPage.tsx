@@ -80,9 +80,9 @@ const AddPage = () => {
       case 3:
         return <Page4 data={inforData} setData={setInforData} />;
       case 4:
-        return <Page5 data={inforData} setData={setInforData}/>;
+        return <Page5 data={inforData} setData={setInforData} />;
       case 5:
-        return <Page6 />;
+        return <Page6 data={inforData} setData={setInforData} />;
     }
   };
 
@@ -147,7 +147,9 @@ const AddPage = () => {
                   onPress={handleNext}
                   // disabled={currentPage === 5}
                 >
-                  <Text style={styles.btnNextGreenTxt}>Xác nhận thông tin</Text>
+                  <Text style={styles.btnNextGreenTxt}>
+                    {currentPage !== 5 ? 'Xác nhận thông tin' : 'Hoàn tất'}
+                  </Text>
                 </TouchableOpacity>
               )}
             </View>
