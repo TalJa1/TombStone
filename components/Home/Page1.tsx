@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -12,6 +13,7 @@ import {cameraIcon, cancelIcon, checkIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {ImageFilter} from 'react-native-image-filter-kit';
 
 const Page1: React.FC = () => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
@@ -74,9 +76,31 @@ const Page1: React.FC = () => {
     setIsCameraVisible(true);
   };
 
-  const handleFacesDetected = ({ faces }: { faces: any[] }) => {
+  const handleFacesDetected = ({faces}: {faces: any[]}) => {
     console.log('Faces detected:', faces);
     // Your face detection logic
+
+    if (faces.length > 0) {
+      // Apply a filter to the image to make it prettier
+      applyImageFilter();
+    }
+  };
+
+  const applyImageFilter = () => {
+    // Example of applying a filter using react-native-image-filter-kit
+    return (
+      <ImageFilter
+        config={{
+          name: 'Sepia',
+          image: require('../../assets/Home/imgPicker.png'),
+        }}
+      >
+        <Image
+          style={{ width: 100, height: 100 }}
+          source={require('../../assets/Home/imgPicker.png')}
+        />
+      </ImageFilter>
+    );
   };
 
   return (
