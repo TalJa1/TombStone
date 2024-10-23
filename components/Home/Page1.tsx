@@ -74,6 +74,11 @@ const Page1: React.FC = () => {
     setIsCameraVisible(true);
   };
 
+  const handleFacesDetected = ({ faces }: { faces: any[] }) => {
+    console.log('Faces detected:', faces);
+    // Your face detection logic
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -126,7 +131,9 @@ const Page1: React.FC = () => {
           <RNCamera
             style={styles.preview}
             type={RNCamera.Constants.Type.back}
+            faceDetectionMode={RNCamera.Constants.FaceDetection.Mode.fast}
             flashMode={RNCamera.Constants.FlashMode.off}
+            onFacesDetected={handleFacesDetected}
             androidCameraPermissionOptions={{
               title: 'Permission to use camera',
               message: 'We need your permission to use your camera',
