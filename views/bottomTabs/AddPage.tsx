@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
@@ -124,15 +130,26 @@ const AddPage = () => {
                 disabled={currentPage === 0}>
                 {arrowBackIcon(vw(8), vw(8))}
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.btnNext,
-                  currentPage === 5 && styles.disabledBtn,
-                ]}
-                onPress={handleNext}
-                disabled={currentPage === 5}>
-                {arrowNextIcon(vw(8), vw(8))}
-              </TouchableOpacity>
+              {currentPage === 0 ? (
+                <>
+                  <TouchableOpacity
+                    style={[styles.btnNext]}
+                    onPress={handleNext}>
+                    {arrowNextIcon(vw(8), vw(8))}
+                  </TouchableOpacity>
+                </>
+              ) : (
+                <TouchableOpacity
+                  style={[
+                    styles.btnNextGreen,
+                    // currentPage === 5 && styles.disabledBtn,
+                  ]}
+                  onPress={handleNext}
+                  // disabled={currentPage === 5}
+                >
+                  <Text style={styles.btnNextGreenTxt}>Xác nhận thông tin</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </View>
         </View>
@@ -193,5 +210,19 @@ const styles = StyleSheet.create({
   },
   disabledBtn: {
     backgroundColor: '#D4D4D4',
+  },
+  btnNextGreen: {
+    backgroundColor: '#547958',
+    padding: vw(4),
+    borderRadius: 16,
+    marginLeft: vw(5),
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnNextGreenTxt: {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 16,
   },
 });
