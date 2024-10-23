@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
-import {cameraIcon} from '../../assets/svgXML';
+import {cameraIcon, cancelIcon, checkIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -16,10 +16,14 @@ import {launchImageLibrary} from 'react-native-image-picker';
 const Page1: React.FC = () => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
   const [imageUri, setImageUri] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [images, setImages] = useState<(string | null)[]>([
+    ...Page1TopData.map(() => null),
+    ...Page1BottomData.map(() => null),
+  ]);
 
-  console.log('Image URI: ', imageUri);
-
-  const handleCameraOpen = () => {
+  const handleCameraOpen = (index: number) => {
+    setSelectedIndex(index);
     setIsCameraVisible(true);
   };
 
@@ -55,6 +59,16 @@ const Page1: React.FC = () => {
     });
   };
 
+  const handleConfirmImage = () => {
+    if (selectedIndex !== null && imageUri) {
+      const newImages = [...images];
+      newImages[selectedIndex] = imageUri;
+      setImages(newImages);
+      setImageUri(null);
+      setSelectedIndex(null);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -63,7 +77,11 @@ const Page1: React.FC = () => {
           {Page1TopData.map((item, index) => {
             return (
               <View key={index} style={styles.itemContainer}>
-                <ImagePickerView label={item} onPress={handleCameraOpen} />
+                <ImagePickerView
+                  label={item}
+                  onPress={() => handleCameraOpen(index)}
+                  imageUri={images[index]}
+                />
               </View>
             );
           })}
@@ -73,9 +91,14 @@ const Page1: React.FC = () => {
         <Text style={styles.title}>Các vật phẩm liên quan của liệt sĩ</Text>
         <View style={styles.row}>
           {Page1BottomData.map((item, index) => {
+            const adjustedIndex = index + Page1TopData.length;
             return (
               <View key={index} style={styles.itemContainer}>
-                <ImagePickerView label={item} onPress={handleCameraOpen} />
+                <ImagePickerView
+                  label={item}
+                  onPress={() => handleCameraOpen(adjustedIndex)}
+                  imageUri={images[adjustedIndex]}
+                />
               </View>
             );
           })}
@@ -83,7 +106,9 @@ const Page1: React.FC = () => {
         <View style={styles.imagePickerContainer}>
           <TouchableOpacity
             style={styles.iconContainer}
-            onPress={handleCameraOpen}>
+            onPress={() =>
+              handleCameraOpen(Page1TopData.length + Page1BottomData.length)
+            }>
             {cameraIcon(vw(8), vw(8))}
             <Text style={styles.upTxt}>Tải lên</Text>
           </TouchableOpacity>
@@ -122,19 +147,45 @@ const Page1: React.FC = () => {
           </RNCamera>
         </View>
       </Modal>
+
+      <Modal visible={!!imageUri} animationType="slide">
+        <View style={styles.fullScreenImageContainer}>
+          <View style={styles.checkImg}>
+            <Text style={styles.checkImgTxt}>Xác nhận ảnh</Text>
+          </View>
+          {imageUri && (
+            <Image source={{uri: imageUri}} style={styles.fullScreenImage} />
+          )}
+          <TouchableOpacity style={styles.cancelButton}>
+            {cancelIcon(vw(9), vw(9))}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleConfirmImage}
+            style={styles.confirmButton}>
+            {checkIcon(vw(9), vw(9))}
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
 
-const ImagePickerView: React.FC<{label: string; onPress: () => void}> = ({
-  label,
-  onPress,
-}) => {
+const ImagePickerView: React.FC<{
+  label: string;
+  onPress: () => void;
+  imageUri: string | null;
+}> = ({label, onPress, imageUri}) => {
   return (
     <View style={styles.imagePickerContainer}>
       <TouchableOpacity style={styles.iconContainer} onPress={onPress}>
-        {cameraIcon(vw(8), vw(8))}
-        <Text style={styles.upTxt}>Tải lên</Text>
+        {imageUri ? (
+          <Image source={{uri: imageUri}} style={styles.imagePreview} />
+        ) : (
+          <>
+            {cameraIcon(vw(8), vw(8))}
+            <Text style={styles.upTxt}>Tải lên</Text>
+          </>
+        )}
       </TouchableOpacity>
       <Text style={styles.label}>{label}</Text>
     </View>
@@ -204,6 +255,7 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 20,
     width: vw(100),
   },
@@ -224,6 +276,11 @@ const styles = StyleSheet.create({
   captureText: {
     fontSize: 14,
   },
+  libraryButton: {
+    alignSelf: 'center',
+    position: 'absolute',
+    left: vw(5),
+  },
   close: {
     flex: 0,
     backgroundColor: '#fff',
@@ -236,9 +293,50 @@ const styles = StyleSheet.create({
   closeText: {
     fontSize: 14,
   },
-  libraryButton: {
-    alignSelf: 'center',
+  fullScreenImageContainer: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#899398',
+  },
+  fullScreenImage: {
+    width: '100%',
+    height: '80%',
+    resizeMode: 'contain',
+  },
+  confirmButton: {
     position: 'absolute',
-    left: vw(5),
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#ECF3A3',
+    width: vw(50),
+    paddingVertical: vh(2),
+    alignItems: 'center',
+  },
+  cancelButton: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    backgroundColor: '#343434',
+    width: vw(50),
+    paddingVertical: vh(2),
+    alignItems: 'center',
+  },
+  imagePreview: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 15,
+  },
+  checkImg: {
+    backgroundColor: '#1212128C',
+    width: vw(80),
+    paddingVertical: vh(1.5),
+    alignItems: 'center',
+    borderRadius: vw(50),
+    position: 'relative',
+    top: vh(2),
+  },
+  checkImgTxt: {
+    color: '#fff',
+    fontSize: 24,
   },
 });
