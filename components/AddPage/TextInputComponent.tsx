@@ -72,7 +72,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
             <TouchableOpacity
               onPress={() => setShowDatePicker(true)}
               style={styles.input}>
-              <Text>{value || 'Select Date'}</Text>
+              <Text style={styles.input}>{value || 'Select Date'}</Text>
             </TouchableOpacity>
             <View style={styles.iconContainer}>
               {textInputIcon(vw(8), vw(8))}
@@ -113,6 +113,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
                 mode="date"
                 display="default"
                 onChange={handleDateChange}
+                style={styles.input}
               />
             )}
             <TouchableOpacity
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   selectContainer: {
-    flex:1,
+    flex: 1,
     overflow: 'hidden',
     borderRadius: 20,
   },
@@ -176,13 +177,15 @@ const styles = StyleSheet.create({
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
+    color: '#000000',
     fontSize: 16,
-    color: 'black',
+    fontWeight: '700',
     backgroundColor: 'white',
   },
   inputAndroid: {
+    color: '#000000',
     fontSize: 16,
-    color: 'black',
+    fontWeight: '700',
     backgroundColor: 'white',
   },
 });
