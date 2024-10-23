@@ -69,6 +69,11 @@ const Page1: React.FC = () => {
     }
   };
 
+  const handleCancelImage = () => {
+    setImageUri(null);
+    setIsCameraVisible(true);
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -156,7 +161,9 @@ const Page1: React.FC = () => {
           {imageUri && (
             <Image source={{uri: imageUri}} style={styles.fullScreenImage} />
           )}
-          <TouchableOpacity style={styles.cancelButton}>
+          <TouchableOpacity
+            style={styles.cancelButton}
+            onPress={handleCancelImage}>
             {cancelIcon(vw(9), vw(9))}
           </TouchableOpacity>
           <TouchableOpacity
