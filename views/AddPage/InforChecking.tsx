@@ -115,6 +115,14 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
           </View>
         </View>
       </View>
+      <View style={styles.bottomBtn}>
+        <TouchableOpacity style={styles.saveBtn}>
+          <Text style={styles.saveBtnTxt}>Lưu vào bản nháp</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.upBtn}>
+          <Text style={styles.upBtnTxt}>Tải lên</Text>
+        </TouchableOpacity>
+      </View>
       <View style={{height: vh(5)}} />
     </View>
   );
@@ -306,5 +314,36 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     paddingHorizontal: vw(5),
+  },
+  bottomBtn: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: vw(5),
+    paddingVertical: vh(2),
+  },
+  saveBtn: {
+    borderColor: '#547958',
+    borderWidth: 1,
+    width: '45%',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: vh(2),
+  },
+  saveBtnTxt: {
+    color: '#547958',
+    fontSize: 16,
+  },
+  upBtn: {
+    backgroundColor: '#547958',
+    width: '45%',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: vh(2),
+  },
+  upBtnTxt: {
+    color: 'white',
+    fontSize: 16,
   },
 });
