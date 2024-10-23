@@ -9,6 +9,8 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import {TextInputComponentProps} from '../../services/typeProps';
+import {vw} from '../../services/styleSheet';
+import {textInputIcon} from '../../assets/svgXML';
 
 const TextInputComponent: React.FC<TextInputComponentProps> = ({
   label,
@@ -38,66 +40,100 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
   return (
     <View style={[styles.container, {width: `${Number(width)}%`}]}>
       <Text style={styles.label}>{label}</Text>
-      {type === 'text' && (
-        <TextInput style={styles.input} value={value} onChangeText={setValue} />
-      )}
-      {type === 'number' && (
-        <TextInput
-          keyboardType="number-pad"
-          style={styles.input}
-          value={value}
-          onChangeText={setValue}
-        />
-      )}
-      {type === 'date' && (
-        <>
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.input}>{value || 'Select Date'}</Text>
-          </TouchableOpacity>
-          {showDatePicker && (
-            <DateTimePicker
-              value={value ? new Date(value) : new Date()}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
+      <View style={styles.inputContainer}>
+        {type === 'text' && (
+          <>
+            <TextInput
+              style={styles.input}
+              value={value}
+              onChangeText={setValue}
+              multiline
             />
-          )}
-        </>
-      )}
-      {type === 'select' && (
-        <RNPickerSelect
-          onValueChange={setValue}
-          items={options || []}
-          value={value}
-          style={pickerSelectStyles}
-        />
-      )}
-      {type === 'fullDate' && (
-        <>
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.input}>{value || 'Select Date'}</Text>
-          </TouchableOpacity>
-          {showDatePicker && (
-            <DateTimePicker
-              value={value ? new Date(value) : new Date()}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
+            <View style={styles.iconContainer}>
+              {textInputIcon(vw(8), vw(8))}
+            </View>
+          </>
+        )}
+        {type === 'number' && (
+          <>
+            <TextInput
+              keyboardType="number-pad"
+              style={styles.input}
+              value={value}
+              onChangeText={setValue}
             />
-          )}
-          <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-            <Text style={styles.input}>{value || 'Select Time'}</Text>
-          </TouchableOpacity>
-          {showTimePicker && (
-            <DateTimePicker
-              value={value ? new Date(value) : new Date()}
-              mode="time"
-              display="default"
-              onChange={handleTimeChange}
+            <View style={styles.iconContainer}>
+              {textInputIcon(vw(8), vw(8))}
+            </View>
+          </>
+        )}
+        {type === 'date' && (
+          <>
+            <TouchableOpacity
+              onPress={() => setShowDatePicker(true)}
+              style={styles.input}>
+              <Text>{value || 'Select Date'}</Text>
+            </TouchableOpacity>
+            <View style={styles.iconContainer}>
+              {textInputIcon(vw(8), vw(8))}
+            </View>
+            {showDatePicker && (
+              <DateTimePicker
+                value={value ? new Date(value) : new Date()}
+                mode="date"
+                display="default"
+                onChange={handleDateChange}
+              />
+            )}
+          </>
+        )}
+        {type === 'select' && (
+          <View style={styles.selectContainer}>
+            <RNPickerSelect
+              onValueChange={setValue}
+              items={options || []}
+              value={value}
+              style={pickerSelectStyles}
             />
-          )}
-        </>
-      )}
+          </View>
+        )}
+        {type === 'fullDate' && (
+          <>
+            <TouchableOpacity
+              onPress={() => setShowDatePicker(true)}
+              style={styles.input}>
+              <Text>{value || 'Select Date'}</Text>
+            </TouchableOpacity>
+            <View style={styles.iconContainer}>
+              {textInputIcon(vw(8), vw(8))}
+            </View>
+            {showDatePicker && (
+              <DateTimePicker
+                value={value ? new Date(value) : new Date()}
+                mode="date"
+                display="default"
+                onChange={handleDateChange}
+              />
+            )}
+            <TouchableOpacity
+              onPress={() => setShowTimePicker(true)}
+              style={styles.input}>
+              <Text>{value || 'Select Time'}</Text>
+            </TouchableOpacity>
+            <View style={styles.iconContainer}>
+              {textInputIcon(vw(8), vw(8))}
+            </View>
+            {showTimePicker && (
+              <DateTimePicker
+                value={value ? new Date(value) : new Date()}
+                mode="time"
+                display="default"
+                onChange={handleTimeChange}
+              />
+            )}
+          </>
+        )}
+      </View>
     </View>
   );
 };
@@ -113,37 +149,40 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
   },
-  input: {
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: '#000000',
+    borderRadius: 20,
+    backgroundColor: 'white',
+  },
+  input: {
+    flex: 1,
     padding: 10,
-    borderRadius: 5,
     color: '#000000',
     fontSize: 16,
     fontWeight: '700',
-    backgroundColor: 'white',
+  },
+  iconContainer: {
+    padding: 10,
+  },
+  selectContainer: {
+    flex: 1,
+    overflow: 'hidden',
+    borderRadius: 20,
   },
 });
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    backgroundColor: 'white',
   },
   inputAndroid: {
     fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: '#ccc',
-    borderRadius: 5,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    backgroundColor: 'white',
   },
 });
