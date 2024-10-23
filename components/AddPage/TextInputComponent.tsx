@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   selectContainer: {
-    flex: 1,
+    flex:1,
     overflow: 'hidden',
     borderRadius: 20,
   },
