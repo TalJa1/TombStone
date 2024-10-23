@@ -96,7 +96,9 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
               existed={data.img === null ? false : true}
             />
             {data.img && (
-              <Image source={{uri: data.img}} style={styles.image} />
+              <View style={styles.imgContainer}>
+                <Image source={{uri: data.img}} style={styles.image} />
+              </View>
             )}
           </View>
 
@@ -126,7 +128,7 @@ const ImageCheckRender: React.FC<{label: string; existed: boolean}> = ({
     <View>
       <View style={styles.imgCheck}>
         {existed ? (
-          <View style={styles.notNull}>{checkIcon(vw(7), vw(7), 'white')}</View>
+          <View style={styles.notNull}>{checkIcon(vw(5), vw(5), 'white')}</View>
         ) : (
           <View style={styles.null} />
         )}
@@ -278,7 +280,8 @@ const styles = StyleSheet.create({
   },
   notNull: {
     borderColor: '#547958',
-    padding: vw(3),
+    backgroundColor: '#547958',
+    padding: vw(1),
     borderRadius: vw(50),
   },
   null: {
@@ -295,8 +298,13 @@ const styles = StyleSheet.create({
     rowGap: vh(1),
   },
   image: {
-    width: vw(20), // Set the desired width
-    height: vw(20), // Set the desired height
-    resizeMode: 'cover', // Adjust the resize mode as needed
+    width: vw(30), // Set the desired width
+    height: vw(30), // Set the desired height
+    resizeMode: 'contain', // Adjust the resize mode as needed
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  imgContainer: {
+    paddingHorizontal: vw(5),
   },
 });

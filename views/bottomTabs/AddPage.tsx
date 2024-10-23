@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import {
   ScrollView,
@@ -6,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import HeaderComponent from '../../components/HeaderComponent';
@@ -35,6 +36,7 @@ const AddPage = () => {
     ...Page1TopData.map(() => null),
     ...Page1BottomData.map(() => null),
   ]);
+
   const [inforData, setInforData] = useState<MartyrProfileItem>({
     giayBaoTu: null,
     banTrichLuc: null,
@@ -60,6 +62,40 @@ const AddPage = () => {
     description: '',
     status: 0,
   });
+
+  useEffect(() => {
+    const updatedInforData = {...inforData};
+
+    images.forEach((image, index) => {
+      switch (index) {
+        case 0:
+          updatedInforData.giayBaoTu = image;
+          break;
+        case 1:
+          updatedInforData.banTrichLuc = image;
+          break;
+        case 2:
+          updatedInforData.giayNoiHisinh = image;
+          break;
+        case 3:
+          updatedInforData.giayKhac = image;
+          break;
+        case 4:
+          updatedInforData.img = image;
+          break;
+        case 5:
+          updatedInforData.letterImg = image;
+          break;
+        case 6:
+          updatedInforData.titleImg = image;
+          break;
+        default:
+          break;
+      }
+    });
+
+    setInforData(updatedInforData);
+  }, [images]);
 
   const renderPage = () => {
     switch (currentPage) {
