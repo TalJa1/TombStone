@@ -11,7 +11,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {InforDetail, MartyrProfileItem} from '../../services/typeProps';
-import {cancelIcon, textInputIcon} from '../../assets/svgXML';
+import {
+  cancelIcon,
+  checkIcon,
+  listIcon,
+  textInputIcon,
+} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
@@ -66,6 +71,27 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
         </View>
       </View>
       <View>
+        <TitleRender label="Các tài liệu đính kèm" />
+        <View>
+          <ImageCheckRender
+            label="Giấy báo tử"
+            existed={data.giayBaoTu === null ? false : true}
+          />
+          <ImageCheckRender
+            label="Bản trích lục"
+            existed={data.banTrichLuc === null ? false : true}
+          />
+          <ImageCheckRender
+            label="Giấy xác nhận thông tin nơi hy sinh "
+            existed={data.giayNoiHisinh === null ? false : true}
+          />
+          <ImageCheckRender
+            label="Giấy tờ khác"
+            existed={data.letterImg || data.giayKhac === null ? false : true}
+          />
+        </View>
+      </View>
+      <View>
         <TitleRender label="Yêu cầu tìm kiếm" />
         <View style={{paddingHorizontal: vw(5)}}>
           <View style={styles.des}>
@@ -76,6 +102,45 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
         </View>
       </View>
       <View style={{height: vh(5)}} />
+    </View>
+  );
+};
+
+const ImageCheckRender: React.FC<{label: string; existed: boolean}> = ({
+  existed,
+  label,
+}) => {
+  return (
+    <View>
+      <View style={styles.imgCheck}>
+        {existed ? (
+          <View style={styles.notNull}>{checkIcon(vw(7), vw(7), 'white')}</View>
+        ) : (
+          <View style={styles.null} />
+        )}
+        <Text
+          style={[
+            styles.imgCheckTxt,
+            existed === false && {
+              textDecorationLine: 'line-through',
+              color: '#868686',
+            },
+          ]}>
+          {label}
+        </Text>
+      </View>
+      {label === 'Giấy tờ khác' && (
+        <View>
+          <View style={styles.bonusText}>
+            {listIcon(vw(5), vw(5))}
+            <Text style={styles.imgCheckTxt}>Bằng khen Tổ Quốc ghi công</Text>
+          </View>
+          <View style={styles.bonusText}>
+            {listIcon(vw(5), vw(5))}
+            <Text style={styles.imgCheckTxt}>Thư tay của liệt sĩ</Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
@@ -188,5 +253,33 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 10,
     padding: vw(5),
+  },
+  imgCheck: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: vw(5),
+    columnGap: vw(3),
+  },
+  imgCheckTxt: {
+    fontSize: 16,
+    color: '#000000',
+  },
+  notNull: {
+    borderColor: '#547958',
+    padding: vw(3),
+    borderRadius: vw(50),
+  },
+  null: {
+    borderColor: '#868686',
+    borderWidth: 2,
+    padding: vw(3),
+    borderRadius: vw(50),
+  },
+  bonusText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: vw(3),
+    paddingHorizontal: vw(5),
+    rowGap: vh(1),
   },
 });
