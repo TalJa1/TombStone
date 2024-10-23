@@ -13,6 +13,7 @@ import Page4 from '../../components/Home/Page4';
 import Page5 from '../../components/Home/Page5';
 import Page6 from '../../components/Home/Page6';
 import {Page1BottomData, Page1TopData} from '../../services/renderData';
+import HeaderCheckInfor from '../../components/HeaderCheckInfor';
 
 const AddPage = () => {
   useStatusBar('white');
@@ -69,7 +70,11 @@ const AddPage = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.whole}>
-          {currentPage === 0 && <HeaderComponent title="Thêm hồ sơ liệt sĩ" />}
+          {currentPage === 0 ? (
+            <HeaderComponent title="Thêm hồ sơ liệt sĩ" />
+          ) : (
+            <HeaderCheckInfor />
+          )}
           <View style={styles.body}>
             <View style={styles.dotsContainer}>
               {[...Array(5)].map((_, index) => (
