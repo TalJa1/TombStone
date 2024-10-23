@@ -44,6 +44,38 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
           <DataRender label="Quê quán:" value={data.hometown} />
         </View>
       </View>
+      <View>
+        <TitleRender label="Thông tin công tác, hy sinh" />
+        <View>
+          <DataRender label="Nhập ngũ:" value={data.armyJoinDate} />
+          <DataRender label="Hy sinh ngày:" value={data.deathDate} />
+          <DataRender label="Đơn vị hy sinh:" value={data.deathUnit} />
+          <DataRender label="Lý do hinh sinh:" value={data.deathReason} />
+          <DataRender label="Nơi an táng ban đầu:" value={data.firstTomb} />
+        </View>
+      </View>
+      <View>
+        <TitleRender label="Thông tin nhân thân" />
+        <View>
+          <DataRender label="Họ tên bố: " value={data.fatherName} />
+          <DataRender label="Họ tên mẹ:" value={data.motherName} />
+          <DataRender
+            label="Quan hệ người tìm kiếm:"
+            value={data.yourRelationshipWithMartyr}
+          />
+        </View>
+      </View>
+      <View>
+        <TitleRender label="Yêu cầu tìm kiếm" />
+        <View style={{paddingHorizontal: vw(5)}}>
+          <View style={styles.des}>
+            <Text style={{fontSize: 16, color: '#000000'}}>
+              {data.description}
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View style={{height: vh(5)}} />
     </View>
   );
 };
@@ -138,9 +170,10 @@ const styles = StyleSheet.create({
   },
   datarender: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: vw(5),
+    columnGap: vw(3),
+    paddingHorizontal: vw(5),
+    paddingVertical: vh(1),
   },
   datarenderLabel: {
     fontSize: 16,
@@ -149,5 +182,11 @@ const styles = StyleSheet.create({
   dataRenderValue: {
     fontSize: 16,
     color: 'black',
+  },
+  des: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 10,
+    padding: vw(5),
   },
 });
