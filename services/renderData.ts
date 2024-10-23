@@ -44,29 +44,32 @@ export const MartyrProfile = [
     banTrichLuc: null,
     giayNoiHisinh: null,
     giayKhac: null,
-    giayToCoChuVietLietSi: [],
+    img: null,
+    letterImg: null,
+    titleImg: null,
     name: 'Lâm Hữu Sinh',
     birthYear: '1930',
     sex: 'Nam',
     hometown: 'Xã Tượng Văn, huyện Công Nống, tỉnh Thanh Hóa',
     armyJoinDate: '7/1949',
     level: 'Trung sĩ',
-    position: 'Đội trưởng',
     unit: 'Đội 2, Tiểu đoàn 1, Sư đoàn 308',
-    deathDate: '10/1952',
-    deathPlace: 'Nghệ An',
+    deathDate: '24/10/1952',
+    deathUnit: 'D3, QK5',
     deathReason: 'Máu đổ',
-    otherName: 'Lâm Hữu Huy',
-    relationship: 'Anh',
-    otherInfor: 'Đã có 2 con trai',
-    status: 'Đang xử lý',
+    firstTomb: 'Điện Thái, Điện Bàn, Quảng Đà',
+    fatherName: 'Lâm Hữu Sinh',
+    motherName: 'Lê Thị Thanh',
+    yourRelationshipWithMartyr: 'Cháu trai',
+    description: '',
+    status: 2,
   },
 ];
 
 export const FoundMartyrProfile = [
   {
     name: 'Nguyễn Văn Đức',
-    status: 'Đã tìm thấy',
+    status: 4,
     img: require('../assets/Home/foundMartyr.png'),
     birthYear: '1947',
     armyJoinDate: '11/1966',
@@ -132,3 +135,13 @@ export const Page1TopData = [
 ];
 
 export const Page1BottomData = ['Ảnh', 'Thư tay (chữ viết)'];
+
+export const StatusData = [
+  'Yêu cầu tìm mộ liệt sĩ',
+  'Xác nhận hồ sơ',
+  'Yêu cầu bổ sung',
+  'Đang tìm kiếm',
+  'Đã tìm thấy',
+  'Nhân thân nhận mộ',
+  'Hoàn tất',
+];

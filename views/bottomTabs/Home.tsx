@@ -23,6 +23,7 @@ import {
   MapListData,
   MartyrProfile,
   MartyrProfileListData,
+  StatusData,
 } from '../../services/renderData';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -232,7 +233,7 @@ const TombSearchingListView: React.FC<{item: MartyrProfileItem}> = ({item}) => {
             },
             centerAll,
           ]}>
-          <Text style={styles.statusTxt}>{item.status}</Text>
+          <Text style={styles.statusTxt}>{StatusData[item.status]}</Text>
         </View>
       </View>
       <View
@@ -289,7 +290,7 @@ const TombFoundListView: React.FC<{item: FoundMartyrProfileItem}> = ({
                 },
                 centerAll,
               ]}>
-              <Text style={styles.statusTxt}>{item.status}</Text>
+              <Text style={styles.statusTxt}>{StatusData[item.status]}</Text>
             </View>
           </View>
           <View

@@ -5,31 +5,34 @@ export interface OnboardingItem {
 }
 
 export interface MartyrProfileItem {
-  giayBaoTu: any;
-  banTrichLuc: any;
-  giayNoiHisinh: any;
-  giayKhac: any;
-  giayToCoChuVietLietSi: string[];
+  giayBaoTu: any; // Replace 'any' with the specific type if known
+  banTrichLuc: any; // Replace 'any' with the specific type if known
+  giayNoiHisinh: any; // Replace 'any' with the specific type if known
+  giayKhac: any; // Replace 'any' with the specific type if known
+  img: any; // Replace 'any' with the specific type if known
+  letterImg: any; // Replace 'any' with the specific type if known
+  titleImg: any; // Replace 'any' with the specific type if known
   name: string;
   birthYear: string;
   sex: string;
   hometown: string;
   armyJoinDate: string;
   level: string;
-  position: string;
   unit: string;
   deathDate: string;
-  deathPlace: string;
+  deathUnit: string;
   deathReason: string;
-  otherName: string;
-  relationship: string;
-  otherInfor: string;
-  status: string;
+  firstTomb: string;
+  fatherName: string;
+  motherName: string;
+  yourRelationshipWithMartyr: string;
+  description: string;
+  status: number;
 }
 
 export interface FoundMartyrProfileItem {
   name: string;
-  status: string;
+  status: number;
   img: any; // You can replace 'any' with the specific type if you know it
   birthYear: string;
   armyJoinDate: string;
