@@ -3,9 +3,13 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {centerAll, vh, vw} from '../../services/styleSheet';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const UploadSuccessfully = () => {
   useStatusBar('black');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -29,7 +33,11 @@ const UploadSuccessfully = () => {
         <TouchableOpacity>
           <Text style={styles.underlineBtnTxt}>Theo dõi yêu cầu tìm kiếm</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.homeBtn, centerAll]}>
+        <TouchableOpacity
+          style={[styles.homeBtn, centerAll]}
+          onPress={() => {
+            navigation.navigate('Main');
+          }}>
           <Text style={styles.homeBtnTxt}>Trở về trang chủ</Text>
         </TouchableOpacity>
       </View>
