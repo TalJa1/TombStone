@@ -42,7 +42,13 @@ const CommunityPage = () => {
   );
 };
 
-const Header: React.FC<HeaderCommunityProps> = ({setActiveTab}) => {
+const Header: React.FC<HeaderCommunityProps> = ({activeTab, setActiveTab}) => {
+  const getTabTextStyle = (tab: string) => {
+    return tab === activeTab
+      ? [styles.tabText, styles.activeTabText]
+      : styles.tabText;
+  };
+
   return (
     <View style={styles.headerContainer}>
       <View style={styles.topHeader}>
@@ -66,17 +72,17 @@ const Header: React.FC<HeaderCommunityProps> = ({setActiveTab}) => {
         <TouchableOpacity
           style={styles.tabButton}
           onPress={() => setActiveTab('Tab1')}>
-          <Text style={styles.tabText}>Tab 1</Text>
+          <Text style={getTabTextStyle('Tab1')}>Mới nhất</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabButton}
           onPress={() => setActiveTab('Tab2')}>
-          <Text style={styles.tabText}>Tab 2</Text>
+          <Text style={getTabTextStyle('Tab2')}>Theo dõi</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabButton}
           onPress={() => setActiveTab('Tab3')}>
-          <Text style={styles.tabText}>Tab 3</Text>
+          <Text style={getTabTextStyle('Tab3')}>Của bạn</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -140,5 +146,9 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     color: '#868686',
+  },
+  activeTabText: {
+    color: 'black',
+    fontWeight: '700',
   },
 });
