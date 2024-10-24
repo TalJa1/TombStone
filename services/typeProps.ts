@@ -85,3 +85,8 @@ export interface SearchingStatusComponentProps {
   currentState: number;
   label: string;
 }
+
+export interface HeaderCommunityProps {
+  activeTab: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+}
