@@ -206,3 +206,4 @@ export const CommunityTab1Data = [
     postStatus: '',
   },
 ];
+

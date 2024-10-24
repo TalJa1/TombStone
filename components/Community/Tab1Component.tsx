@@ -9,6 +9,7 @@ import {
   shareIcon,
   worldIcon,
   postStatusIcon,
+  loveIcon,
 } from '../../assets/svgXML'; // Import the icons
 
 const Tab1Component = () => {
@@ -74,9 +75,13 @@ const PostRender: React.FC<{item: CommunityPost}> = ({item}) => {
         ))}
       </View>
       <View style={styles.footer}>
-        <Text style={styles.likeText}>
-          {likeCount} {isLiked ? 'bạn & người khác' : 'người thích'}
-        </Text>
+        <View style={styles.likeContainer}>
+          {loveIcon(16, 16, isLiked ? '#129BF7' : 'black')}
+          <Text style={styles.likeText}>
+            {' '}
+            {likeCount} {isLiked ? 'bạn & người khác' : 'người thích'}
+          </Text>
+        </View>
         <Text style={styles.commentText}>{item.comment} bình luận</Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -230,5 +235,9 @@ const styles = StyleSheet.create({
   },
   likedButtonText: {
     color: '#129BF7',
+  },
+  likeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
