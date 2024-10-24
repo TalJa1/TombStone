@@ -1,7 +1,14 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {CommunityPost} from '../../services/typeProps';
-import { postStatusIcon, worldIcon, loveIcon, likeIcon, commentIcon, shareIcon } from '../../assets/svgXML';
+import {
+  postStatusIcon,
+  worldIcon,
+  loveIcon,
+  likeIcon,
+  commentIcon,
+  shareIcon,
+} from '../../assets/svgXML';
 
 const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
   const [likeCount, setLikeCount] = useState(item.like);
@@ -45,9 +52,13 @@ const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
       </View>
       <Text style={styles.feedText}>{item.feed}</Text>
       <View style={styles.imagesContainer}>
-        {item.postImg.map((img, index) => (
-          <Image key={index} source={img} style={styles.postImage} />
-        ))}
+        {item.postImg.length === 1 ? (
+          <Image source={item.postImg[0]} style={styles.singlePostImage} />
+        ) : (
+          item.postImg.map((img, index) => (
+            <Image key={index} source={img} style={styles.postImage} />
+          ))
+        )}
       </View>
       <View style={styles.footer}>
         <View style={styles.likeContainer}>
@@ -170,14 +181,26 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginBottom: 5,
   },
+  singlePostImage: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+    marginBottom: 10,
+    borderRadius: 10,
+  },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
   },
+  likeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   likeText: {
     fontSize: 14,
     color: 'black',
+    marginLeft: 5,
   },
   commentText: {
     fontSize: 14,
@@ -207,9 +230,5 @@ const styles = StyleSheet.create({
   },
   likedButtonText: {
     color: '#129BF7',
-  },
-  likeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
 });
