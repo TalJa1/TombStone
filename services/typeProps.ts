@@ -79,3 +79,8 @@ export type InforDetail = {
     dataIndex: number;
   };
 };
+
+export interface SearchingStatusComponentProps {
+  currentState: number;
+  label: string;
+}
