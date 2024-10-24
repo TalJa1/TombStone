@@ -90,3 +90,13 @@ export interface HeaderCommunityProps {
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface CommunityPost {
+  user: string;
+  avatar: any; // You can replace 'any' with the appropriate type if you know it
+  feed: string;
+  postImg: any[]; // Array of images, replace 'any' with the appropriate type if you know it
+  like: number;
+  comment: number;
+  yourLike: boolean;
+}

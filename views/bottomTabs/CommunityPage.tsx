@@ -39,7 +39,7 @@ const CommunityPage = () => {
           <Header activeTab={activeTab} setActiveTab={setActiveTab} />
           {renderContent()}
         </View>
-        <View style={{height: vh(9)}} />
+        <View style={{height: vh(12)}} />
       </ScrollView>
     </SafeAreaView>
   );
