@@ -35,11 +35,19 @@ const PostRender: React.FC<{item: CommunityPost}> = ({item}) => {
       </View>
       <View style={styles.footer}>
         <Text style={styles.likeText}>{item.like} likes</Text>
-        <Text style={styles.commentText}>{item.comment} comments</Text>
-        <TouchableOpacity style={styles.likeButton}>
-          <Text style={styles.likeButtonText}>
-            {item.yourLike ? 'Unlike' : 'Like'}
+        <Text style={styles.commentText}>{item.comment} bình luận</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.actionButton}>
+          <Text style={styles.actionButtonText}>
+            {item.yourLike ? 'Bỏ thích' : 'Thích'}
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton}>
+          <Text style={styles.actionButtonText}>Bình luận</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton}>
+          <Text style={styles.actionButtonText}>Chia sẻ</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -73,14 +81,17 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginRight: 10,
+    resizeMode: 'cover',
   },
   userName: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: '700',
+    color: 'black',
   },
   feedText: {
     fontSize: 14,
     marginBottom: 10,
+    color: 'black',
   },
   imagesContainer: {
     flexDirection: 'row',
@@ -95,24 +106,29 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 10,
   },
   likeText: {
     fontSize: 14,
-    fontWeight: 'bold',
+    color: '#1E1E1E99',
   },
   commentText: {
     fontSize: 14,
-    fontWeight: 'bold',
+    color: '#1E1E1E99',
   },
-  likeButton: {
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    paddingTop: 10,
+  },
+  actionButton: {
     padding: 5,
-    backgroundColor: '#ddd',
-    borderRadius: 5,
   },
-  likeButtonText: {
+  actionButtonText: {
     fontSize: 14,
-    fontWeight: 'bold',
+    color: '#343434',
   },
 });
