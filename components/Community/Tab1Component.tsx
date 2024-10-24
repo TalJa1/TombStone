@@ -59,6 +59,13 @@ const PostRender: React.FC<{item: CommunityPost}> = ({item}) => {
             {worldIcon(20, 20, '#868686')}
           </View>
         </View>
+        <TouchableOpacity style={styles.menuButton}>
+          <View style={styles.dotsContainer}>
+            <View style={styles.dot} />
+            <View style={styles.dot} />
+            <View style={styles.dot} />
+          </View>
+        </TouchableOpacity>
       </View>
       <Text style={styles.feedText}>{item.feed}</Text>
       <View style={styles.imagesContainer}>
@@ -116,6 +123,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    justifyContent: 'space-between', // Add this line
   },
   avatar: {
     width: 40,
@@ -154,6 +162,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#868686',
     marginRight: 5,
+  },
+  menuButton: {
+    padding: 5,
+  },
+  dotsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 20,
+  },
+  dot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: '#A7A8A8',
   },
   feedText: {
     fontSize: 14,
