@@ -218,7 +218,16 @@ const NewsView: React.FC = () => {
   );
 };
 
-const TombSearchingListView: React.FC<{item: MartyrProfileItem}> = ({item}) => {
+const TombSearchingListView: React.FC<{
+  item: MartyrProfileItem;
+  index: number;
+}> = ({item, index}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  const handleViewDetail = () => {
+    navigation.navigate('StatusDetail', {dataIndex: index});
+  };
+
   return (
     <View style={styles.tombView}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -248,7 +257,7 @@ const TombSearchingListView: React.FC<{item: MartyrProfileItem}> = ({item}) => {
           </Text>
           <Text style={styles.martyrInfoText}>{item.hometown}</Text>
         </View>
-        <TouchableOpacity style={styles.viewBtn} disabled>
+        <TouchableOpacity style={styles.viewBtn} onPress={handleViewDetail}>
           {nextIcon(vw(6), vw(6), '#ECF3A3')}
         </TouchableOpacity>
       </View>
@@ -354,7 +363,7 @@ const TopDataRender: React.FC = () => {
         {renderDataSearching.map((item, index) => {
           return (
             <View key={index}>
-              <TombSearchingListView item={item} />
+              <TombSearchingListView item={item} index={index} />
             </View>
           );
         })}

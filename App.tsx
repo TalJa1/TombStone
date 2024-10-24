@@ -29,6 +29,7 @@ import OffBoarding from './views/Onboarding/OffBoarding';
 import TombList from './views/Searching/TombList';
 import InforChecking from './views/AddPage/InforChecking';
 import UploadSuccessfully from './views/AddPage/UploadSuccessfully';
+import StatusDetail from './views/StatusDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -170,6 +171,12 @@ const App = () => {
         <Stack.Screen
           name="Main"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        {/* Status detail */}
+        <Stack.Screen
+          name="StatusDetail"
+          component={StatusDetail}
           options={{headerShown: false}}
         />
 

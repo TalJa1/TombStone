@@ -75,4 +75,7 @@ export type InforDetail = {
   Martyr: {
     data: MartyrProfileItem;
   };
+  Status: {
+    dataIndex: number;
+  };
 };
