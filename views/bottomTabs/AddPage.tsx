@@ -61,6 +61,7 @@ const AddPage = () => {
     yourRelationshipWithMartyr: '',
     description: '',
     status: 0,
+    uploadDate: '',
   });
 
   useEffect(() => {

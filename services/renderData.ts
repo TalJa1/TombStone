@@ -65,16 +65,31 @@ export const MartyrProfile = [
     status: 2,
     uploadDate: '19/10/2024',
   },
-];
-
-export const FoundMartyrProfile = [
   {
-    name: 'Nguyễn Văn Đức',
-    status: 4,
+    giayBaoTu: null,
+    banTrichLuc: null,
+    giayNoiHisinh: null,
+    giayKhac: null,
     img: require('../assets/Home/foundMartyr.png'),
+    letterImg: null,
+    titleImg: null,
+    name: 'Nguyễn Văn Đức',
     birthYear: '1947',
-    armyJoinDate: '11/1966',
+    sex: 'Nam',
     hometown: 'Liên Sơn, Bái Thạch, Vĩnh Phúc',
+    armyJoinDate: '11/1966',
+    level: 'Trung sĩ',
+    unit: 'Đội 2, Tiểu đoàn 1, Sư đoàn 308',
+    deathDate: '24/10/1952',
+    deathUnit: 'D3, QK5',
+    deathReason: 'Máu đổ',
+    firstTomb: 'Điện Thái, Điện Bàn, Quảng Đà',
+    fatherName: 'Lâm Hữu Sinh',
+    motherName: 'Lê Thị Thanh',
+    yourRelationshipWithMartyr: 'Cháu trai',
+    description: '',
+    status: 4,
+    uploadDate: '19/10/2024',
   },
 ];
 

@@ -18,7 +18,6 @@ import {
   MartyrProfileItem,
 } from '../../services/typeProps';
 import {
-  FoundMartyrProfile,
   HomeNewsData,
   MapListData,
   MartyrProfile,
@@ -265,9 +264,16 @@ const TombSearchingListView: React.FC<{
   );
 };
 
-const TombFoundListView: React.FC<{item: FoundMartyrProfileItem}> = ({
-  item,
-}) => {
+const TombFoundListView: React.FC<{
+  item: FoundMartyrProfileItem;
+  index: number;
+}> = ({item, index}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  const handleViewDetail = () => {
+    navigation.navigate('StatusDetail', {dataIndex: index});
+  };
+
   return (
     <View>
       <View
@@ -317,7 +323,7 @@ const TombFoundListView: React.FC<{item: FoundMartyrProfileItem}> = ({
               </Text>
             </View>
             <TouchableOpacity
-              disabled
+              onPress={handleViewDetail}
               style={[styles.viewBtn, {backgroundColor: '#6FA078'}]}>
               {nextIcon(vw(6), vw(6), '#ECF3A3')}
             </TouchableOpacity>
@@ -332,9 +338,6 @@ const TopDataRender: React.FC = () => {
   const [renderDataSearching, setRenderDataSearching] = useState<
     MartyrProfileItem[]
   >([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [renderFoundData, setRenderFoundData] =
-    useState<FoundMartyrProfileItem[]>(FoundMartyrProfile);
 
   const fetchData = async () => {
     await loadData<MartyrProfileItem[]>('martyrProfileStorage')
@@ -363,16 +366,11 @@ const TopDataRender: React.FC = () => {
         {renderDataSearching.map((item, index) => {
           return (
             <View key={index}>
-              <TombSearchingListView item={item} index={index} />
-            </View>
-          );
-        })}
-      </View>
-      <View>
-        {renderFoundData.map((item, i) => {
-          return (
-            <View key={i}>
-              <TombFoundListView item={item} />
+              {item.status === 4 ? (
+                <TombFoundListView item={item} index={index} />
+              ) : (
+                <TombSearchingListView item={item} index={index} />
+              )}
             </View>
           );
         })}
