@@ -34,7 +34,7 @@ const PostRender: React.FC<{item: CommunityPost}> = ({item}) => {
         ))}
       </View>
       <View style={styles.footer}>
-        <Text style={styles.likeText}>{item.like} likes</Text>
+        <Text style={styles.likeText}>{item.like} người thích</Text>
         <Text style={styles.commentText}>{item.comment} bình luận</Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -63,13 +63,10 @@ const styles = StyleSheet.create({
   postContainer: {
     backgroundColor: 'white',
     padding: 10,
-    marginBottom: 10,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
+    borderTopWidth: 2,
+    borderTopColor: '#343434',
+    borderBottomColor: '#343434',
+    borderBottomWidth: 2,
   },
   header: {
     flexDirection: 'row',
@@ -122,7 +119,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     borderTopWidth: 1,
     borderTopColor: '#ddd',
-    paddingTop: 10,
+    borderBottomColor: '#ddd',
+    borderBottomWidth: 1,
+    paddingVertical: 10,
   },
   actionButton: {
     padding: 5,
