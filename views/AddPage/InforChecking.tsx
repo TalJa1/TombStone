@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
@@ -20,6 +20,8 @@ import {
 } from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {loadData, saveData} from '../../services/storage';
+import {MartyrProfile} from '../../services/renderData';
 
 const InforChecking = () => {
   useStatusBar('white');
@@ -39,6 +41,30 @@ const InforChecking = () => {
 };
 
 const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const [storage, setStorage] = useState<MartyrProfileItem[]>([]);
+
+  const fetchData = async () => {
+    await loadData<MartyrProfileItem[]>('martyrProfileStorage')
+      .then(res => {
+        setStorage(res);
+      })
+      .catch(() => {
+        setStorage(MartyrProfile);
+        saveData('martyrProfileStorage', MartyrProfile);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleUpload = async () => {
+    storage.push(data);
+    await saveData('martyrProfileStorage', storage);
+    navigation.navigate('UploadSuccessfully');
+  };
+
   return (
     <View style={styles.main}>
       <View>
@@ -119,7 +145,7 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
         <TouchableOpacity style={styles.saveBtn}>
           <Text style={styles.saveBtnTxt}>Lưu vào bản nháp</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.upBtn}>
+        <TouchableOpacity style={styles.upBtn} onPress={handleUpload}>
           <Text style={styles.upBtnTxt}>Tải lên</Text>
         </TouchableOpacity>
       </View>

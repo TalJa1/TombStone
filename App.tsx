@@ -28,6 +28,7 @@ import OnboardingPage from './views/Onboarding/OnboardingPage';
 import OffBoarding from './views/Onboarding/OffBoarding';
 import TombList from './views/Searching/TombList';
 import InforChecking from './views/AddPage/InforChecking';
+import UploadSuccessfully from './views/AddPage/UploadSuccessfully';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -176,6 +177,11 @@ const App = () => {
         <Stack.Screen
           name="InforChecking"
           component={InforChecking}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="UploadSuccessfully"
+          component={UploadSuccessfully}
           options={{headerShown: false}}
         />
 
