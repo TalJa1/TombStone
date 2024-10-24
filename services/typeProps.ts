@@ -99,4 +99,5 @@ export interface CommunityPost {
   like: number;
   comment: number;
   yourLike: boolean;
+  time: string;
 }

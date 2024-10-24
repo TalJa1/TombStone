@@ -171,6 +171,7 @@ export const CommunityTab1Data = [
     like: 50,
     comment: 20,
     yourLike: false,
+    time: '2 giờ trước',
   },
   {
     user: 'Phương Anh',
@@ -185,6 +186,7 @@ export const CommunityTab1Data = [
     like: 22,
     comment: 14,
     yourLike: false,
+    time: '4 giờ trước',
   },
   {
     user: 'Hồ Sĩ Nguyên',
@@ -198,5 +200,6 @@ export const CommunityTab1Data = [
     like: 40,
     comment: 5,
     yourLike: false,
+    time: '6 giờ trước',
   },
 ];
