@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -53,7 +54,10 @@ const Header: React.FC<HeaderCommunityProps> = ({activeTab, setActiveTab}) => {
     <View style={styles.headerContainer}>
       <View style={styles.topHeader}>
         <View style={styles.leftHeader}>
-          <Text style={styles.logo}>Logo</Text>
+          <Image
+            source={require('../../assets/Init/Init.png')}
+            style={styles.headerLogo}
+          />
           <Text style={styles.appName}>Dấu tích Anh linh</Text>
         </View>
         <View style={styles.rightHeader}>
@@ -113,9 +117,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  logo: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  headerLogo: {
+    width: vw(10),
+    height: vw(10),
+    resizeMode: 'cover',
     marginRight: vw(2),
   },
   appName: {
