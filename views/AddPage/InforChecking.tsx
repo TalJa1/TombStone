@@ -60,6 +60,11 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
   }, []);
 
   const handleUpload = async () => {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    data.uploadDate = `${day}/${month}/${year}`;
     data.status = 2;
     storage.push(data);
     await saveData('martyrProfileStorage', storage);
