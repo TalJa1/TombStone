@@ -207,3 +207,30 @@ export const CommunityTab1Data = [
   },
 ];
 
+export const CommunityTab2Data = [
+  {
+    user: 'Trần Thanh Tâm',
+    avatar: require('../assets/Community/newest/a3.png'),
+    feed: 'Hành trình  tìm kiếm mộ liệt sĩ mà bạn theo dõi vừa thay đổi trạng thái:',
+    postImg: [require('../assets/Community/newest/9.png')],
+    like: 22,
+    comment: 10,
+    yourLike: false,
+    time: '34 phút trước',
+    postStatus: 'biết ơn',
+  },
+  {
+    user: 'Phương Anh',
+    avatar: require('../assets/Community/newest/a1.png'),
+    feed: 'KẾ HOẠCH DI CHUYỂN HÀI CỐT LIỆT SĨ VỀ QUÊ NGÀY 24/09/2024:',
+    postImg: [
+      require('../assets/Community/newest/2.png'),
+      require('../assets/Community/newest/3.png'),
+    ],
+    like: 22,
+    comment: 14,
+    yourLike: false,
+    time: '4 giờ trước',
+    postStatus: 'cần trợ giúp',
+  },
+];
