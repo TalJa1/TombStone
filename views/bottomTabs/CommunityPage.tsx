@@ -14,6 +14,7 @@ import {bellIcon, plusIcon, searchIcon} from '../../assets/svgXML'; // Import yo
 import {vw, vh} from '../../services/styleSheet'; // Assuming you have these utility functions
 import {HeaderCommunityProps} from '../../services/typeProps';
 import Tab1Component from '../../components/Community/Tab1Component';
+import Tab2Component from '../../components/Community/Tab2Component';
 
 const CommunityPage = () => {
   useStatusBar('#ECF3A3');
@@ -24,7 +25,7 @@ const CommunityPage = () => {
       case 'Tab1':
         return <Tab1Component />;
       case 'Tab2':
-        return <Text>Content for Tab 2</Text>;
+        return <Tab2Component />;
       case 'Tab3':
         return <Text>Content for Tab 3</Text>;
       default:
