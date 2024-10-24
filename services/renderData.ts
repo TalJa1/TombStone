@@ -234,3 +234,30 @@ export const CommunityTab2Data = [
     postStatus: 'cần trợ giúp',
   },
 ];
+
+export const CommunityTab3Data = [
+  {
+    user: 'Lê Công Duy (bạn)',
+    avatar: require('../assets/Home/avatar.png'),
+    feed: 'Bạn vừa tải lên một yêu cầu tìm kiếm',
+    postImg: [require('../assets/Community/newest/11.png')],
+    like: 22,
+    comment: 10,
+    yourLike: true,
+    time: '34 phút trước',
+    postStatus: '',
+  },
+  {
+    user: 'Lê Công Duy (bạn)',
+    avatar: require('../assets/Home/avatar.png'),
+    feed: 'Hành trình ý nghĩa',
+    postImg: [
+      require('../assets/Community/newest/10.png'),
+    ],
+    like: 11,
+    comment: 14,
+    yourLike: true,
+    time: '18/09/2024',
+    postStatus: '',
+  },
+];
