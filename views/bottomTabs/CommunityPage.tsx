@@ -15,6 +15,7 @@ import {vw, vh} from '../../services/styleSheet'; // Assuming you have these uti
 import {HeaderCommunityProps} from '../../services/typeProps';
 import Tab1Component from '../../components/Community/Tab1Component';
 import Tab2Component from '../../components/Community/Tab2Component';
+import Tab3Component from '../../components/Community/Tab3Component';
 
 const CommunityPage = () => {
   useStatusBar('#ECF3A3');
@@ -27,7 +28,7 @@ const CommunityPage = () => {
       case 'Tab2':
         return <Tab2Component />;
       case 'Tab3':
-        return <Text>Content for Tab 3</Text>;
+        return <Tab3Component />;
       default:
         return null;
     }
