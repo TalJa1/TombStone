@@ -60,6 +60,7 @@ const MainView: React.FC<{data: MartyrProfileItem}> = ({data}) => {
   }, []);
 
   const handleUpload = async () => {
+    data.status = 2;
     storage.push(data);
     await saveData('martyrProfileStorage', storage);
     navigation.navigate('UploadSuccessfully');
