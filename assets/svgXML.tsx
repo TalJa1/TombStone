@@ -11,6 +11,21 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const postStatusIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="16" height="16" fill="url(#pattern0_171_2694)"/>
+<defs>
+<pattern id="pattern0_171_2694" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_171_2694" transform="scale(0.0625)"/>
+</pattern>
+<image id="image0_171_2694" width="16" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAATlBMVEVHcEzgTGDgTGDpWm7gTGDgTGDgTGDgTGDza3/gTGD////qXHD0dIf1fo/+9vfnWGz95Of70df4rLf82t/yaX31h5fhTmLoWm73maf4o6/st7TFAAAACHRSTlMAYLD3IPAwoMDpyIkAAABtSURBVHjaVYzZFsIwCETHVmJAsnX3/3/UxnTB+wAz9xyA69+G3oH8j+3TNoFbKLltPoSKBCOiNPQUIdea5/skVBHMj0FilMGIsaiW0Qi9BoMmb5gIjjjtaV24Qg7AY79K3RM37NMLFub/js72L+LnB7p/CBsUAAAAAElFTkSuQmCC"/>
+</defs>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const worldIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10.5 6C10.5 8.48528 8.48528 10.5 6 10.5M10.5 6C10.5 3.51472 8.48528 1.5 6 1.5M10.5 6H1.5M6 10.5C3.51472 10.5 1.5 8.48528 1.5 6M6 10.5C6 10.5 8 9 8 6C8 3 6 1.5 6 1.5M6 10.5C6 10.5 4 9 4 6C4 3 6 1.5 6 1.5M1.5 6C1.5 3.51472 3.51472 1.5 6 1.5" stroke="#868686"/>

@@ -3,7 +3,13 @@ import React, {useState} from 'react';
 import {CommunityPost} from '../../services/typeProps';
 import {CommunityTab1Data} from '../../services/renderData';
 import {vh} from '../../services/styleSheet';
-import {likeIcon, commentIcon, shareIcon, worldIcon} from '../../assets/svgXML'; // Import the icons
+import {
+  likeIcon,
+  commentIcon,
+  shareIcon,
+  worldIcon,
+  postStatusIcon,
+} from '../../assets/svgXML'; // Import the icons
 
 const Tab1Component = () => {
   const data: CommunityPost[] = CommunityTab1Data;
@@ -39,7 +45,15 @@ const PostRender: React.FC<{item: CommunityPost}> = ({item}) => {
       <View style={styles.header}>
         <Image source={item.avatar} style={styles.avatar} />
         <View style={styles.userInfo}>
-          <Text style={styles.userName}>{item.user}</Text>
+          <View style={styles.nameStatusContainer}>
+            <Text style={styles.userName}>{item.user}</Text>
+            {item.postStatus !== '' && (
+              <View style={styles.statusContainer}>
+                {postStatusIcon(16, 16)}
+                <Text style={styles.postStatusText}>{item.postStatus}</Text>
+              </View>
+            )}
+          </View>
           <View style={styles.timeContainer}>
             <Text style={styles.timeText}>{item.time}</Text>
             {worldIcon(20, 20, '#868686')}
@@ -113,10 +127,24 @@ const styles = StyleSheet.create({
   userInfo: {
     flex: 1,
   },
+  nameStatusContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   userName: {
     fontSize: 14,
     fontWeight: '700',
     color: 'black',
+  },
+  statusContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 5,
+  },
+  postStatusText: {
+    fontSize: 12,
+    color: '#868686',
+    marginLeft: 5,
   },
   timeContainer: {
     flexDirection: 'row',

@@ -100,4 +100,5 @@ export interface CommunityPost {
   comment: number;
   yourLike: boolean;
   time: string;
+  postStatus: string;
 }
