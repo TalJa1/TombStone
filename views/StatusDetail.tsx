@@ -15,6 +15,7 @@ import {loadData} from '../services/storage';
 import {centerAll, vh, vw} from '../services/styleSheet';
 import {nextIcon} from '../assets/svgXML';
 import {StatusData} from '../services/renderData';
+import SearchingStatusComponent from '../components/SearchingStatusComponent';
 
 const StatusDetail = () => {
   useStatusBar('#EEF2EE');
@@ -86,6 +87,12 @@ const StatusDetail = () => {
                     {nextIcon(vw(6), vw(6), '#ECF3A3')}
                   </TouchableOpacity>
                 </View>
+              </View>
+              <View>
+                <SearchingStatusComponent
+                  currentState={renderData.status}
+                  label="Theo dõi trạng thái tìm kiếm"
+                />
               </View>
             </View>
           )}

@@ -63,6 +63,7 @@ export const MartyrProfile = [
     yourRelationshipWithMartyr: 'Cháu trai',
     description: '',
     status: 2,
+    uploadDate: '19/10/2024',
   },
 ];
 

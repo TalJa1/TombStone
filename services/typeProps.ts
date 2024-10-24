@@ -28,6 +28,7 @@ export interface MartyrProfileItem {
   yourRelationshipWithMartyr: string;
   description: string;
   status: number;
+  uploadDate: string;
 }
 
 export interface FoundMartyrProfileItem {
