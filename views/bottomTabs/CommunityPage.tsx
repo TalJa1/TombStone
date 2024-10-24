@@ -13,6 +13,7 @@ import useStatusBar from '../../services/useStatusBar';
 import {bellIcon, plusIcon, searchIcon} from '../../assets/svgXML'; // Import your SVG icons
 import {vw, vh} from '../../services/styleSheet'; // Assuming you have these utility functions
 import {HeaderCommunityProps} from '../../services/typeProps';
+import Tab1Component from '../../components/Community/Tab1Component';
 
 const CommunityPage = () => {
   useStatusBar('#ECF3A3');
@@ -21,7 +22,7 @@ const CommunityPage = () => {
   const renderContent = () => {
     switch (activeTab) {
       case 'Tab1':
-        return <Text>Content for Tab 1</Text>;
+        return <Tab1Component />;
       case 'Tab2':
         return <Text>Content for Tab 2</Text>;
       case 'Tab3':
@@ -38,6 +39,7 @@ const CommunityPage = () => {
           <Header activeTab={activeTab} setActiveTab={setActiveTab} />
           {renderContent()}
         </View>
+        <View style={{height: vh(9)}} />
       </ScrollView>
     </SafeAreaView>
   );

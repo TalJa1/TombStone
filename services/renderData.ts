@@ -161,3 +161,33 @@ export const StatusData = [
   'Nhân thân nhận mộ',
   'Hoàn tất',
 ];
+
+export const CommunityTab1Data = [
+  {
+    user: 'Bùi Văn Tám',
+    avatar: null,
+    feed: 'Gia đình đã tìm được hài cốt liệt sĩ Bùi Văn Vịnh sau bao năm thất lạc. Cảm ơn “Dấu chân Anh Linh", chính quyền nhà nước, cộng đồng đã chung tay giúp sức cho gia đình được đoàn tụ.',
+    postImg: [],
+    like: 50,
+    comment: 20,
+    yourLike: false,
+  },
+  {
+    user: 'Phương Anh',
+    avatar: null,
+    feed: 'Tìm phần mộ Liệt sỹ: Kính gửi các Bác, các Cô/Chú, Bác cháu là Liệt sỹ Trịnh Đình Dương, hiện nay gia đình cháu còn những giấy tờ thông tin như ảnh. Rất mong mọi người chia sẻ giúp gia đình cháu để sớm tìm được phần mộ của bác cháu ạ.',
+    postImg: [],
+    like: 22,
+    comment: 14,
+    yourLike: false,
+  },
+  {
+    user: 'Hồ Sĩ Nguyên',
+    avatar: null,
+    feed: 'Gia đình đã tìm được hài cốt liệt sĩ Bùi Văn Vịnh sau bao năm thất lạc. Cảm ơn “Dấu chân Anh Linh", chính quyền nhà nước, cộng đồng đã chung tay giúp sức cho gia đình được đoàn tụ.',
+    postImg: [],
+    like: 40,
+    comment: 5,
+    yourLike: false,
+  },
+];
