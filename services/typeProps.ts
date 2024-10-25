@@ -122,3 +122,14 @@ export interface CommentProps {
   time: string;
   answer: number;
 }
+
+export interface HeaderTombListProps {
+  searchText: string;
+  setSearchText: (text: string) => void;
+  selectedProvince: string;
+  setSelectedProvince: (province: string) => void;
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  provinces: {label: string; value: string}[];
+  handleSearch: () => void;
+}
