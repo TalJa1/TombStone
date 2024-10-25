@@ -274,6 +274,8 @@ const TombFoundListView: React.FC<{
     navigation.navigate('StatusDetail', {dataIndex: index});
   };
 
+  console.log(item.img);
+
   return (
     <View>
       <View
@@ -288,7 +290,12 @@ const TombFoundListView: React.FC<{
         ]}>
         <Image
           source={item.img}
-          style={{height: '100%', resizeMode: 'contain'}}
+          style={{
+            height: vw(20),
+            width: vw(20),
+            resizeMode: 'contain',
+            borderRadius: 12,
+          }}
         />
         <View style={{flex: 1, marginLeft: vw(1)}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
