@@ -87,14 +87,16 @@ const CommentPage = () => {
               <View key={index} style={styles.comment}>
                 <Image source={comment.avatar} style={styles.commentAvatar} />
                 <View style={styles.commentContent}>
-                  <Text style={styles.commentName}>{comment.name}</Text>
-                  <Text style={styles.commentText}>{comment.comment}</Text>
+                  <View style={styles.commentTop}>
+                    <Text style={styles.commentName}>{comment.name}</Text>
+                    <Text style={styles.commentText}>{comment.comment}</Text>
+                  </View>
                   <View style={styles.commentFooter}>
-                    <Text style={styles.commentTime}>{comment.time}</Text>
-                    <Text style={styles.commentLike}>{comment.like} likes</Text>
+                    <Text style={styles.commentLike}>{comment.like} Thích</Text>
                     <Text style={styles.commentAnswer}>
-                      {comment.answer} answers
+                      {comment.answer} Trả lời
                     </Text>
+                    <Text style={styles.commentTime}>{comment.time}</Text>
                   </View>
                 </View>
               </View>
@@ -195,7 +197,7 @@ const styles = StyleSheet.create({
   },
   commentFooter: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    columnGap: vw(5),
   },
   commentTime: {
     fontSize: 12,
@@ -208,5 +210,11 @@ const styles = StyleSheet.create({
   commentAnswer: {
     fontSize: 12,
     color: '#888',
+  },
+  commentTop: {
+    backgroundColor: '#F0F2F5',
+    paddingVertical: vh(1),
+    paddingHorizontal: vw(3),
+    borderRadius: 20,
   },
 });
