@@ -259,3 +259,9 @@ export const CommunityTab3Data = [
     postStatus: '',
   },
 ];
+
+export const avatarList = [
+  require('../assets/Community/newest/a1.png'),
+  require('../assets/Community/newest/a2.png'),
+  require('../assets/Community/newest/a3.png'),
+];

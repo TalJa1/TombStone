@@ -113,3 +113,12 @@ export interface ProfileDataProps {
   follower: number;
   following: number;
 }
+
+export interface CommentProps {
+  avatar: any;
+  name: string;
+  comment: string;
+  like: number;
+  time: string;
+  answer: number;
+}
