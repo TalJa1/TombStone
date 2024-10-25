@@ -8,7 +8,6 @@ import {
   View,
   Image,
   TextInput,
-  Button,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
@@ -18,9 +17,8 @@ import {backIcon, bellIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PostRenderComponent from '../../components/Community/PostRenderComponent';
-import {avatarList} from '../../services/renderData';
+import {avatarList, userAvatar} from '../../services/renderData';
 
-// Move the function ABOVE the component declaration
 const generateRandomComments = (count: number): CommentProps[] => {
   const randomNames = [
     'Nguyễn Văn A',
@@ -88,7 +86,7 @@ const CommentPage = () => {
     }
 
     const newComment: CommentProps = {
-      avatar: avatarList[Math.floor(Math.random() * avatarList.length)],
+      avatar: userAvatar,
       name: 'You',
       comment: newCommentText,
       like: 0,
@@ -129,14 +127,16 @@ const CommentPage = () => {
         </View>
       </ScrollView>
       <View style={styles.inputContainer}>
+        <Image source={userAvatar} style={styles.userAvatar} />
         <TextInput
           style={styles.input}
           placeholder="Viết bình luận..."
           placeholderTextColor={'#1E1E1E99'}
           value={newCommentText}
           onChangeText={setNewCommentText}
+          onSubmitEditing={handleAddComment}
+          returnKeyType="done"
         />
-        <Button title="Gửi" onPress={handleAddComment} />
       </View>
     </SafeAreaView>
   );
@@ -258,14 +258,20 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#ddd',
   },
+  userAvatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 10,
+  },
   input: {
     flex: 1,
     height: 40,
     borderColor: '#ddd',
-    backgroundColor:'#F0F2F5',
+    backgroundColor: '#F0F2F5',
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 10,
-    marginRight: 10,
+    color: '#1E1E1E',
   },
 });
