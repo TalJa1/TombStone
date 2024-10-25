@@ -265,3 +265,5 @@ export const avatarList = [
   require('../assets/Community/newest/a2.png'),
   require('../assets/Community/newest/a3.png'),
 ];
+
+export const userAvatar = require('../assets/Home/avatar.png');

@@ -132,6 +132,7 @@ const CommentPage = () => {
         <TextInput
           style={styles.input}
           placeholder="Viết bình luận..."
+          placeholderTextColor={'#1E1E1E99'}
           value={newCommentText}
           onChangeText={setNewCommentText}
         />
@@ -261,6 +262,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     borderColor: '#ddd',
+    backgroundColor:'#F0F2F5',
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 10,
