@@ -26,9 +26,15 @@ const TombMapList = () => {
   }, [searchText]);
 
   const handleSearch = () => {
-    const filtered = tombListData.filter(tomb =>
-      tomb.name.toLowerCase().includes(searchText.toLowerCase()),
-    );
+    const filtered = tombListData.filter(tomb => {
+      const matchesSearchText = tomb.name
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+      const matchesProvince = selectedProvince
+        ? tomb.location === selectedProvince
+        : true;
+      return matchesSearchText && matchesProvince;
+    });
     setFilteredData(filtered);
   };
 
@@ -54,7 +60,7 @@ const TombMapList = () => {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             provinces={provinces}
-            handleSearch={handleSearch}
+            handleSearch={handleSearch} // Ensure this is called when the "Tìm kiếm" button is clicked
           />
           <View style={styles.contentContainer}>{renderContent()}</View>
         </View>
