@@ -52,9 +52,7 @@ const MapPage = () => {
               onPress={handleShowPallete}>
               <Text style={styles.bottomButtonTxt}>Quy ước màu</Text>
             </TouchableOpacity>
-            <Mapbox.MapView
-              ref={mapRef}
-              style={styles.map}>
+            <Mapbox.MapView ref={mapRef} style={styles.map}>
               <Mapbox.Camera
                 centerCoordinate={[105.8342, 21.0278]} // Hanoi, Vietnam
                 zoomLevel={5.5}
