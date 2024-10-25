@@ -390,4 +390,31 @@ export const MapLocation: Feature<Geometry, GeoJsonProperties>[] = [
     properties: {name: 'Bà Rịa - Vũng Tàu', color: getRandomColor()},
     geometry: {type: 'Point', coordinates: [107.0843, 10.4112]},
   },
+
+  // Central Vietnam
+  {
+    type: 'Feature',
+    properties: {name: 'Đà Nẵng', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [108.2208, 16.0471]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Huế', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [107.5797, 16.4674]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Quảng Nam', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [108.338, 15.5394]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Quảng Ngãi', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [108.7923, 15.1205]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Bình Định', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [109.218, 13.782]},
+  },
 ];
