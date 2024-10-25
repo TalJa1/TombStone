@@ -53,7 +53,6 @@ const MapPage = () => {
               <Text style={styles.bottomButtonTxt}>Quy ước màu</Text>
             </TouchableOpacity>
             <Mapbox.MapView
-              styleURL="mapbox://styles/mapbox/standard-satellite"
               ref={mapRef}
               style={styles.map}>
               <Mapbox.Camera
