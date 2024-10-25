@@ -73,7 +73,7 @@ const HeaderTombList: React.FC<HeaderTombListProps> = ({
               styles.tabButtonText,
               activeTab === 'tab1' && styles.activeTab,
             ]}>
-            Tab 1
+            Tất cả
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -84,7 +84,7 @@ const HeaderTombList: React.FC<HeaderTombListProps> = ({
               styles.tabButtonText,
               activeTab === 'tab2' && styles.activeTab,
             ]}>
-            Tab 2
+            Đã viếng thăm
           </Text>
         </TouchableOpacity>
       </View>
