@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import HeaderTombList from '../../components/Map/HeaderTombList';
 import {MapLocation, tombListData} from '../../services/renderData';
 import Tab1RenderComponent from '../../components/Map/Tab1RenderComponent';
+import Tab2RenderComponent from '../../components/Map/Tab2RenderComponent';
 
 const TombMapList = () => {
   useStatusBar('#EEF2EE');
@@ -35,7 +36,8 @@ const TombMapList = () => {
     if (activeTab === 'tab1') {
       return <Tab1RenderComponent tombListData={filteredData} />;
     } else if (activeTab === 'tab2') {
-      return <Text>Content for Tab 2</Text>;
+      const visitedData = filteredData.filter(tomb => tomb.isVisited);
+      return <Tab2RenderComponent tombListData={visitedData} />;
     }
     return null;
   };
