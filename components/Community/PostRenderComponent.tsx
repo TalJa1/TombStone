@@ -12,7 +12,10 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
+const PostRenderComponent: React.FC<{
+  item: CommunityPost;
+  isNotBorder?: boolean;
+}> = ({item, isNotBorder}) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [likeCount, setLikeCount] = useState(item.like);
   const [isLiked, setIsLiked] = useState(item.yourLike);
@@ -31,7 +34,7 @@ const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
   };
 
   return (
-    <View style={styles.postContainer}>
+    <View style={[styles.postContainer, isNotBorder && styles.noBorder]}>
       <View style={styles.header}>
         <Image source={item.avatar} style={styles.avatar} />
         <View style={styles.userInfo}>
@@ -114,11 +117,15 @@ const styles = StyleSheet.create({
     borderBottomColor: '#343434',
     borderBottomWidth: 2,
   },
+  noBorder: {
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
-    justifyContent: 'space-between', // Add this line
+    justifyContent: 'space-between',
   },
   avatar: {
     width: 40,

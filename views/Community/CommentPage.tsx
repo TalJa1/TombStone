@@ -14,6 +14,7 @@ import {InforDetail} from '../../services/typeProps';
 import {backIcon, bellIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import PostRenderComponent from '../../components/Community/PostRenderComponent';
 
 const CommentPage = () => {
   useStatusBar('#FFFFFF');
@@ -25,7 +26,7 @@ const CommentPage = () => {
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header />
-          <Text>CommentPage</Text>
+          <PostRenderComponent item={itemData} isNotBorder={true}/>
         </View>
       </ScrollView>
     </SafeAreaView>
