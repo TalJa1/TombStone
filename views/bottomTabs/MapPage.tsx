@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import Mapbox from '@rnmapbox/maps';
@@ -12,12 +12,20 @@ Mapbox.setAccessToken(
 
 const MapPage = () => {
   useStatusBar('#91A895');
+  const mapRef = useRef<Mapbox.MapView>(null);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 1}}>
         <View style={styles.page}>
           <View style={styles.containerMap}>
-            <Mapbox.MapView style={styles.map} />
+            <Mapbox.MapView ref={mapRef} style={styles.map}>
+              <Mapbox.Camera
+                centerCoordinate={[105.8342, 21.0278]} // Hanoi, Vietnam
+                zoomLevel={5.5}
+                animationDuration={2000}
+              />
+            </Mapbox.MapView>
           </View>
         </View>
       </View>
