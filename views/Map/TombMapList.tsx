@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import HeaderTombList from '../../components/Map/HeaderTombList';
-import {MapLocation} from '../../services/renderData';
+import {MapLocation, tombListData} from '../../services/renderData';
 import Tab1RenderComponent from '../../components/Map/Tab1RenderComponent';
 
 const TombMapList = () => {
@@ -25,7 +25,7 @@ const TombMapList = () => {
 
   const renderContent = () => {
     if (activeTab === 'tab1') {
-      return <Tab1RenderComponent />;
+      return <Tab1RenderComponent tombListData={tombListData} />;
     } else if (activeTab === 'tab2') {
       return <Text>Content for Tab 2</Text>;
     }

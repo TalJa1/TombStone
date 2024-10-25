@@ -1,4 +1,5 @@
 import {Feature, Geometry, GeoJsonProperties} from 'geojson';
+import {TombListProps} from './typeProps';
 
 export const OnboardingData = [
   {
@@ -418,3 +419,35 @@ export const MapLocation: Feature<Geometry, GeoJsonProperties>[] = [
     geometry: {type: 'Point', coordinates: [109.218, 13.782]},
   },
 ];
+
+const generateTombListData = (): TombListProps[] => {
+  // Duplicate the map data by creating two entries for each location
+  const doubledData = MapLocation.flatMap(location => [
+    {
+      name: `NTLS huyện ${location.properties?.name ?? 'Unknown'}`,
+      exactLocation: `X.${location.properties?.name}, H.${location.properties?.name}, T.Việt Nam`,
+      numbersOfTomb: Math.floor(Math.random() * 5000) + 1000, // Between 1000 and 5000 tombs
+      isVisited: Math.random() > 0.5,
+      location: location.properties?.name ?? 'Unknown',
+    },
+    {
+      name: `NTLS xã ${location.properties?.name ?? 'Unknown'}`,
+      exactLocation: `X.${location.properties?.name}, H.${location.properties?.name}, T.Việt Nam`,
+      numbersOfTomb: Math.floor(Math.random() * 5000) + 1000,
+      isVisited: Math.random() > 0.5,
+      location: location.properties?.name ?? 'Unknown',
+    },
+  ]);
+
+  return doubledData;
+};
+
+// Generate the data list
+export const tombListData = generateTombListData();
+
+export const dataTemplate = {
+  name: 'NTLS Trường Sơn',
+  exactLocation: 'X.Vĩnh Trường, H.Gio Linh, T.Quảng Tri',
+  numbersOfTomb: 5000,
+  isVisited: true,
+};

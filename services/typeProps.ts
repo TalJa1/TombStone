@@ -133,3 +133,11 @@ export interface HeaderTombListProps {
   provinces: {label: string; value: string}[];
   handleSearch: () => void;
 }
+
+export interface TombListProps {
+  name: string;
+  exactLocation: string;
+  numbersOfTomb: number;
+  isVisited: boolean;
+  location: string;
+}
