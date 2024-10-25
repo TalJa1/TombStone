@@ -102,3 +102,11 @@ export interface CommunityPost {
   time: string;
   postStatus: string;
 }
+
+export interface ProfileDataProps {
+  user: string;
+  avatar: any;
+  post: number;
+  follower: number;
+  following: number;
+}

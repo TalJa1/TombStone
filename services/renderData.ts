@@ -251,9 +251,7 @@ export const CommunityTab3Data = [
     user: 'Lê Công Duy (bạn)',
     avatar: require('../assets/Home/avatar.png'),
     feed: 'Hành trình ý nghĩa',
-    postImg: [
-      require('../assets/Community/newest/10.png'),
-    ],
+    postImg: [require('../assets/Community/newest/10.png')],
     like: 11,
     comment: 14,
     yourLike: true,
