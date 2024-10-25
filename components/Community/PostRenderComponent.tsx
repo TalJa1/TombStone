@@ -9,8 +9,11 @@ import {
   commentIcon,
   shareIcon,
 } from '../../assets/svgXML';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [likeCount, setLikeCount] = useState(item.like);
   const [isLiked, setIsLiked] = useState(item.yourLike);
 
@@ -21,6 +24,10 @@ const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
       setLikeCount(likeCount + 1);
     }
     setIsLiked(!isLiked);
+  };
+
+  const handleComment = () => {
+    navigation.navigate('CommentPage', {itemData: item});
   };
 
   return (
@@ -83,7 +90,7 @@ const PostRenderComponent: React.FC<{item: CommunityPost}> = ({item}) => {
             Thích
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity style={styles.actionButton} onPress={handleComment}>
           {commentIcon(20, 20, 'black')}
           <Text style={styles.actionButtonText}>Bình luận</Text>
         </TouchableOpacity>

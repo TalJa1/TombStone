@@ -30,6 +30,7 @@ import TombList from './views/Searching/TombList';
 import InforChecking from './views/AddPage/InforChecking';
 import UploadSuccessfully from './views/AddPage/UploadSuccessfully';
 import StatusDetail from './views/StatusDetail';
+import CommentPage from './views/Community/CommentPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -173,6 +174,14 @@ const App = () => {
           component={TabNavigator}
           options={{headerShown: false}}
         />
+
+        {/* Community */}
+        <Stack.Screen
+          name="CommentPage"
+          component={CommentPage}
+          options={{headerShown: false}}
+        />
+
         {/* Status detail */}
         <Stack.Screen
           name="StatusDetail"

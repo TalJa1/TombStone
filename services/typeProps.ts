@@ -79,6 +79,9 @@ export type InforDetail = {
   Status: {
     dataIndex: number;
   };
+  Comment: {
+    itemData: CommunityPost;
+  };
 };
 
 export interface SearchingStatusComponentProps {
