@@ -1,3 +1,5 @@
+import {Feature, Geometry, GeoJsonProperties} from 'geojson';
+
 export const OnboardingData = [
   {
     title: 'Kết nối yêu thương',
@@ -267,3 +269,125 @@ export const avatarList = [
 ];
 
 export const userAvatar = require('../assets/Home/avatar.png');
+
+export const colors = [
+  '#FFFFFF', // White
+  '#FFEEEE', // Very light pink
+  '#FFCCCC', // Light pink
+  '#FFAAAA', // Pale red
+  '#FF8888', // Soft red
+  '#FF6666', // Medium red
+  '#FF4444', // Bright red
+  '#FF2222', // Intense red
+  '#8B0000', // Blood red
+];
+
+const getRandomColor = () => {
+  return colors[Math.floor(Math.random() * colors.length)];
+};
+
+export const MapLocation: Feature<Geometry, GeoJsonProperties>[] = [
+  // Northern Vietnam
+  {
+    type: 'Feature',
+    properties: {name: 'Hà Nội', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.8342, 21.0278]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Hải Phòng', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [106.686, 20.8449]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Quảng Ninh', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [107.2654, 21.1325]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Bắc Ninh', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [106.0584, 21.1825]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Thái Nguyên', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.836, 21.5942]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Lào Cai', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [103.9564, 22.3392]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Điện Biên', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [103.015, 21.386]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Thanh Hóa', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.7728, 19.808]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Nghệ An', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.698, 19.2343]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Hà Giang', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [104.9997, 22.7745]},
+  },
+
+  // Southern Vietnam
+  {
+    type: 'Feature',
+    properties: {name: 'Hồ Chí Minh', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [106.6297, 10.8231]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Đồng Nai', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [107.08, 11.144]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Bình Dương', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [106.6753, 11.1735]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Cần Thơ', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.7654, 10.0452]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Vĩnh Long', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.9432, 10.2514]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Tiền Giang', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [106.363, 10.4494]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Bến Tre', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [106.3777, 10.2333]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'An Giang', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [105.4237, 10.5206]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Kiên Giang', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [104.983, 10.0121]},
+  },
+  {
+    type: 'Feature',
+    properties: {name: 'Bà Rịa - Vũng Tàu', color: getRandomColor()},
+    geometry: {type: 'Point', coordinates: [107.0843, 10.4112]},
+  },
+];

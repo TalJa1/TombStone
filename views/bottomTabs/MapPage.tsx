@@ -14,10 +14,17 @@ import Mapbox from '@rnmapbox/maps';
 import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
+import {FeatureCollection, Geometry, GeoJsonProperties} from 'geojson';
+import {MapLocation} from '../../services/renderData';
 
 Mapbox.setAccessToken(
   'pk.eyJ1IjoidGFsamExIiwiYSI6ImNtMm82enp6ODBlNHAyanNndnNmMHowYWYifQ.-6cYPNPzMoKrlIp428Yxdw',
 );
+
+const geoJsonData: FeatureCollection<Geometry, GeoJsonProperties> = {
+  type: 'FeatureCollection',
+  features: MapLocation,
+};
 
 const MapPage = () => {
   useStatusBar('#91A895');
@@ -58,6 +65,16 @@ const MapPage = () => {
                 zoomLevel={5.5}
                 animationDuration={2000}
               />
+              <Mapbox.ShapeSource id="provinces" shape={geoJsonData}>
+                <Mapbox.CircleLayer
+                  id="province-layer"
+                  style={{
+                    circleColor: ['get', 'color'],
+                    circleRadius: 10,
+                    circleOpacity: 0.7,
+                  }}
+                />
+              </Mapbox.ShapeSource>
             </Mapbox.MapView>
           </View>
         </View>
