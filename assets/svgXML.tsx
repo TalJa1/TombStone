@@ -11,6 +11,16 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const locationIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.54423 13.7385C11.2343 12.3668 13.3337 10.0952 13.3337 7.33333C13.3337 4.38781 10.9458 2 8.00033 2C5.05481 2 2.66699 4.38781 2.66699 7.33333C2.66699 10.0952 4.76638 12.3668 7.45642 13.7385C7.79818 13.9127 8.20247 13.9127 8.54423 13.7385Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.0003 7.33333C10.0003 8.4379 9.10489 9.33333 8.00033 9.33333C6.89576 9.33333 6.00033 8.4379 6.00033 7.33333C6.00033 6.22876 6.89576 5.33333 8.00033 5.33333C9.10489 5.33333 10.0003 6.22876 10.0003 7.33333Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const communityUpdateIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M20 13V13.01M20 7V10.5M6.5 21.0001H17.5C18.8807 21.0001 20 19.8808 20 18.5001C20 14.4194 14 14.5001 12 14.5001C10 14.5001 4 14.4194 4 18.5001C4 19.8808 5.11929 21.0001 6.5 21.0001ZM16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#1B45A1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
