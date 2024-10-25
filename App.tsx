@@ -31,6 +31,7 @@ import InforChecking from './views/AddPage/InforChecking';
 import UploadSuccessfully from './views/AddPage/UploadSuccessfully';
 import StatusDetail from './views/StatusDetail';
 import CommentPage from './views/Community/CommentPage';
+import TombMapList from './views/Map/TombMapList';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -172,6 +173,13 @@ const App = () => {
         <Stack.Screen
           name="Main"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+
+        {/* Map */}
+        <Stack.Screen
+          name="TombMapList"
+          component={TombMapList}
           options={{headerShown: false}}
         />
 

@@ -11,6 +11,8 @@ Mapbox.setAccessToken(
 );
 
 import {FeatureCollection, Geometry, GeoJsonProperties} from 'geojson';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 
 const geoJsonData: FeatureCollection<Geometry, GeoJsonProperties> = {
   type: 'FeatureCollection',
@@ -60,16 +62,27 @@ const geoJsonData: FeatureCollection<Geometry, GeoJsonProperties> = {
 const MapPage = () => {
   useStatusBar('#91A895');
   const mapRef = useRef<Mapbox.MapView>(null);
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  const handleNavigateToList = () => {
+    navigation.navigate('TombMapList');
+  };
+
+  const handleShowPallete = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 1}}>
         <View style={styles.page}>
           <View style={styles.containerMap}>
-            <TouchableOpacity style={styles.topButton}>
+            <TouchableOpacity
+              style={styles.topButton}
+              onPress={handleNavigateToList}>
               <Text style={styles.topButtonTxt}>Danh sách nghĩa trang</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomButton}>
+            <TouchableOpacity
+              style={styles.bottomButton}
+              onPress={handleShowPallete}>
               <Text style={styles.bottomButtonTxt}>Quy ước màu</Text>
             </TouchableOpacity>
             <Mapbox.MapView
