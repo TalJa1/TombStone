@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useRef} from 'react';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import Mapbox from '@rnmapbox/maps';
@@ -63,12 +70,19 @@ const MapPage = () => {
   useStatusBar('#91A895');
   const mapRef = useRef<Mapbox.MapView>(null);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleNavigateToList = () => {
     navigation.navigate('TombMapList');
   };
 
-  const handleShowPallete = () => {};
+  const handleShowPallete = () => {
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -121,6 +135,23 @@ const MapPage = () => {
           </View>
         </View>
       </View>
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={handleCloseModal}>
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          onPress={handleCloseModal}>
+          <View style={styles.modalContent}>
+            <Image
+              source={require('../../assets/Map/pallete.png')}
+              style={styles.modalImage}
+              resizeMode="contain"
+            />
+          </View>
+        </TouchableOpacity>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -171,5 +202,18 @@ const styles = StyleSheet.create({
   bottomButtonTxt: {
     color: '#000000',
     fontSize: 16,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+  },
+  modalImage: {
+    resizeMode: 'contain',
   },
 });
