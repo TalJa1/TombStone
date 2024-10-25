@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useRef} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
@@ -66,6 +66,12 @@ const MapPage = () => {
       <View style={{flex: 1}}>
         <View style={styles.page}>
           <View style={styles.containerMap}>
+            <TouchableOpacity style={styles.topButton}>
+              <Text style={styles.topButtonTxt}>Danh sách nghĩa trang</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.bottomButton}>
+              <Text style={styles.bottomButtonTxt}>Quy ước màu</Text>
+            </TouchableOpacity>
             <Mapbox.MapView
               styleURL="mapbox://styles/mapbox/standard-satellite"
               ref={mapRef}
@@ -124,5 +130,33 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
+  },
+  topButton: {
+    position: 'absolute',
+    top: vh(4),
+    backgroundColor: '#547958',
+    padding: 10,
+    borderRadius: vw(50),
+    zIndex: 2,
+    alignSelf: 'center',
+  },
+  topButtonTxt: {
+    color: 'white',
+    fontSize: 16,
+  },
+  bottomButton: {
+    position: 'absolute',
+    bottom: vh(15),
+    left: vw(5),
+    borderWidth: 1,
+    borderColor: '#547958',
+    backgroundColor: '#ECF3A3',
+    padding: 10,
+    borderRadius: vw(50),
+    zIndex: 2,
+  },
+  bottomButtonTxt: {
+    color: '#000000',
+    fontSize: 16,
   },
 });
