@@ -5,6 +5,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import HeaderTombList from '../../components/Map/HeaderTombList';
 import {MapLocation} from '../../services/renderData';
+import Tab1RenderComponent from '../../components/Map/Tab1RenderComponent';
 
 const TombMapList = () => {
   useStatusBar('#EEF2EE');
@@ -21,6 +22,16 @@ const TombMapList = () => {
     // Implement search functionality here
     console.log('Search:', searchText, selectedProvince);
   };
+
+  const renderContent = () => {
+    if (activeTab === 'tab1') {
+      return <Tab1RenderComponent />;
+    } else if (activeTab === 'tab2') {
+      return <Text>Content for Tab 2</Text>;
+    }
+    return null;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -35,7 +46,7 @@ const TombMapList = () => {
             provinces={provinces}
             handleSearch={handleSearch}
           />
-          <Text>Map List</Text>
+          <View style={styles.contentContainer}>{renderContent()}</View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -48,5 +59,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  contentContainer: {
+    flex: 1,
+    padding: 20,
   },
 });
