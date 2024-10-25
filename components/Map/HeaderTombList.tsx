@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
+    color: 'black',
   },
   searchButton: {
     marginLeft: 10,
