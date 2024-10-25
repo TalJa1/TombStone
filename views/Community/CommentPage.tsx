@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+import React, {useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -6,8 +7,9 @@ import {
   TouchableOpacity,
   View,
   Image,
+  TextInput,
+  Button,
 } from 'react-native';
-import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
@@ -18,63 +20,85 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import PostRenderComponent from '../../components/Community/PostRenderComponent';
 import {avatarList} from '../../services/renderData';
 
+// Move the function ABOVE the component declaration
+const generateRandomComments = (count: number): CommentProps[] => {
+  const randomNames = [
+    'Nguyễn Văn A',
+    'Trần Thị B',
+    'Lê Văn C',
+    'Phạm Thị D',
+    'Hoàng Văn E',
+    'Đặng Thị F',
+    'Bùi Văn G',
+    'Đỗ Thị H',
+    'Ngô Văn I',
+    'Vũ Thị K',
+  ];
+  const randomComments = [
+    'Bài viết rất hay!',
+    'Cảm ơn bạn đã chia sẻ.',
+    'Tôi rất đồng cảm với bạn.',
+    'Bài viết này thật ý nghĩa.',
+    'Cảm ơn bạn đã đăng bài.',
+    'Tôi rất thích bài viết này.',
+    'Bài viết rất hữu ích.',
+    'Cảm ơn bạn đã chia sẻ thông tin.',
+    'Bài viết rất cảm động.',
+    'Tôi rất ủng hộ bạn.',
+  ];
+
+  const comments: CommentProps[] = [];
+  for (let i = 0; i < count; i++) {
+    const randomAvatar =
+      avatarList[Math.floor(Math.random() * avatarList.length)];
+    const randomName =
+      randomNames[Math.floor(Math.random() * randomNames.length)];
+    const randomComment =
+      randomComments[Math.floor(Math.random() * randomComments.length)];
+    const randomLike = Math.floor(Math.random() * 100);
+    const randomTime = `${Math.floor(Math.random() * 24)} giờ trước`;
+    const randomAnswer = Math.floor(Math.random() * 10);
+
+    comments.push({
+      avatar: randomAvatar,
+      name: randomName,
+      comment: randomComment,
+      like: randomLike,
+      time: randomTime,
+      answer: randomAnswer,
+    });
+  }
+  return comments;
+};
+
 const CommentPage = () => {
   useStatusBar('#FFFFFF');
   const route = useRoute<RouteProp<InforDetail, 'Comment'>>();
   const itemData = route.params.itemData;
   const numberOfComments = itemData.comment;
 
-  const generateRandomComments = (count: number): CommentProps[] => {
-    const randomNames = [
-      'Nguyễn Văn A',
-      'Trần Thị B',
-      'Lê Văn C',
-      'Phạm Thị D',
-      'Hoàng Văn E',
-      'Đặng Thị F',
-      'Bùi Văn G',
-      'Đỗ Thị H',
-      'Ngô Văn I',
-      'Vũ Thị K',
-    ];
-    const randomComments = [
-      'Bài viết rất hay!',
-      'Cảm ơn bạn đã chia sẻ.',
-      'Tôi rất đồng cảm với bạn.',
-      'Bài viết này thật ý nghĩa.',
-      'Cảm ơn bạn đã đăng bài.',
-      'Tôi rất thích bài viết này.',
-      'Bài viết rất hữu ích.',
-      'Cảm ơn bạn đã chia sẻ thông tin.',
-      'Bài viết rất cảm động.',
-      'Tôi rất ủng hộ bạn.',
-    ];
+  const [comments, setComments] = useState<CommentProps[]>(
+    generateRandomComments(numberOfComments),
+  );
+  const [newCommentText, setNewCommentText] = useState('');
 
-    const comments: CommentProps[] = [];
-    for (let i = 0; i < count; i++) {
-      const randomAvatar =
-        avatarList[Math.floor(Math.random() * avatarList.length)];
-      const randomName =
-        randomNames[Math.floor(Math.random() * randomNames.length)];
-      const randomComment =
-        randomComments[Math.floor(Math.random() * randomComments.length)];
-      const randomLike = Math.floor(Math.random() * 100);
-      const randomTime = `${Math.floor(Math.random() * 24)} giờ trước`;
-      const randomAnswer = Math.floor(Math.random() * 10);
-
-      comments.push({
-        avatar: randomAvatar,
-        name: randomName,
-        comment: randomComment,
-        like: randomLike,
-        time: randomTime,
-        answer: randomAnswer,
-      });
+  const handleAddComment = () => {
+    if (newCommentText.trim() === '') {
+      return;
     }
-    return comments;
-  };
 
-  const comments = generateRandomComments(numberOfComments);
+    const newComment: CommentProps = {
+      avatar: avatarList[Math.floor(Math.random() * avatarList.length)],
+      name: 'You',
+      comment: newCommentText,
+      like: 0,
+      time: 'Vừa xong',
+      answer: 0,
+    };
+
+    setComments([newComment, ...comments]);
+    setNewCommentText('');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -104,6 +128,15 @@ const CommentPage = () => {
           </View>
         </View>
       </ScrollView>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Viết bình luận..."
+          value={newCommentText}
+          onChangeText={setNewCommentText}
+        />
+        <Button title="Gửi" onPress={handleAddComment} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -216,5 +249,21 @@ const styles = StyleSheet.create({
     paddingVertical: vh(1),
     paddingHorizontal: vw(3),
     borderRadius: 20,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    marginRight: 10,
   },
 });
