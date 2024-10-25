@@ -15,24 +15,26 @@ const Tab1RenderComponent: React.FC<Tab1RenderComponentProps> = ({
     <View style={styles.container}>
       {tombListData.map((tomb, index) => (
         <View key={index} style={styles.tombItem}>
-          <Text style={styles.tombName}>
-            {index + 1}. {tomb.name}
-          </Text>
+          <View style={styles.rowBetween}>
+            <Text style={styles.tombName}>
+              {index + 1}. {tomb.name}
+            </Text>
+            <View style={styles.grpRight}>
+              <View style={styles.tombContainer}>
+                <Text style={styles.tombNumbers}>{tomb.numbersOfTomb} mộ</Text>
+              </View>
+              {tomb.isVisited ? (
+                <View style={styles.isVisited}>
+                  {checkIcon(vw(3), vw(3), 'white')}
+                </View>
+              ) : (
+                <View />
+              )}
+            </View>
+          </View>
           <View style={styles.rowExact}>
             {locationIcon(vw(4), vw(4))}
             <Text style={styles.tombLocation}>{tomb.exactLocation}</Text>
-          </View>
-          <View style={styles.grpRight}>
-            <View style={styles.tombContainer}>
-              <Text style={styles.tombNumbers}>{tomb.numbersOfTomb} mộ</Text>
-            </View>
-            {tomb.isVisited ? (
-              <View style={styles.isVisited}>
-                {checkIcon(vw(3), vw(3), 'white')}
-              </View>
-            ) : (
-              <View />
-            )}
           </View>
         </View>
       ))}
@@ -45,9 +47,15 @@ export default Tab1RenderComponent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    rowGap: vh(2),
   },
   tombItem: {
     marginBottom: 16,
+  },
+  rowBetween: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   tombName: {
     fontSize: 18,
