@@ -141,3 +141,9 @@ export interface TombListProps {
   isVisited: boolean;
   location: string;
 }
+
+export interface GuildLocation {
+  name: string;
+  location: string;
+  distance: string;
+}

@@ -451,3 +451,26 @@ export const dataTemplate = {
   numbersOfTomb: 5000,
   isVisited: true,
 };
+
+export const GuildLocationData = [
+  {
+    name: 'Trung tâm ADN Quốc gia (National DNA Center)',
+    location: '7/12 Nguyễn Văn Huyên, Cầu Giấy, Hà Nội',
+    distance: '1.2 km',
+  },
+  {
+    name: 'Bệnh viện Trung ương Quân đội 108 (Khoa Giám định Pháp y)',
+    location: '1 Trần Hưng Đạo, Hai Bà Trưng, Hà Nội',
+    distance: '3.0 km',
+  },
+  {
+    name: 'Viện Pháp y Quân đội (bộ Quốc phòng)',
+    location: '4 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội',
+    distance: '3.2 km',
+  },
+  {
+    name: 'Viện Khoa học Hình sự (Bộ Công an)',
+    location: '99 Nguyễn Tuân, Thanh Xuân, Hà Nội',
+    distance: '3.2 km',
+  },
+];
