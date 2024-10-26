@@ -102,7 +102,7 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
               {renderStatusText(index)}
               {index < currentState && renderTime(index)}
               {index === currentState && index !== 2 && renderEstimatedTime()}
-              {index === 2 && (
+              {index === 2 && currentState === index && (
                 <TouchableOpacity>
                   <Text style={styles.guideText}>Xem hướng dẫn</Text>
                 </TouchableOpacity>
