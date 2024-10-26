@@ -54,10 +54,12 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
       </View>
       <View style={styles.statusContainer}>
         {StatusData.map((status, index) => (
-          <View key={index} style={styles.statusItem}>
-            {renderIcon(index)}
-            <View style={styles.statusTextContainer}>
+          <View key={index}>
+            <View style={styles.statusItem}>
+              {renderIcon(index)}
               <Text style={styles.statusText}>{status}</Text>
+            </View>
+            <View style={styles.statusTextContainer}>
               {renderStatusText(index)}
             </View>
           </View>
@@ -109,9 +111,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: vh(1),
+    columnGap: vw(3),
   },
   statusTextContainer: {
-    marginLeft: vw(2),
+    marginLeft: vw(8),
+    justifyContent: 'center',
+
   },
   statusText: {
     fontSize: 16,
