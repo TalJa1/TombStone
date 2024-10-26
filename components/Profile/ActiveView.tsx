@@ -34,11 +34,33 @@ const ActiveView = () => {
     navigation.navigate('StatusDetail', {dataIndex: index});
   };
 
+  const formatUploadDate = (uploadDate: string) => {
+    console.log('uploadDate', uploadDate);
+
+    const [day, month, year] = uploadDate.split('/').map(Number);
+    const upload = new Date(year, month - 1, day);
+    const today = new Date();
+    const diffTime = Math.abs(today.getTime() - upload.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) {
+      return 'vừa mới';
+    } else {
+      return `${diffDays} ngày trước - ${day}/${month}/${year}`;
+    }
+  };
+
   return (
     <View style={styles.container}>
       {renderData.map((item, index) => {
         return (
           <View key={index}>
+            <Text style={styles.topTxt}>
+              {item.status === 4 && 'Bạn vừa tải lên một yêu cầu tìm kiếm:'}{' '}
+              {item.status === 2 && 'Yêu cầu tìm kiếm thay đổi trạng thái vào:'}{' '}
+              {item.status !== 2 && item.status !== 4 && 'Yêu cầu tìm kiếm thay đổi trạng thái vào: '}
+              {formatUploadDate(item.uploadDate)}
+            </Text>
             <View
               style={[
                 styles.status6,
@@ -154,5 +176,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFDD3',
     borderWidth: 1,
     borderColor: '#547958',
+  },
+  topTxt: {
+    marginTop: vh(1),
+    color: '#000000',
+    fontSize: 14,
+  },
+  uploadDateText: {
+    color: '#547958',
+    fontSize: 12,
+    fontStyle: 'italic',
   },
 });
