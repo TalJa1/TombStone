@@ -13,7 +13,7 @@ import {RouteProp, useFocusEffect, useRoute} from '@react-navigation/native';
 import {InforDetail, MartyrProfileItem} from '../services/typeProps';
 import {loadData} from '../services/storage';
 import {centerAll, vh, vw} from '../services/styleSheet';
-import {nextIcon} from '../assets/svgXML';
+import {homeFilledIcon, nextIcon, questionIcon} from '../assets/svgXML';
 import {StatusData} from '../services/renderData';
 import SearchingStatusComponent from '../components/SearchingStatusComponent';
 
@@ -98,6 +98,15 @@ const StatusDetail = () => {
                   currentState={renderData.status}
                   label="Theo dõi trạng thái tìm kiếm"
                 />
+                <View style={styles.buttonContainer}>
+                  <TouchableOpacity style={styles.button1}>
+                    {homeFilledIcon(vw(6), vw(6), 'white')}
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.button2}>
+                    {questionIcon(vw(6), vw(6))}
+                    <Text style={styles.buttonText}>Liên lạc hỗ trợ</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           )}
@@ -160,5 +169,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#547958',
     marginTop: vh(10),
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderTopWidth: 2,
+    borderColor: 'black',
+  },
+  button1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '#EEF2EE',
+    borderWidth: 1,
+    borderRadius: vw(50),
+    width: '30%',
+  },
+  button2: {},
+  buttonText: {
+    marginLeft: vw(2),
+    fontSize: 14,
+    color: '#547958',
   },
 });

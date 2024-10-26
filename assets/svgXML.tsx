@@ -11,6 +11,15 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const questionIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.00024 14.25V14.2425M9.00021 12C9.00021 8.625 12.0002 9.375 12.0002 6.75C12.0002 5.09315 10.6571 3.75 9.00021 3.75C7.60233 3.75 6.42776 4.70608 6.09473 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const locationIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.54423 13.7385C11.2343 12.3668 13.3337 10.0952 13.3337 7.33333C13.3337 4.38781 10.9458 2 8.00033 2C5.05481 2 2.66699 4.38781 2.66699 7.33333C2.66699 10.0952 4.76638 12.3668 7.45642 13.7385C7.79818 13.9127 8.20247 13.9127 8.54423 13.7385Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -301,7 +310,9 @@ export const communityIcon = (w?: any, h?: any, color?: any) => {
 
 export const homeFilledIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M20.04 6.82L14.28 2.79C12.71 1.69 10.3 1.75 8.78999 2.92L3.77999 6.83C2.77999 7.61 1.98999 9.21 1.98999 10.47V17.37C1.98999 19.92 4.05999 22 6.60999 22H17.39C19.94 22 22.01 19.93 22.01 17.38V10.6C22.01 9.25 21.14 7.59 20.04 6.82ZM12.75 18C12.75 18.41 12.41 18.75 12 18.75C11.59 18.75 11.25 18.41 11.25 18V15C11.25 14.59 11.59 14.25 12 14.25C12.41 14.25 12.75 14.59 12.75 15V18Z" fill="#547958"/>
+<path d="M20.04 6.82L14.28 2.79C12.71 1.69 10.3 1.75 8.78999 2.92L3.77999 6.83C2.77999 7.61 1.98999 9.21 1.98999 10.47V17.37C1.98999 19.92 4.05999 22 6.60999 22H17.39C19.94 22 22.01 19.93 22.01 17.38V10.6C22.01 9.25 21.14 7.59 20.04 6.82ZM12.75 18C12.75 18.41 12.41 18.75 12 18.75C11.59 18.75 11.25 18.41 11.25 18V15C11.25 14.59 11.59 14.25 12 14.25C12.41 14.25 12.75 14.59 12.75 15V18Z" fill=${
+    color ?? '#547958'
+  }/>
 </svg>
 `;
 
