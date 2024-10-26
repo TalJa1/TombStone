@@ -11,6 +11,24 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const thunderIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.2258 4.6857C16.3571 4.35726 16.1152 4 15.7615 4H9.86041C9.64519 4 9.45413 4.13771 9.38607 4.34189L6.7194 12.3419C6.61148 12.6657 6.85246 13 7.19374 13H9.85964C10.1849 13 10.4236 13.3057 10.3447 13.6213L8.93784 19.2487C8.81485 19.7407 9.41789 20.0821 9.77647 19.7236L18.6465 10.8536C18.9615 10.5386 18.7384 10 18.2929 10H14.8385C14.4848 10 14.2429 9.64274 14.3743 9.31431L16.2258 4.6857Z" stroke="#FFEDED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
+export const sandClockIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.5 20.25V17.1056C7.5 16.7107 7.61688 16.3247 7.8359 15.9962L9.7604 13.1094C10.2083 12.4376 10.2083 11.5624 9.7604 10.8906L7.8359 8.00385C7.61688 7.67531 7.5 7.2893 7.5 6.89445V3.75M7.5 20.25C6.25 20.125 5.5 20 5.5 20M7.5 20.25C8.75 20.375 10.5 20.5 12.5 20.5C14.5 20.5 16.25 20.375 17.5 20.25M7.5 3.75C6.25 3.875 5.5 4 5.5 4M7.5 3.75C8.75 3.625 10.5 3.5 12.5 3.5C14.5 3.5 16.25 3.625 17.5 3.75M17.5 20.25V17.1056C17.5 16.7107 17.3831 16.3247 17.1641 15.9962L15.2396 13.1094C14.7917 12.4376 14.7917 11.5624 15.2396 10.8906L17.1641 8.00385C17.3831 7.67531 17.5 7.2893 17.5 6.89445V3.75M17.5 20.25C18.75 20.125 19.5 20 19.5 20M17.5 3.75C18.75 3.875 19.5 4 19.5 4" stroke="#E5E5E5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const questionIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.00024 14.25V14.2425M9.00021 12C9.00021 8.625 12.0002 9.375 12.0002 6.75C12.0002 5.09315 10.6571 3.75 9.00021 3.75C7.60233 3.75 6.42776 4.70608 6.09473 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
