@@ -371,10 +371,14 @@ const TopDataRender: React.FC = () => {
         {renderDataSearching.map((item, index) => {
           return (
             <View key={index}>
-              {item.status === 4 ? (
-                <TombFoundListView item={item} index={index} />
-              ) : (
-                <TombSearchingListView item={item} index={index} />
+              {item.status < 6 && (
+                <>
+                  {item.status === 4 ? (
+                    <TombFoundListView item={item} index={index} />
+                  ) : (
+                    <TombSearchingListView item={item} index={index} />
+                  )}
+                </>
               )}
             </View>
           );
