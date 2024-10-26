@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: vw(50),
     width: '30%',
-    paddingVertical: vh(1),
+    height: vh(6),
   },
   button2: {
     flexDirection: 'row',
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#EEF2EE',
     borderRadius: vw(50),
-    paddingVertical: vh(1),
+    height: vh(6),
     width: '65%',
   },
   buttonText: {
