@@ -103,7 +103,9 @@ const StatusDetail = () => {
                     {homeFilledIcon(vw(6), vw(6), 'white')}
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button2}>
-                    {questionIcon(vw(6), vw(6))}
+                    <View style={styles.quesstionContainer}>
+                      {questionIcon(vw(6), vw(6))}
+                    </View>
                     <Text style={styles.buttonText}>Liên lạc hỗ trợ</Text>
                   </TouchableOpacity>
                 </View>
@@ -172,9 +174,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    borderTopWidth: 2,
+    justifyContent: 'space-between',
+    paddingHorizontal: vw(5),
+    borderTopWidth: 3,
     borderColor: 'black',
+    paddingTop: vh(2),
   },
   button1: {
     flexDirection: 'row',
@@ -184,11 +188,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: vw(50),
     width: '30%',
+    paddingVertical: vh(1),
   },
-  button2: {},
+  button2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EEF2EE',
+    borderRadius: vw(50),
+    paddingVertical: vh(1),
+    width: '65%',
+  },
   buttonText: {
     marginLeft: vw(2),
-    fontSize: 14,
+    fontSize: 16,
     color: '#547958',
+  },
+  quesstionContainer: {
+    backgroundColor: '#547958',
+    padding: vw(1.5),
+    borderRadius: vw(50),
   },
 });
