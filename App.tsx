@@ -32,6 +32,7 @@ import UploadSuccessfully from './views/AddPage/UploadSuccessfully';
 import StatusDetail from './views/StatusDetail';
 import CommentPage from './views/Community/CommentPage';
 import TombMapList from './views/Map/TombMapList';
+import ADNGuildPage from './views/Home/ADNGuildPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -173,6 +174,13 @@ const App = () => {
         <Stack.Screen
           name="Main"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+
+        {/* Home */}
+        <Stack.Screen
+          name="ADNGuildPage"
+          component={ADNGuildPage}
           options={{headerShown: false}}
         />
 

@@ -5,11 +5,14 @@ import {SearchingStatusComponentProps} from '../services/typeProps';
 import {vh, vw} from '../services/styleSheet';
 import {StatusData} from '../services/renderData';
 import {checkIcon} from '../assets/svgXML';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
   label,
   currentState,
 }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const renderIcon = (index: number) => {
     if (index < currentState) {
       return (
@@ -103,7 +106,10 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
               {index < currentState && renderTime(index)}
               {index === currentState && index !== 2 && renderEstimatedTime()}
               {index === 2 && currentState === index && (
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('ADNGuildPage');
+                  }}>
                   <Text style={styles.guideText}>Xem hướng dẫn</Text>
                 </TouchableOpacity>
               )}
