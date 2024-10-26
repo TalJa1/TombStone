@@ -9,16 +9,23 @@ import {
 import React, {useCallback, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../services/useStatusBar';
-import {RouteProp, useFocusEffect, useRoute} from '@react-navigation/native';
+import {
+  RouteProp,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import {InforDetail, MartyrProfileItem} from '../services/typeProps';
 import {loadData} from '../services/storage';
 import {centerAll, vh, vw} from '../services/styleSheet';
 import {homeFilledIcon, nextIcon, questionIcon} from '../assets/svgXML';
 import {StatusData} from '../services/renderData';
 import SearchingStatusComponent from '../components/SearchingStatusComponent';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const StatusDetail = () => {
   useStatusBar('#EEF2EE');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const route = useRoute<RouteProp<InforDetail, 'Status'>>();
   const dataIndex = route.params.dataIndex;
   const [renderData, setRenderData] = useState<MartyrProfileItem>();
@@ -99,7 +106,11 @@ const StatusDetail = () => {
                   label="Theo dõi trạng thái tìm kiếm"
                 />
                 <View style={styles.buttonContainer}>
-                  <TouchableOpacity style={styles.button1}>
+                  <TouchableOpacity
+                    style={styles.button1}
+                    onPress={() => {
+                      navigation.navigate('Main');
+                    }}>
                     {homeFilledIcon(vw(6), vw(6), 'white')}
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button2}>
@@ -116,6 +127,7 @@ const StatusDetail = () => {
             <Text style={styles.title}>Không tìm thấy kết quá</Text>
           )}
         </View>
+        <View style={{height: vh(5), backgroundColor: '#547958'}} />
       </ScrollView>
     </SafeAreaView>
   );
