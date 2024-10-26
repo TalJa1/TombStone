@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {backIcon} from '../../assets/svgXML';
@@ -16,11 +16,17 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const Profile = () => {
   useStatusBar('#547958');
+  const [selectedTab, setSelectedTab] = useState('Đang hoạt động');
+
+  const handleTabPress = (tab: string) => {
+    setSelectedTab(tab);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
-          <Header />
+          <Header selectedTab={selectedTab} onTabPress={handleTabPress} />
           <Text>Profile</Text>
         </View>
       </ScrollView>
@@ -28,7 +34,12 @@ const Profile = () => {
   );
 };
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  selectedTab: string;
+  onTabPress: (tab: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({selectedTab, onTabPress}) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <View style={styles.header}>
@@ -47,6 +58,22 @@ const Header: React.FC = () => {
           </Text>
         </View>
       </View>
+      <View style={styles.tabsContainer}>
+        {['Đang hoạt động', 'Hoàn tất', 'Nháp'].map(tab => (
+          <TouchableOpacity
+            key={tab}
+            style={[styles.tab]}
+            onPress={() => onTabPress(tab)}>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === tab && styles.selectedTabText,
+              ]}>
+              {tab}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
 };
@@ -59,9 +86,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: '#547958',
   },
   headerBack: {
@@ -84,5 +108,23 @@ const styles = StyleSheet.create({
   headerDes: {
     fontSize: 12,
     color: 'white',
+  },
+  tabsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingBottom: vh(1),
+  },
+  tab: {
+    paddingVertical: vh(1),
+    paddingHorizontal: vw(3),
+  },
+  tabText: {
+    fontSize: 16,
+    color: '#D4D4D4',
+  },
+  selectedTabText: {
+    color: 'white',
+    fontWeight: '700',
+    textDecorationLine: 'underline',
   },
 });
