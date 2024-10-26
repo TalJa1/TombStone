@@ -23,10 +23,10 @@ const FinishView = () => {
   return (
     <View style={styles.container}>
       <View style={{paddingVertical: vh(1)}}>
-        <Text>
-          Yêu cầu tìm kiếm <Text>ĐÃ HOÀN TẤT:</Text>
-          <Text>19:23:01 |</Text>
-          <Text>15/10/2024. </Text>
+        <Text style={styles.searchingTxt}>
+          Yêu cầu tìm kiếm <Text style={styles.finishTxt}>ĐÃ HOÀN TẤT:</Text>
+          <Text style={styles.timeTxt}>19:23:01 |</Text>
+          <Text style={styles.datetime}>15/10/2024. </Text>
         </Text>
       </View>
       <View>
@@ -120,5 +120,19 @@ const styles = StyleSheet.create({
     rowGap: vh(1),
     borderRadius: 20,
     marginVertical: vh(1),
+  },
+  searchingTxt: {
+    color: '#000000',
+  },
+  finishTxt: {
+    color: '#000000',
+    fontWeight: '700',
+  },
+  timeTxt: {
+    color: '#547958',
+  },
+  datetime: {
+    color: '#547958',
+    fontWeight: '700',
   },
 });
