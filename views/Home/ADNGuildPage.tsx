@@ -43,7 +43,7 @@ const ADNGuildPage = () => {
           <TouchableOpacity
             style={styles.button1}
             onPress={() => {
-              navigation.navigate('Main');
+              navigation.goBack();
             }}>
             {backIcon(vw(6), vw(6), 'white')}
           </TouchableOpacity>
