@@ -13,6 +13,8 @@ import {backIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import ActiveView from '../../components/Profile/ActiveView';
+import FinishView from '../../components/Profile/FinishView';
 
 const Profile = () => {
   useStatusBar('#547958');
@@ -22,12 +24,25 @@ const Profile = () => {
     setSelectedTab(tab);
   };
 
+  const renderContent = () => {
+    switch (selectedTab) {
+      case 'Đang hoạt động':
+        return <ActiveView />;
+      case 'Hoàn tất':
+        return <FinishView />;
+      case 'Nháp':
+        return <></>;
+      default:
+        return null;
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header selectedTab={selectedTab} onTabPress={handleTabPress} />
-          <Text>Profile</Text>
+          {renderContent()}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -107,7 +122,7 @@ const styles = StyleSheet.create({
   },
   headerDes: {
     fontSize: 12,
-    color: 'white',
+    color: '#EEF2EE',
   },
   tabsContainer: {
     flexDirection: 'row',
@@ -126,5 +141,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '700',
     textDecorationLine: 'underline',
+  },
+  tabContent: {
+    padding: vw(5),
   },
 });
