@@ -87,8 +87,13 @@ const StatusDetail = () => {
                     {nextIcon(vw(6), vw(6), '#ECF3A3')}
                   </TouchableOpacity>
                 </View>
+                <View>
+                  <Text style={styles.martyrInfoText}>
+                    Nhân thân là: {renderData.yourRelationshipWithMartyr}
+                  </Text>
+                </View>
               </View>
-              <View>
+              <View style={{marginTop: vh(1)}}>
                 <SearchingStatusComponent
                   currentState={renderData.status}
                   label="Theo dõi trạng thái tìm kiếm"
