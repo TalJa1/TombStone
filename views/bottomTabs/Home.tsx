@@ -274,8 +274,6 @@ const TombFoundListView: React.FC<{
     navigation.navigate('StatusDetail', {dataIndex: index});
   };
 
-  console.log(item.img);
-
   return (
     <View>
       <View
@@ -387,13 +385,20 @@ const TopDataRender: React.FC = () => {
 };
 
 const Header: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   return (
     <View style={styles.header}>
       <View style={{flexDirection: 'row', columnGap: vw(2)}}>
-        <Image
-          style={styles.headerImg}
-          source={require('../../assets/Home/avatar.png')}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Profile');
+          }}>
+          <Image
+            style={styles.headerImg}
+            source={require('../../assets/Home/avatar.png')}
+          />
+        </TouchableOpacity>
         <View>
           <Text style={styles.name}>Lê Công Duy</Text>
           <Text style={styles.subName}>Xem hoạt động của bạn</Text>

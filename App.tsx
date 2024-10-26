@@ -33,6 +33,7 @@ import StatusDetail from './views/StatusDetail';
 import CommentPage from './views/Community/CommentPage';
 import TombMapList from './views/Map/TombMapList';
 import ADNGuildPage from './views/Home/ADNGuildPage';
+import Profile from './views/Home/Profile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -181,6 +182,11 @@ const App = () => {
         <Stack.Screen
           name="ADNGuildPage"
           component={ADNGuildPage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
           options={{headerShown: false}}
         />
 
