@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {SearchingStatusComponentProps} from '../services/typeProps';
 import {vh, vw} from '../services/styleSheet';
@@ -64,6 +64,19 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
     return <Text style={styles.timeText}>{formattedTime}</Text>;
   };
 
+  const renderEstimatedTime = () => {
+    const today = new Date();
+    const date = new Date(today);
+    date.setDate(today.getDate() + 1); // Assuming the estimated date is tomorrow
+
+    const formattedDate = `Dự kiến: ${String(date.getDate()).padStart(
+      2,
+      '0',
+    )}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+
+    return <Text style={styles.timeText}>{formattedDate}</Text>;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>
@@ -87,7 +100,13 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
             </View>
             <View style={styles.statusTextContainer}>
               {renderStatusText(index)}
-              {index <= currentState && renderTime(index)}
+              {index < currentState && renderTime(index)}
+              {index === currentState && index !== 2 && renderEstimatedTime()}
+              {index === 2 && (
+                <TouchableOpacity>
+                  <Text style={styles.guideText}>Xem hướng dẫn</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </View>
         ))}
@@ -191,5 +210,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#547958',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  guideText: {
+    fontSize: 12,
+    color: '#6FA078',
+    textDecorationLine: 'underline',
   },
 });
