@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {SearchingStatusComponentProps} from '../services/typeProps';
@@ -47,6 +48,22 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
     }
   };
 
+  const renderTime = (index: number) => {
+    const today = new Date();
+    const randomHour = Math.floor(Math.random() * 24);
+    const randomMinute = Math.floor(Math.random() * 60);
+    const date = new Date(today);
+    date.setDate(today.getDate() - (currentState - index));
+
+    const formattedTime = `${String(randomHour).padStart(2, '0')}:${String(
+      randomMinute,
+    ).padStart(2, '0')} - ${String(date.getDate()).padStart(2, '0')}/${String(
+      date.getMonth() + 1,
+    ).padStart(2, '0')}/${date.getFullYear()}`;
+
+    return <Text style={styles.timeText}>{formattedTime}</Text>;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>
@@ -57,10 +74,20 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
           <View key={index}>
             <View style={styles.statusItem}>
               {renderIcon(index)}
-              <Text style={styles.statusText}>{status}</Text>
+              <Text
+                style={[
+                  styles.statusText,
+                  index < currentState && {
+                    textDecorationLine: 'line-through',
+                    color: '#868686',
+                  },
+                ]}>
+                {status}
+              </Text>
             </View>
             <View style={styles.statusTextContainer}>
               {renderStatusText(index)}
+              {index <= currentState && renderTime(index)}
             </View>
           </View>
         ))}
@@ -115,8 +142,8 @@ const styles = StyleSheet.create({
   },
   statusTextContainer: {
     marginLeft: vw(8),
-    justifyContent: 'center',
-
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   statusText: {
     fontSize: 16,
@@ -124,11 +151,15 @@ const styles = StyleSheet.create({
   },
   successText: {
     fontSize: 14,
-    color: 'green',
+    color: '#868686',
   },
   processingText: {
     fontSize: 14,
     color: 'red',
+  },
+  timeText: {
+    fontSize: 14,
+    color: '#6FA078',
   },
   ellipsisIcon: {
     flexDirection: 'row',
