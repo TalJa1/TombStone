@@ -29,6 +29,24 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
     }
   };
 
+  const renderStatusText = (index: number) => {
+    if (index < currentState) {
+      return (
+        <>
+          {index === 0 ? (
+            <Text style={styles.successText}>Tải lên thành công</Text>
+          ) : (
+            <Text style={styles.successText}>Đã xong</Text>
+          )}
+        </>
+      );
+    } else if (index === currentState) {
+      return <Text style={styles.processingText}>Đang xử lý</Text>;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>
@@ -38,7 +56,10 @@ const SearchingStatusComponent: React.FC<SearchingStatusComponentProps> = ({
         {StatusData.map((status, index) => (
           <View key={index} style={styles.statusItem}>
             {renderIcon(index)}
-            <Text style={styles.statusText}>{status}</Text>
+            <View style={styles.statusTextContainer}>
+              <Text style={styles.statusText}>{status}</Text>
+              {renderStatusText(index)}
+            </View>
           </View>
         ))}
       </View>
@@ -89,10 +110,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: vh(1),
   },
-  statusText: {
+  statusTextContainer: {
     marginLeft: vw(2),
+  },
+  statusText: {
     fontSize: 16,
     color: 'black',
+  },
+  successText: {
+    fontSize: 14,
+    color: 'green',
+  },
+  processingText: {
+    fontSize: 14,
+    color: 'red',
   },
   ellipsisIcon: {
     flexDirection: 'row',
