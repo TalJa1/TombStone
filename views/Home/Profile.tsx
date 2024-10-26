@@ -31,7 +31,11 @@ const Profile = () => {
       case 'Hoàn tất':
         return <FinishView />;
       case 'Nháp':
-        return <></>;
+        return (
+          <Text style={{color: 'black', padding: vw(5)}}>
+            0 có bản nháp nào
+          </Text>
+        );
       default:
         return null;
     }
