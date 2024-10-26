@@ -151,5 +151,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 14,
   },
-  bottomView: {flex: 1, backgroundColor: '#547958', marginTop: vh(10)},
+  bottomView: {
+    flex: 1,
+    backgroundColor: '#547958',
+    marginTop: vh(10),
+  },
 });

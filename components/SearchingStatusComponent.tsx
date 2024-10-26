@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
   statusContainer: {
     marginTop: vh(5),
     paddingHorizontal: vw(5),
+    paddingBottom: vh(5),
+    rowGap: vh(1),
   },
   statusItem: {
     flexDirection: 'row',
