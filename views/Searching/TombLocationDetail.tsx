@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+import React, {useState} from 'react';
 import {
   Image,
   ScrollView,
@@ -8,7 +9,6 @@ import {
   View,
   SafeAreaView,
 } from 'react-native';
-import React, {useState} from 'react';
 import useStatusBar from '../../services/useStatusBar';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {InforDetail} from '../../services/typeProps';
@@ -36,6 +36,9 @@ const TombLocationDetail = () => {
     unit: '',
     level: '',
   });
+  const [renderFilter, setRenderFilter] = useState<any[]>([]);
+
+  console.log('renderfilter', renderFilter);
 
   const handleTabPress = (tab: string) => {
     setSelectedTab(tab);
@@ -46,6 +49,23 @@ const TombLocationDetail = () => {
       ...prevState,
       [field]: value,
     }));
+  };
+
+  const handleApplyFilter = () => {
+    const filteredData = renderData.filter(item => {
+      return Object.keys(filterData).every(key => {
+        if (filterData[key as keyof typeof filterData]) {
+          const itemValue = item[key as keyof typeof filterData];
+          return (
+            itemValue &&
+            itemValue.includes(filterData[key as keyof typeof filterData])
+          );
+        }
+        return true;
+      });
+    });
+    setRenderFilter(filteredData);
+    setIsModalVisible(false);
   };
 
   const renderContent = () => {
@@ -88,6 +108,9 @@ const TombLocationDetail = () => {
         onClose={() => setIsModalVisible(false)}
         filterData={filterData}
         handleFilterChange={handleFilterChange}
+        renderData={renderData}
+        setRenderFilter={setRenderFilter}
+        handleApplyFilter={handleApplyFilter}
       />
     </SafeAreaView>
   );

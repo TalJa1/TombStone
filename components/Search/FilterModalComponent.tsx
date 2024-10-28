@@ -15,11 +15,18 @@ import {vw, vh} from '../../services/styleSheet';
 import RNPickerSelect from 'react-native-picker-select';
 import {cancelIcon} from '../../assets/svgXML';
 
-const FilterModalComponent: React.FC<FilterModalProps> = ({
+const FilterModalComponent: React.FC<
+  FilterModalProps & {
+    renderData: any[];
+    setRenderFilter: React.Dispatch<React.SetStateAction<any[]>>;
+    handleApplyFilter: () => void;
+  }
+> = ({
   isVisible,
   onClose,
   filterData,
   handleFilterChange,
+  handleApplyFilter,
 }) => {
   return (
     <Modal
@@ -158,7 +165,9 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
               <TouchableOpacity style={styles.backButton} onPress={onClose}>
                 {cancelIcon(vw(6), vw(6), '#000')}
               </TouchableOpacity>
-              <TouchableOpacity style={styles.applyButton} onPress={onClose}>
+              <TouchableOpacity
+                style={styles.applyButton}
+                onPress={handleApplyFilter}>
                 <Text style={styles.applyButtonText}>Tìm kiếm</Text>
               </TouchableOpacity>
             </View>
