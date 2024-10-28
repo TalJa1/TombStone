@@ -82,6 +82,9 @@ export type InforDetail = {
   Comment: {
     itemData: CommunityPost;
   };
+  TombLocation:{
+    title: string;
+  }
 };
 
 export interface SearchingStatusComponentProps {

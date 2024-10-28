@@ -34,6 +34,7 @@ import CommentPage from './views/Community/CommentPage';
 import TombMapList from './views/Map/TombMapList';
 import ADNGuildPage from './views/Home/ADNGuildPage';
 import Profile from './views/Home/Profile';
+import TombLocationDetail from './views/Searching/TombLocationDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -234,6 +235,12 @@ const App = () => {
         <Stack.Screen
           name="TombList"
           component={TombList}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TombLocationDetail"
+          component={TombLocationDetail}
           options={{headerShown: false}}
         />
 

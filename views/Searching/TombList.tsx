@@ -16,6 +16,8 @@ import {vh, vw} from '../../services/styleSheet';
 import RNPickerSelect from 'react-native-picker-select';
 import {MapListData, ProvinceList} from '../../services/renderData';
 import HeaderComponent from '../../components/HeaderComponent';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 
 const TombList = () => {
   useStatusBar('white');
@@ -35,6 +37,7 @@ const TombList = () => {
 };
 
 const MapListView2: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <View>
       <View
@@ -59,7 +62,14 @@ const MapListView2: React.FC = () => {
         contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
         {MapListData.filter(a => a.isVisited === true).map((item, index) => {
           return (
-            <TouchableOpacity key={index} style={styles.mapListContainer}>
+            <TouchableOpacity
+              key={index}
+              style={styles.mapListContainer}
+              onPress={() => {
+                navigation.navigate('TombLocationDetail', {
+                  title: item.title,
+                });
+              }}>
               <Image source={item.img} style={styles.mapListImg} />
               <View style={styles.cityContainer}>
                 <Text style={styles.cityTxt}>{item.city}</Text>
@@ -74,6 +84,7 @@ const MapListView2: React.FC = () => {
 };
 
 const MapListView: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <View>
       <View
@@ -98,7 +109,14 @@ const MapListView: React.FC = () => {
         contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
         {MapListData.map((item, index) => {
           return (
-            <TouchableOpacity key={index} style={styles.mapListContainer}>
+            <TouchableOpacity
+              key={index}
+              style={styles.mapListContainer}
+              onPress={() => {
+                navigation.navigate('TombLocationDetail', {
+                  title: item.title,
+                });
+              }}>
               <Image source={item.img} style={styles.mapListImg} />
               <View style={styles.cityContainer}>
                 <Text style={styles.cityTxt}>{item.city}</Text>
