@@ -24,7 +24,7 @@ const ConfirmTabContent = () => {
                   <Text style={styles.date}>
                     {item.birthYear} - {item.deathDate}
                   </Text>
-                  <View style={{width: 1, backgroundColor: 'black'}} />
+                  <View style={{width: 2, backgroundColor: 'black'}} />
                   <Text style={styles.hometown}>{item.hometown}</Text>
                 </View>
               </View>
