@@ -102,7 +102,9 @@ const TombLocationDetail = () => {
             filterData={filterData}
           />
           {renderFilter.length > 0 ? (
-            <View></View>
+            <View>
+              <TabContentMartyrComponent data={renderFilter} isFilter={true} />
+            </View>
           ) : (
             <>
               <TabRender
