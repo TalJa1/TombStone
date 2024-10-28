@@ -25,7 +25,6 @@ const TombLocationDetail = () => {
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header title={headerTitle} />
-          <Text>TombLocationDetail</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -46,6 +45,16 @@ const Header: React.FC<{title: string}> = ({title}) => {
           </TouchableOpacity>
           <Text style={styles.headerTitle}>NTLS {title}</Text>
         </View>
+      </View>
+      <View style={styles.headerDes}>
+        <Text style={styles.headerDesTxt}>
+          Nghĩa trang liệt sĩ Quốc gia {title} là nơi quy tụ 10.263 phần mộ của
+          các liệt sĩ có tổng diện tích 140.000m2. Phần đất mộ được phân thành
+          10 khu vực chính. Nghĩa trang liệt sĩ Trường Sơn là nơi an nghỉ đời
+          đời của các anh hùng liệt sĩ đã hi sinh trên tuyến đường mòn Hồ Chí
+          Minh trong thời kì chống Mỹ cứu nước.{' '}
+          <Text style={styles.hideButton}>Ẩn</Text>
+        </Text>
       </View>
     </View>
   );
@@ -76,5 +85,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     fontWeight: '700',
+  },
+  headerDes: {
+    paddingHorizontal: vw(5),
+    paddingVertical: vh(1),
+    backgroundColor: '#547958',
+  },
+  headerDesTxt: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontWeight: '400',
+  },
+  hideButton: {
+    textDecorationLine: 'underline',
+    fontStyle: 'italic',
+    color: '#ECF3A3',
   },
 });
