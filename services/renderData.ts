@@ -1,5 +1,5 @@
 import {Feature, Geometry, GeoJsonProperties} from 'geojson';
-import {TombListProps} from './typeProps';
+import {MartyrSearchViewDataProps, TombListProps} from './typeProps';
 
 export const OnboardingData = [
   {
@@ -532,3 +532,42 @@ export const MapListData = [
     isVisited: false,
   },
 ];
+
+const statuses = ['Đã xác định', 'Chưa xác định', 'Vô danh'];
+const levels = [
+  'Trung úy',
+  'Thiếu tá',
+  'Binh nhì',
+  'Đại úy',
+  'Thượng úy',
+  'Trung tá',
+  'Đại tá',
+  'Thiếu úy',
+  'Thượng tá',
+  'Binh nhất',
+  'Hạ sĩ',
+  'Trung sĩ',
+];
+
+const generateMartyrData = (): MartyrSearchViewDataProps[] => {
+  const data: MartyrSearchViewDataProps[] = [];
+
+  for (let i = 1; i <= 50; i++) {
+    data.push({
+      name: `Liệt sĩ ${i}`,
+      birthYear: `19${Math.floor(Math.random() * 50) + 30}`,
+      province: `Tỉnh ${i}`,
+      hometown: `Xã ${i}, Huyện ${i}, Tỉnh ${i}`,
+      deathDate: `${Math.floor(Math.random() * 30) + 1}/${
+        Math.floor(Math.random() * 12) + 1
+      }/19${Math.floor(Math.random() * 50) + 50}`,
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+      unit: `Đơn vị ${i}`,
+      level: levels[Math.floor(Math.random() * levels.length)],
+    });
+  }
+
+  return data;
+};
+
+export const martyrSearchData = generateMartyrData();

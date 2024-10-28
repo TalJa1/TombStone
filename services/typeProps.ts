@@ -82,9 +82,9 @@ export type InforDetail = {
   Comment: {
     itemData: CommunityPost;
   };
-  TombLocation:{
+  TombLocation: {
     title: string;
-  }
+  };
 };
 
 export interface SearchingStatusComponentProps {
@@ -149,4 +149,15 @@ export interface GuildLocation {
   name: string;
   location: string;
   distance: string;
+}
+
+export interface MartyrSearchViewDataProps {
+  name: string;
+  birthYear: string | null;
+  province: string;
+  hometown: string;
+  deathDate: string;
+  status: string;
+  unit: string;
+  level: string;
 }
