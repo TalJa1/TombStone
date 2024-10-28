@@ -161,3 +161,19 @@ export interface MartyrSearchViewDataProps {
   unit: string;
   level: string;
 }
+
+export interface FilterModalProps {
+  isVisible: boolean;
+  onClose: () => void;
+  filterData: {
+    name: string;
+    birthYear: string;
+    province: string;
+    hometown: string;
+    deathDate: string;
+    status: string;
+    unit: string;
+    level: string;
+  };
+  handleFilterChange: (field: string, value: string) => void;
+}

@@ -6,23 +6,17 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Modal,
-  TextInput,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
-import RNPickerSelect from 'react-native-picker-select';
 import useStatusBar from '../../services/useStatusBar';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {InforDetail} from '../../services/typeProps';
 import {RouteProp, useRoute} from '@react-navigation/native';
+import {InforDetail} from '../../services/typeProps';
 import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import TabContentMartyrComponent from '../../components/Search/TabContentMartyrComponent';
-import {
-  extractProvince,
-  martyrSearchData,
-  vietnamLocations,
-} from '../../services/renderData';
+import {martyrSearchData} from '../../services/renderData';
+import FilterModalComponent from '../../components/Search/FilterModalComponent';
 
 const TombLocationDetail = () => {
   useStatusBar('transparent');
@@ -87,91 +81,12 @@ const TombLocationDetail = () => {
         </View>
         <View style={{height: vh(5)}} />
       </ScrollView>
-      <Modal
-        visible={isModalVisible}
-        animationType="slide"
-        transparent={true}
-        onRequestClose={() => setIsModalVisible(false)}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Bộ lọc tìm kiếm nâng cao</Text>
-            <ScrollView>
-              <TextInput
-                style={styles.input}
-                placeholder="Tên"
-                value={filterData.name}
-                onChangeText={text => handleFilterChange('name', text)}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Năm sinh"
-                value={filterData.birthYear}
-                onChangeText={text => handleFilterChange('birthYear', text)}
-              />
-              <RNPickerSelect
-                onValueChange={value => handleFilterChange('province', value)}
-                items={vietnamLocations.map(location => {
-                  const province = extractProvince(location);
-                  return {label: province, value: province};
-                })}
-                style={pickerSelectStyles}
-                placeholder={{label: 'Chọn tỉnh', value: ''}}
-                value={filterData.province}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Quê quán"
-                value={filterData.hometown}
-                onChangeText={text => handleFilterChange('hometown', text)}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Ngày mất"
-                value={filterData.deathDate}
-                onChangeText={text => handleFilterChange('deathDate', text)}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Đơn vị"
-                value={filterData.unit}
-                onChangeText={text => handleFilterChange('unit', text)}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Cấp bậc"
-                value={filterData.level}
-                onChangeText={text => handleFilterChange('level', text)}
-              />
-              <View style={styles.statusContainer}>
-                {['Đã xác định', 'Chưa xác định', 'Vô danh'].map(status => (
-                  <TouchableOpacity
-                    key={status}
-                    style={[
-                      styles.statusButton,
-                      filterData.status === status &&
-                        styles.selectedStatusButton,
-                    ]}
-                    onPress={() => handleFilterChange('status', status)}>
-                    <Text
-                      style={[
-                        styles.statusButtonText,
-                        filterData.status === status &&
-                          styles.selectedStatusButtonText,
-                      ]}>
-                      {status}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-              <TouchableOpacity
-                style={styles.applyButton}
-                onPress={() => setIsModalVisible(false)}>
-                <Text style={styles.applyButtonText}>Áp dụng</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </View>
-        </View>
-      </Modal>
+      <FilterModalComponent
+        isVisible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        filterData={filterData}
+        handleFilterChange={handleFilterChange}
+      />
     </SafeAreaView>
   );
 };
@@ -364,85 +279,5 @@ const styles = StyleSheet.create({
   },
   tabContent: {
     padding: vw(5),
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'white',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: vw(5),
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    marginBottom: vh(2),
-    color: 'black',
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: vw(2),
-    marginBottom: vh(1.5),
-  },
-  statusContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: vh(1.5),
-  },
-  statusButton: {
-    paddingVertical: vh(1),
-    paddingHorizontal: vw(3),
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-  },
-  selectedStatusButton: {
-    backgroundColor: '#547958',
-  },
-  statusButtonText: {
-    color: '#000',
-  },
-  selectedStatusButtonText: {
-    color: 'white',
-  },
-  applyButton: {
-    backgroundColor: '#547958',
-    paddingVertical: vh(1.5),
-    borderRadius: 5,
-    alignItems: 'center',
-    marginTop: vh(2),
-  },
-  applyButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '700',
-  },
-});
-
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: vw(2),
-    marginBottom: vh(1.5),
-    color: 'black',
-  },
-  inputAndroid: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: vw(2),
-    marginBottom: vh(1.5),
-    color: 'black',
   },
 });
