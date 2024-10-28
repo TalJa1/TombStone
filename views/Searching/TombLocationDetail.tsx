@@ -49,14 +49,15 @@ const TombLocationDetail = () => {
     }));
   };
 
-  const handleApplyFilter = () => {
+   const handleApplyFilter = () => {
     const filteredData = renderData.filter(item => {
       return Object.keys(filterData).every(key => {
         if (filterData[key as keyof typeof filterData]) {
           const itemValue = item[key as keyof typeof filterData];
+          const filterValue = filterData[key as keyof typeof filterData].toLowerCase();
           return (
             itemValue &&
-            itemValue.includes(filterData[key as keyof typeof filterData])
+            itemValue.toLowerCase().includes(filterValue)
           );
         }
         return true;
