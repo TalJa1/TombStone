@@ -5,7 +5,7 @@ import {MartyrProfileItem} from '../../services/typeProps';
 import {loadData, saveData} from '../../services/storage';
 import {MartyrProfile, StatusData} from '../../services/renderData';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {nextIcon} from '../../assets/svgXML';
+import {nextIcon, sandClockIcon, thunderIcon} from '../../assets/svgXML';
 import {vw, vh, centerAll} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
@@ -112,9 +112,39 @@ const ActiveView = () => {
                 Quan hệ với LS: {item.yourRelationshipWithMartyr}
               </Text>
             </View>
+            {item.status === 1 ? (
+              <View style={styles.bottomBlock}>
+                <View style={styles.bottomBlockIconContainer}>
+                  {sandClockIcon(vw(4), vw(4))}
+                </View>
+                <Text style={styles.bottomBlockTxt}>
+                  Hãy chờ vài ngày để hệ thống xác nhận thông tin tải lên từ
+                  bạn.
+                </Text>
+              </View>
+            ) : (
+              <View style={[styles.bottomBlock, {backgroundColor: '#FFEDED'}]}>
+                <View
+                  style={[
+                    styles.bottomBlockIconContainer,
+                    {backgroundColor: '#AC2B2B'},
+                  ]}>
+                  {thunderIcon(vw(4), vw(4))}
+                </View>
+                <Text
+                  style={[
+                    styles.bottomBlockTxt,
+                    {color: '#AC2B2B', fontWeight: '700'},
+                  ]}>
+                  Hãy tiến hành bước tiếp theo để quá trình tìm kiếm có kết quả
+                  nhanh, chuẩn nhất.
+                </Text>
+              </View>
+            )}
           </View>
         );
       })}
+      <View style={{height: vh(3)}} />
     </View>
   );
 };
@@ -193,5 +223,28 @@ const styles = StyleSheet.create({
     color: '#547958',
     fontSize: 14,
     fontWeight: '700',
+  },
+  bottomBlock: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: vh(1),
+    backgroundColor: '#E5E5E5',
+    overflow: 'hidden',
+    paddingHorizontal: vw(2),
+    borderRadius: 12,
+    paddingVertical: vh(0.6),
+  },
+  bottomBlockIconContainer: {
+    marginRight: vw(2),
+    backgroundColor: '#868686',
+    padding: vw(1.5),
+    borderRadius: vw(50),
+    alignSelf: 'center',
+  },
+  bottomBlockTxt: {
+    width: '75%',
+    color: '#868686',
+    fontSize: 14,
   },
 });
