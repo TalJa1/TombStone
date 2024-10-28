@@ -23,7 +23,7 @@ const SearchPage = () => {
         navigation.navigate('TombList');
         break;
       case 1:
-        // navigate to Hồ sơ liệt sĩ
+        navigation.navigate('MartyrProfile');
         break;
       case 2:
         // navigate to Cập nhật tìm mộ thành công

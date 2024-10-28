@@ -35,6 +35,7 @@ import TombMapList from './views/Map/TombMapList';
 import ADNGuildPage from './views/Home/ADNGuildPage';
 import Profile from './views/Home/Profile';
 import TombLocationDetail from './views/Searching/TombLocationDetail';
+import MartyrProfile from './views/Searching/MartyrProfile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -241,6 +242,12 @@ const App = () => {
         <Stack.Screen
           name="TombLocationDetail"
           component={TombLocationDetail}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="MartyrProfile"
+          component={MartyrProfile}
           options={{headerShown: false}}
         />
 
