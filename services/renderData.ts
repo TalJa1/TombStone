@@ -139,19 +139,6 @@ export const HomeNewsData = [
   },
 ];
 
-export const MapListData = [
-  {
-    title: 'H.Hường Hóa',
-    city: 'Quảng Trị',
-    img: require('../assets/Home/tp1.png'),
-  },
-  {
-    title: 'H. Vĩnh Linh',
-    city: 'Quảng Trị',
-    img: require('../assets/Home/tp2.png'),
-  },
-];
-
 export const MartyrProfileListData = [
   require('../assets/Home/q1.png'),
   require('../assets/Home/q2.png'),
@@ -498,5 +485,50 @@ export const GuildLocationData = [
     name: 'Viện Khoa học Hình sự (Bộ Công an)',
     location: '99 Nguyễn Tuân, Thanh Xuân, Hà Nội',
     distance: '3.2 km',
+  },
+];
+
+export const MapListData = [
+  {
+    title: 'H.Hường Hóa',
+    city: 'Quảng Trị',
+    img: require('../assets/Home/tp1.png'),
+    isVisited: true,
+  },
+  {
+    title: 'H. Vĩnh Linh',
+    city: 'Quảng Trị',
+    img: require('../assets/Home/tp2.png'),
+    isVisited: true,
+  },
+  {
+    title: 'Nghĩa trang Liệt sĩ Trường Sơn',
+    city: 'Quảng Trị',
+    img: require('../assets/Home/tp3.png'),
+    isVisited: false,
+  },
+  {
+    title: 'Nghĩa trang Liệt sĩ Đường 9',
+    city: 'Quảng Trị',
+    img: require('../assets/Home/tp1.png'),
+    isVisited: true,
+  },
+  {
+    title: 'Nghĩa trang Liệt sĩ Hàng Dương',
+    city: 'Côn Đảo',
+    img: require('../assets/Home/tp2.png'),
+    isVisited: false,
+  },
+  {
+    title: 'Nghĩa trang Liệt sĩ Vị Xuyên',
+    city: 'Hà Giang',
+    img: require('../assets/Home/tp3.png'),
+    isVisited: true,
+  },
+  {
+    title: 'Nghĩa trang Liệt sĩ Tân Biên',
+    city: 'Tây Ninh',
+    img: require('../assets/Home/tp1.png'),
+    isVisited: false,
   },
 ];

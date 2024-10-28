@@ -57,7 +57,7 @@ const MapListView2: React.FC = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
-        {MapListData.map((item, index) => {
+        {MapListData.filter(a => a.isVisited === true).map((item, index) => {
           return (
             <View key={index} style={styles.mapListContainer}>
               <Image source={item.img} style={styles.mapListImg} />
