@@ -19,15 +19,45 @@ const TombLocationDetail = () => {
   useStatusBar('transparent');
   const route = useRoute<RouteProp<InforDetail, 'TombLocation'>>();
   const headerTitle = route.params.title;
+  const [selectedTab, setSelectedTab] = useState('Đã xác định');
+
+  const handleTabPress = (tab: string) => {
+    setSelectedTab(tab);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header title={headerTitle} />
+          <TabRender selectedTab={selectedTab} onTabPress={handleTabPress} />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const TabRender: React.FC<{
+  selectedTab: string;
+  onTabPress: (tab: string) => void;
+}> = ({selectedTab, onTabPress}) => {
+  return (
+    <View style={styles.tabsContainer}>
+      {['Đã xác định', 'Chưa xác định', 'Vô danh'].map(tab => (
+        <TouchableOpacity
+          key={tab}
+          style={[styles.tab, selectedTab === tab && styles.selectedTab]}
+          onPress={() => onTabPress(tab)}>
+          <Text
+            style={[
+              styles.tabText,
+              selectedTab === tab && styles.selectedTabText,
+            ]}>
+            {tab}
+          </Text>
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 };
 
@@ -163,5 +193,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  tabsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  tab: {
+    paddingBottom: vh(1.5),
+    paddingHorizontal: vw(3),
+    width: '33%',
+  },
+  selectedTab: {
+    backgroundColor: '#547958',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+  },
+  tabText: {
+    fontSize: 14,
+    color: '#547958',
+    textAlign: 'center',
+  },
+  selectedTabText: {
+    color: 'white',
+    fontWeight: '700',
+    textAlign: 'center',
   },
 });
