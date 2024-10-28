@@ -12,7 +12,7 @@ import useStatusBar from '../../services/useStatusBar';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {InforDetail} from '../../services/typeProps';
 import {RouteProp, useRoute} from '@react-navigation/native';
-import {backIcon, searchIcon} from '../../assets/svgXML';
+import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 
 const TombLocationDetail = () => {
@@ -65,6 +65,22 @@ const Header: React.FC<{title: string}> = ({title}) => {
                 Ẩn
               </Text>
             </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                columnGap: vw(4),
+                marginTop: vh(1.5),
+              }}>
+              <TouchableOpacity style={styles.searchContainer}>
+                <Text style={{color: '#D4D4D4', fontSize: 16}}>
+                  Tìm kiếm mộ liệt sĩ
+                </Text>
+                {filterIcon(vw(5), vw(5), 'white')}
+              </TouchableOpacity>
+              {searchIcon(vw(6), vw(6), 'white')}
+            </View>
           </View>
         ) : (
           <View style={styles.searchIconContainer}>
@@ -136,5 +152,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#547958',
     position: 'relative',
     top: vh(-2.5),
+  },
+  searchContainer: {
+    borderWidth: 1,
+    borderColor: 'white',
+    alignSelf: 'flex-start',
+    flex: 1,
+    padding: vw(2),
+    borderRadius: vw(50),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

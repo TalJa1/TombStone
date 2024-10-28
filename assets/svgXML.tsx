@@ -11,6 +11,17 @@ export const test = (w?: any, h?: any, color?: any) => {
   return <SvgXml xml={xml} width={w} height={h} />;
 };
 
+export const filterIcon = (w?: any, h?: any, color?: any) => {
+  const xml = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 4V10M19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14M19 10C20.1046 10 21 10.8954 21 12C21 13.1046 20.1046 14 19 14M19 14V20M12 4V16M12 16C10.8954 16 10 16.8954 10 18C10 19.1046 10.8954 20 12 20C13.1046 20 14 19.1046 14 18C14 16.8954 13.1046 16 12 16ZM5 8V20M5 8C6.10457 8 7 7.10457 7 6C7 4.89543 6.10457 4 5 4C3.89543 4 3 4.89543 3 6C3 7.10457 3.89543 8 5 8Z" stroke=${
+    color ?? '#EEF2EE'
+  } stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+`;
+
+  return <SvgXml xml={xml} width={w} height={h} />;
+};
+
 export const thunderIcon = (w?: any, h?: any, color?: any) => {
   const xml = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16.2258 4.6857C16.3571 4.35726 16.1152 4 15.7615 4H9.86041C9.64519 4 9.45413 4.13771 9.38607 4.34189L6.7194 12.3419C6.61148 12.6657 6.85246 13 7.19374 13H9.85964C10.1849 13 10.4236 13.3057 10.3447 13.6213L8.93784 19.2487C8.81485 19.7407 9.41789 20.0821 9.77647 19.7236L18.6465 10.8536C18.9615 10.5386 18.7384 10 18.2929 10H14.8385C14.4848 10 14.2429 9.64274 14.3743 9.31431L16.2258 4.6857Z" stroke="#FFEDED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
