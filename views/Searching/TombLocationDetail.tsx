@@ -14,6 +14,9 @@ import {InforDetail} from '../../services/typeProps';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
+import UnconfirmedTabContent from '../../components/Search/UnconfirmedTabContent';
+import AnonymousTabContent from '../../components/Search/AnonymousTabContent';
+import ConfirmTabContent from '../../components/Search/ConfirmTabContent';
 
 const TombLocationDetail = () => {
   useStatusBar('transparent');
@@ -28,7 +31,7 @@ const TombLocationDetail = () => {
   const renderContent = () => {
     switch (selectedTab) {
       case 'Đã xác định':
-        return <ConfirmedTabContent />;
+        return <ConfirmTabContent />;
       case 'Chưa xác định':
         return <UnconfirmedTabContent />;
       case 'Vô danh':
@@ -142,24 +145,6 @@ const Header: React.FC<{title: string}> = ({title}) => {
     </View>
   );
 };
-
-const ConfirmedTabContent = () => (
-  <View style={styles.tabContent}>
-    <Text>Đã xác định Content</Text>
-  </View>
-);
-
-const UnconfirmedTabContent = () => (
-  <View style={styles.tabContent}>
-    <Text>Chưa xác định Content</Text>
-  </View>
-);
-
-const AnonymousTabContent = () => (
-  <View style={styles.tabContent}>
-    <Text>Vô danh Content</Text>
-  </View>
-);
 
 export default TombLocationDetail;
 
