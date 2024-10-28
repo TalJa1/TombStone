@@ -2,33 +2,46 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {vh, vw} from '../../services/styleSheet';
-import { MartyrSearchViewDataProps } from '../../services/typeProps';
+import {MartyrSearchViewDataProps} from '../../services/typeProps';
 
-const TabContentMartyrComponent: React.FC<{data: MartyrSearchViewDataProps[]}> = ({data}) => {
+const TabContentMartyrComponent: React.FC<{
+  data: MartyrSearchViewDataProps[];
+}> = ({data}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>
-        Tổng: 7237 mộ liệt sĩ đã có thân nhân xác nhận.
+        {data[0].status === 'Đã xác định' &&
+          'Tổng: 7237 mộ liệt sĩ đã có thân nhân xác nhận.'}
+        {data[0].status === 'Chưa xác định' &&
+          'Tổng: 2922 mộ liệt sĩ chưa có thân nhân xác nhận.'}
+        {data[0].status === 'Vô danh' && 'Tổng: 68 liệt sĩ vô danh '}
       </Text>
       <View style={{rowGap: vh(1)}}>
-        {data
-          .map((item, index) => {
-            return (
-              <View key={index} style={styles.itemContainer}>
-                <View style={styles.topContainer}>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.status}>{item.status}</Text>
-                </View>
-                <View style={styles.bottomContainer}>
-                  <Text style={styles.date}>
-                    {item.birthYear} - {item.deathDate}
-                  </Text>
-                  <View style={{width: 2, backgroundColor: 'black'}} />
-                  <Text style={styles.hometown}>{item.hometown}</Text>
-                </View>
+        {data.map((item, index) => {
+          return (
+            <View key={index} style={styles.itemContainer}>
+              <View style={styles.topContainer}>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text
+                  style={[
+                    styles.status,
+                    item.status === 'Chưa xác định' && {
+                      backgroundColor: '#F7DAD4',
+                    },
+                  ]}>
+                  {item.status}
+                </Text>
               </View>
-            );
-          })}
+              <View style={styles.bottomContainer}>
+                <Text style={styles.date}>
+                  {item.birthYear} - {item.deathDate}
+                </Text>
+                <View style={{width: 2, backgroundColor: 'black'}} />
+                <Text style={styles.hometown}>{item.hometown}</Text>
+              </View>
+            </View>
+          );
+        })}
       </View>
     </View>
   );
