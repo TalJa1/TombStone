@@ -23,6 +23,7 @@ const TombLocationDetail = () => {
   useStatusBar('transparent');
   const route = useRoute<RouteProp<InforDetail, 'TombLocation'>>();
   const headerTitle = route.params.title;
+  const renderData = martyrSearchData;
   const [selectedTab, setSelectedTab] = useState('Đã xác định');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [filterData, setFilterData] = useState({
@@ -52,19 +53,19 @@ const TombLocationDetail = () => {
       case 'Đã xác định':
         return (
           <TabContentMartyrComponent
-            data={martyrSearchData.filter(a => a.status === 'Đã xác định')}
+            data={renderData.filter(a => a.status === 'Đã xác định')}
           />
         );
       case 'Chưa xác định':
         return (
           <TabContentMartyrComponent
-            data={martyrSearchData.filter(a => a.status === 'Chưa xác định')}
+            data={renderData.filter(a => a.status === 'Chưa xác định')}
           />
         );
       case 'Vô danh':
         return (
           <TabContentMartyrComponent
-            data={martyrSearchData.filter(a => a.status === 'Vô danh')}
+            data={renderData.filter(a => a.status === 'Vô danh')}
           />
         );
       default:
