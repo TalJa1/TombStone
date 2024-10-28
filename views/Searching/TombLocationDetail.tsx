@@ -14,9 +14,8 @@ import {InforDetail} from '../../services/typeProps';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
-import UnconfirmedTabContent from '../../components/Search/UnconfirmedTabContent';
-import AnonymousTabContent from '../../components/Search/AnonymousTabContent';
-import ConfirmTabContent from '../../components/Search/ConfirmTabContent';
+import TabContentMartyrComponent from '../../components/Search/TabContentMartyrComponent';
+import {martyrSearchData} from '../../services/renderData';
 
 const TombLocationDetail = () => {
   useStatusBar('transparent');
@@ -31,11 +30,23 @@ const TombLocationDetail = () => {
   const renderContent = () => {
     switch (selectedTab) {
       case 'Đã xác định':
-        return <ConfirmTabContent />;
+        return (
+          <TabContentMartyrComponent
+            data={martyrSearchData.filter(a => a.status === 'Đã xác định')}
+          />
+        );
       case 'Chưa xác định':
-        return <UnconfirmedTabContent />;
+        return (
+          <TabContentMartyrComponent
+            data={martyrSearchData.filter(a => a.status === 'Chưa xác định')}
+          />
+        );
       case 'Vô danh':
-        return <AnonymousTabContent />;
+        return (
+          <TabContentMartyrComponent
+            data={martyrSearchData.filter(a => a.status === 'Vô danh')}
+          />
+        );
       default:
         return null;
     }

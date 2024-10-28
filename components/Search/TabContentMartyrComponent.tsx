@@ -2,17 +2,16 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {vh, vw} from '../../services/styleSheet';
-import {martyrSearchData} from '../../services/renderData';
+import { MartyrSearchViewDataProps } from '../../services/typeProps';
 
-const ConfirmTabContent = () => {
+const TabContentMartyrComponent: React.FC<{data: MartyrSearchViewDataProps[]}> = ({data}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>
         Tổng: 7237 mộ liệt sĩ đã có thân nhân xác nhận.
       </Text>
       <View style={{rowGap: vh(1)}}>
-        {martyrSearchData
-          .filter(a => a.status === 'Đã xác định')
+        {data
           .map((item, index) => {
             return (
               <View key={index} style={styles.itemContainer}>
@@ -35,7 +34,7 @@ const ConfirmTabContent = () => {
   );
 };
 
-export default ConfirmTabContent;
+export default TabContentMartyrComponent;
 
 const styles = StyleSheet.create({
   container: {
