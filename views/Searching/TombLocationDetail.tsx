@@ -25,12 +25,26 @@ const TombLocationDetail = () => {
     setSelectedTab(tab);
   };
 
+  const renderContent = () => {
+    switch (selectedTab) {
+      case 'Đã xác định':
+        return <ConfirmedTabContent />;
+      case 'Chưa xác định':
+        return <UnconfirmedTabContent />;
+      case 'Vô danh':
+        return <AnonymousTabContent />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header title={headerTitle} />
           <TabRender selectedTab={selectedTab} onTabPress={handleTabPress} />
+          {renderContent()}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -129,6 +143,24 @@ const Header: React.FC<{title: string}> = ({title}) => {
   );
 };
 
+const ConfirmedTabContent = () => (
+  <View style={styles.tabContent}>
+    <Text>Đã xác định Content</Text>
+  </View>
+);
+
+const UnconfirmedTabContent = () => (
+  <View style={styles.tabContent}>
+    <Text>Chưa xác định Content</Text>
+  </View>
+);
+
+const AnonymousTabContent = () => (
+  <View style={styles.tabContent}>
+    <Text>Vô danh Content</Text>
+  </View>
+);
+
 export default TombLocationDetail;
 
 const styles = StyleSheet.create({
@@ -217,5 +249,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '700',
     textAlign: 'center',
+  },
+  tabContent: {
+    padding: vw(5),
   },
 });
