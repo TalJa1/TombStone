@@ -29,7 +29,7 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>Bộ lọc tìm kiếm nâng cao</Text>
           <ScrollView>
-            <View>
+            <View style={styles.fullWidth}>
               <Text style={styles.fieldTitle}>Tên</Text>
               <TextInput
                 style={styles.input}
@@ -38,63 +38,69 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
                 onChangeText={text => handleFilterChange('name', text)}
               />
             </View>
-            <View>
-              <Text style={styles.fieldTitle}>Năm sinh</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Năm sinh"
-                value={filterData.birthYear}
-                onChangeText={text => handleFilterChange('birthYear', text)}
-              />
+            <View style={styles.row}>
+              <View style={styles.halfWidth}>
+                <Text style={styles.fieldTitle}>Quê quán</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Quê quán"
+                  value={filterData.hometown}
+                  onChangeText={text => handleFilterChange('hometown', text)}
+                />
+              </View>
+              <View style={styles.halfWidth}>
+                <Text style={styles.fieldTitle}>Tỉnh</Text>
+                <RNPickerSelect
+                  onValueChange={value => handleFilterChange('province', value)}
+                  items={vietnamLocations.map(location => {
+                    const province = extractProvince(location);
+                    return {label: province, value: province};
+                  })}
+                  style={pickerSelectStyles}
+                  placeholder={{label: 'Chọn tỉnh', value: ''}}
+                  value={filterData.province}
+                />
+              </View>
             </View>
-            <View>
-              <Text style={styles.fieldTitle}>Tỉnh</Text>
-              <RNPickerSelect
-                onValueChange={value => handleFilterChange('province', value)}
-                items={vietnamLocations.map(location => {
-                  const province = extractProvince(location);
-                  return {label: province, value: province};
-                })}
-                style={pickerSelectStyles}
-                placeholder={{label: 'Chọn tỉnh', value: ''}}
-                value={filterData.province}
-              />
+            <View style={styles.row}>
+              <View style={styles.halfWidth}>
+                <Text style={styles.fieldTitle}>Năm sinh</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Năm sinh"
+                  value={filterData.birthYear}
+                  onChangeText={text => handleFilterChange('birthYear', text)}
+                />
+              </View>
+              <View style={styles.halfWidth}>
+                <Text style={styles.fieldTitle}>Ngày mất</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Ngày mất"
+                  value={filterData.deathDate}
+                  onChangeText={text => handleFilterChange('deathDate', text)}
+                />
+              </View>
             </View>
-            <View>
-              <Text style={styles.fieldTitle}>Quê quán</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Quê quán"
-                value={filterData.hometown}
-                onChangeText={text => handleFilterChange('hometown', text)}
-              />
-            </View>
-            <View>
-              <Text style={styles.fieldTitle}>Ngày mất</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Ngày mất"
-                value={filterData.deathDate}
-                onChangeText={text => handleFilterChange('deathDate', text)}
-              />
-            </View>
-            <View>
-              <Text style={styles.fieldTitle}>Đơn vị</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Đơn vị"
-                value={filterData.unit}
-                onChangeText={text => handleFilterChange('unit', text)}
-              />
-            </View>
-            <View>
-              <Text style={styles.fieldTitle}>Cấp bậc</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Cấp bậc"
-                value={filterData.level}
-                onChangeText={text => handleFilterChange('level', text)}
-              />
+            <View style={styles.row}>
+              <View style={styles.halfWidth}>
+                <Text style={styles.fieldTitle}>Đơn vị</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Đơn vị"
+                  value={filterData.unit}
+                  onChangeText={text => handleFilterChange('unit', text)}
+                />
+              </View>
+              <View style={styles.halfWidth}>
+                <Text style={styles.fieldTitle}>Cấp bậc</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Cấp bậc"
+                  value={filterData.level}
+                  onChangeText={text => handleFilterChange('level', text)}
+                />
+              </View>
             </View>
             <View style={styles.statusContainer}>
               <Text style={styles.fieldTitle}>Trạng thái</Text>
@@ -154,13 +160,25 @@ const styles = StyleSheet.create({
   fieldTitle: {
     fontSize: 14,
     color: '#868686',
-    marginBottom: vh(1.5),
+    marginBottom: vh(1),
   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
     padding: vw(2),
+    marginBottom: vh(1.5),
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  fullWidth: {
+    width: '100%',
+    marginBottom: vh(1.5),
+  },
+  halfWidth: {
+    width: '48%',
     marginBottom: vh(1.5),
   },
   statusContainer: {

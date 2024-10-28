@@ -10,13 +10,14 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import useStatusBar from '../../services/useStatusBar';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {InforDetail} from '../../services/typeProps';
 import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import TabContentMartyrComponent from '../../components/Search/TabContentMartyrComponent';
 import {martyrSearchData} from '../../services/renderData';
 import FilterModalComponent from '../../components/Search/FilterModalComponent';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const TombLocationDetail = () => {
   useStatusBar('transparent');
@@ -120,6 +121,7 @@ const Header: React.FC<{
   setIsModalVisible: (visible: boolean) => void;
 }> = ({title, setIsModalVisible}) => {
   const [isTextVisible, setIsTextVisible] = useState(true);
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const handleHidePress = () => {
     setIsTextVisible(false);
@@ -133,7 +135,9 @@ const Header: React.FC<{
       />
       <View style={{position: 'absolute', top: vh(2), left: vw(5)}}>
         <View style={styles.headerTitleGrp}>
-          <TouchableOpacity style={styles.backBtn}>
+          <TouchableOpacity
+            style={styles.backBtn}
+            onPress={() => navigation.goBack()}>
             {backIcon(vw(5), vw(5), 'white')}
           </TouchableOpacity>
           <Text style={styles.headerTitle}>NTLS {title}</Text>
