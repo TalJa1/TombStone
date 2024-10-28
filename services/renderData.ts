@@ -655,7 +655,7 @@ const levels = [
   'Trung sĩ',
 ];
 
-const extractProvince = (location: string): string => {
+export const extractProvince = (location: string): string => {
   const parts = location.split(', ');
   return parts[parts.length - 1];
 };
