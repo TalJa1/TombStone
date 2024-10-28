@@ -59,7 +59,9 @@ const ActiveView = () => {
               {formatUploadDate(item.uploadDate) === 'vừa mới đăng tải'
                 ? 'Bạn vừa tải lên một yêu cầu tìm kiếm: '
                 : 'Yêu cầu tìm kiếm thay đổi trạng thái vào: '}
-              {formatUploadDate(item.uploadDate)}
+              <Text style={styles.dateTimeTxt}>
+                {formatUploadDate(item.uploadDate)}
+              </Text>
             </Text>
             <View
               style={[
@@ -186,5 +188,10 @@ const styles = StyleSheet.create({
     color: '#547958',
     fontSize: 12,
     fontStyle: 'italic',
+  },
+  dateTimeTxt: {
+    color: '#547958',
+    fontSize: 14,
+    fontWeight: '700',
   },
 });
