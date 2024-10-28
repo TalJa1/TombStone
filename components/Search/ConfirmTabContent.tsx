@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     backgroundColor: '#D4D4D4',
     padding: vw(1),
-    borderRadius: vw(50),
+    borderRadius: 8,
   },
   bottomContainer: {
     flexDirection: 'row',
