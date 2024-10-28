@@ -44,7 +44,7 @@ const ActiveView = () => {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
-      return 'vừa mới';
+      return 'vừa mới đăng tải';
     } else {
       return `${diffDays} ngày trước - ${day}/${month}/${year}`;
     }
@@ -56,9 +56,9 @@ const ActiveView = () => {
         return (
           <View key={index}>
             <Text style={styles.topTxt}>
-              {item.status === 4 && 'Bạn vừa tải lên một yêu cầu tìm kiếm:'}{' '}
-              {item.status === 2 && 'Yêu cầu tìm kiếm thay đổi trạng thái vào:'}{' '}
-              {item.status !== 2 && item.status !== 4 && 'Yêu cầu tìm kiếm thay đổi trạng thái vào: '}
+              {formatUploadDate(item.uploadDate) === 'vừa mới đăng tải'
+                ? 'Bạn vừa tải lên một yêu cầu tìm kiếm: '
+                : 'Yêu cầu tìm kiếm thay đổi trạng thái vào: '}
               {formatUploadDate(item.uploadDate)}
             </Text>
             <View
