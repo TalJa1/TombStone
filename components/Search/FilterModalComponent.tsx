@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Modal,
   ScrollView,
@@ -12,6 +13,7 @@ import {vietnamLocations, extractProvince} from '../../services/renderData';
 import {FilterModalProps} from '../../services/typeProps';
 import {vw, vh} from '../../services/styleSheet';
 import RNPickerSelect from 'react-native-picker-select';
+import {cancelIcon} from '../../assets/svgXML';
 
 const FilterModalComponent: React.FC<FilterModalProps> = ({
   isVisible,
@@ -33,7 +35,8 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
               <Text style={styles.fieldTitle}>Tên</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Tên"
+                placeholder="Nhập tên liệt sĩ (có dấu, không dấu)"
+                placeholderTextColor="#868686"
                 value={filterData.name}
                 onChangeText={text => handleFilterChange('name', text)}
               />
@@ -44,6 +47,7 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
                 <TextInput
                   style={styles.input}
                   placeholder="Quê quán"
+                  placeholderTextColor="#868686"
                   value={filterData.hometown}
                   onChangeText={text => handleFilterChange('hometown', text)}
                 />
@@ -67,7 +71,8 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
                 <Text style={styles.fieldTitle}>Năm sinh</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Năm sinh"
+                  placeholder="Ngày sinh"
+                  placeholderTextColor="#868686"
                   value={filterData.birthYear}
                   onChangeText={text => handleFilterChange('birthYear', text)}
                 />
@@ -77,6 +82,7 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
                 <TextInput
                   style={styles.input}
                   placeholder="Ngày mất"
+                  placeholderTextColor="#868686"
                   value={filterData.deathDate}
                   onChangeText={text => handleFilterChange('deathDate', text)}
                 />
@@ -88,6 +94,7 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
                 <TextInput
                   style={styles.input}
                   placeholder="Đơn vị"
+                  placeholderTextColor="#868686"
                   value={filterData.unit}
                   onChangeText={text => handleFilterChange('unit', text)}
                 />
@@ -97,6 +104,7 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
                 <TextInput
                   style={styles.input}
                   placeholder="Cấp bậc"
+                  placeholderTextColor="#868686"
                   value={filterData.level}
                   onChangeText={text => handleFilterChange('level', text)}
                 />
@@ -104,28 +112,56 @@ const FilterModalComponent: React.FC<FilterModalProps> = ({
             </View>
             <View style={styles.statusContainer}>
               <Text style={styles.fieldTitle}>Trạng thái</Text>
-              {['Đã xác định', 'Chưa xác định', 'Vô danh'].map(status => (
-                <TouchableOpacity
-                  key={status}
-                  style={[
-                    styles.statusButton,
-                    filterData.status === status && styles.selectedStatusButton,
-                  ]}
-                  onPress={() => handleFilterChange('status', status)}>
-                  <Text
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  columnGap: vw(2),
+                }}>
+                {[
+                  'Đã xác định',
+                  'Chưa xác định',
+                  'Vô danh',
+                  'Thiếu thông tin',
+                  'Đủ thông tin',
+                ].map(status => (
+                  <TouchableOpacity
+                    key={status}
                     style={[
-                      styles.statusButtonText,
+                      styles.statusButton,
                       filterData.status === status &&
-                        styles.selectedStatusButtonText,
-                    ]}>
-                    {status}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+                        styles.selectedStatusButton,
+                      (status === 'Thiếu thông tin' ||
+                        status === 'Đủ thông tin') &&
+                        styles.disabledStatusButton,
+                    ]}
+                    onPress={() => handleFilterChange('status', status)}
+                    disabled={
+                      status === 'Thiếu thông tin' || status === 'Đủ thông tin'
+                    }>
+                    <Text
+                      style={[
+                        styles.statusButtonText,
+                        filterData.status === status &&
+                          styles.selectedStatusButtonText,
+                        (status === 'Thiếu thông tin' ||
+                          status === 'Đủ thông tin') &&
+                          styles.disabledStatusButtonText,
+                      ]}>
+                      {status}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
             </View>
-            <TouchableOpacity style={styles.applyButton} onPress={onClose}>
-              <Text style={styles.applyButtonText}>Áp dụng</Text>
-            </TouchableOpacity>
+            <View style={styles.bottomBtnGrp}>
+              <TouchableOpacity style={styles.backButton} onPress={onClose}>
+                {cancelIcon(vw(6), vw(6), '#000')}
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.applyButton} onPress={onClose}>
+                <Text style={styles.applyButtonText}>Tìm kiếm</Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </View>
       </View>
@@ -165,9 +201,10 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
+    borderRadius: 16,
     padding: vw(2),
     marginBottom: vh(1.5),
+    color: 'black',
   },
   row: {
     flexDirection: 'row',
@@ -189,7 +226,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw(3),
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
+    alignSelf: 'flex-start',
+    borderRadius: vw(50),
     marginBottom: vh(1.5),
   },
   selectedStatusButton: {
@@ -201,17 +239,36 @@ const styles = StyleSheet.create({
   selectedStatusButtonText: {
     color: 'white',
   },
+  disabledStatusButton: {
+    backgroundColor: '#ccc',
+  },
+  disabledStatusButtonText: {
+    color: '#868686',
+  },
   applyButton: {
     backgroundColor: '#547958',
     paddingVertical: vh(1.5),
-    borderRadius: 5,
+    borderRadius: 16,
     alignItems: 'center',
-    marginTop: vh(2),
+    flex: 1,
   },
   applyButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: '700',
+  },
+  backButton: {
+    backgroundColor: '#ECF3A3',
+    padding: vw(3),
+    borderRadius: vw(50),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomBtnGrp: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    columnGap: vw(2),
   },
 });
 
