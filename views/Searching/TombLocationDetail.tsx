@@ -49,6 +49,7 @@ const TombLocationDetail = () => {
           <TabRender selectedTab={selectedTab} onTabPress={handleTabPress} />
           {renderContent()}
         </View>
+        <View style={{height: vh(5)}} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -10,7 +10,7 @@ const ConfirmTabContent = () => {
       <Text style={styles.label}>
         Tổng: 7237 mộ liệt sĩ đã có thân nhân xác nhận.
       </Text>
-      <View>
+      <View style={{rowGap: vh(1)}}>
         {martyrSearchData
           .filter(a => a.status === 'Đã xác định')
           .map((item, index) => {
@@ -47,9 +47,10 @@ const styles = StyleSheet.create({
     color: '#868686',
   },
   itemContainer: {
-    paddingVertical: vh(1),
-    borderBottomWidth: 1,
-    borderBottomColor: '#D4D4D4',
+    backgroundColor: '#ECF3A3',
+    borderRadius: 12,
+    paddingHorizontal: vw(2),
+    paddingVertical: vh(1.5),
   },
   topContainer: {
     flexDirection: 'row',
@@ -76,5 +77,6 @@ const styles = StyleSheet.create({
   },
   hometown: {
     color: '#000000',
+    flex: 1,
   },
 });

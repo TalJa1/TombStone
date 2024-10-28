@@ -533,6 +533,112 @@ export const MapListData = [
   },
 ];
 
+export const vietnameseNames = [
+  'Nguyễn Văn A',
+  'Trần Thị B',
+  'Lê Hoàng C',
+  'Phạm Ngọc D',
+  'Võ Minh E',
+  'Đỗ Thanh F',
+  'Phan Anh G',
+  'Bùi Tấn H',
+  'Ngô Phúc I',
+  'Dương Thảo J',
+  'Lý Quốc K',
+  'Hoàng Nhật L',
+  'Vũ Hương M',
+  'Đinh Tuấn N',
+  'Tô Hiếu O',
+  'Mai Linh P',
+  'Huỳnh Phát Q',
+  'Lâm Hải R',
+  'Hồ Thùy S',
+  'Đặng Khang T',
+  'Châu Giang U',
+  'Thái Bảo V',
+  'Vương Khôi W',
+  'Cao Minh X',
+  'Lưu Thị Y',
+  'Hà Văn Z',
+  'Khuất Bình AA',
+  'Tạ Nam AB',
+  'Văn Sơn AC',
+  'Bảo Anh AD',
+  'Quách Thị AE',
+  'Triệu Vinh AF',
+  'Tôn Thất AG',
+  'Diệp Phúc AH',
+  'Trịnh Vân AI',
+  'Hứa Thảo AJ',
+  'Đoàn Nhật AK',
+  'Văn Tú AL',
+  'Tăng Khánh AM',
+  'Hoàng Thùy AN',
+  'Bùi Gia AO',
+  'Nguyễn Xuân AP',
+  'Trần Bích AQ',
+  'Lê Phương AR',
+  'Phạm Thiên AS',
+  'Ngô Quốc AT',
+  'Đỗ Tài AU',
+  'Huỳnh Bảo AV',
+  'Mai Thùy AW',
+  'Vương Minh AX',
+];
+
+export const vietnamLocations = [
+  'Xã Minh An, Huyện Quảng Điền, Tỉnh Thừa Thiên Huế',
+  'Xã Nghĩa Đô, Huyện Bảo Yên, Tỉnh Lào Cai',
+  'Xã Bình Thành, Huyện Tây Sơn, Tỉnh Bình Định',
+  'Xã Tân Phong, Huyện Cai Lậy, Tỉnh Tiền Giang',
+  'Xã Phú Mỹ, Huyện Phù Ninh, Tỉnh Phú Thọ',
+  'Xã Xuân Thọ, Huyện Xuân Lộc, Tỉnh Đồng Nai',
+  'Xã Hòa Bình, Huyện Hòa Vang, Tỉnh Đà Nẵng',
+  'Xã Sơn Tây, Huyện Hương Sơn, Tỉnh Hà Tĩnh',
+  'Xã An Bình, Huyện Long Hồ, Tỉnh Vĩnh Long',
+  'Xã Vĩnh Tường, Huyện Vĩnh Tường, Tỉnh Vĩnh Phúc',
+  'Xã Hòa Phú, Huyện Châu Thành, Tỉnh Hậu Giang',
+  'Xã Nam Anh, Huyện Nam Đàn, Tỉnh Nghệ An',
+  'Xã Phước Long, Huyện Phước Long, Tỉnh Bạc Liêu',
+  'Xã Hưng Đạo, Huyện Bảo Lạc, Tỉnh Cao Bằng',
+  'Xã Đông Hoàng, Huyện Đông Hưng, Tỉnh Thái Bình',
+  'Xã Cát Tiên, Huyện Cát Tiên, Tỉnh Lâm Đồng',
+  'Xã Trường Long, Huyện Phong Điền, Tỉnh Cần Thơ',
+  'Xã Cẩm Thanh, Huyện Hội An, Tỉnh Quảng Nam',
+  'Xã Hòa Thuận, Huyện Hòa Bình, Tỉnh Bạc Liêu',
+  'Xã Tân Hưng, Huyện Tân Hồng, Tỉnh Đồng Tháp',
+  'Xã Đạo Đức, Huyện Bình Xuyên, Tỉnh Vĩnh Phúc',
+  'Xã Ba Vì, Huyện Ba Vì, Thành phố Hà Nội',
+  'Xã Tân Thủy, Huyện Lệ Thủy, Tỉnh Quảng Bình',
+  'Xã Đình Lập, Huyện Đình Lập, Tỉnh Lạng Sơn',
+  'Xã Kim Sơn, Huyện Kim Thành, Tỉnh Hải Dương',
+  'Xã Bù Nho, Huyện Phú Riềng, Tỉnh Bình Phước',
+  'Xã Nhơn Trạch, Huyện Nhơn Trạch, Tỉnh Đồng Nai',
+  'Xã Lạc Sơn, Huyện Đô Lương, Tỉnh Nghệ An',
+  'Xã Mộc Châu, Huyện Mộc Châu, Tỉnh Sơn La',
+  'Xã Ngọc Lặc, Huyện Ngọc Lặc, Tỉnh Thanh Hóa',
+  'Xã Phước Hòa, Huyện Phú Giáo, Tỉnh Bình Dương',
+  'Xã Trà Bồng, Huyện Trà Bồng, Tỉnh Quảng Ngãi',
+  'Xã Gia Lộc, Huyện Gia Lộc, Tỉnh Hải Dương',
+  'Xã Hồng Dân, Huyện Hồng Dân, Tỉnh Bạc Liêu',
+  'Xã Thuận Hưng, Huyện Thốt Nốt, Tỉnh Cần Thơ',
+  'Xã Long Điền, Huyện Long Điền, Tỉnh Bà Rịa - Vũng Tàu',
+  'Xã Hưng Lợi, Huyện Hưng Nguyên, Tỉnh Nghệ An',
+  'Xã Bình Sơn, Huyện Bình Sơn, Tỉnh Quảng Ngãi',
+  'Xã Tri Tôn, Huyện Tri Tôn, Tỉnh An Giang',
+  'Xã Lộc Ninh, Huyện Lộc Ninh, Tỉnh Bình Phước',
+  'Xã Hoài Nhơn, Huyện Hoài Nhơn, Tỉnh Bình Định',
+  'Xã Châu Thành, Huyện Châu Thành, Tỉnh Bến Tre',
+  'Xã Bảo Lộc, Huyện Bảo Lộc, Tỉnh Lâm Đồng',
+  'Xã Đầm Dơi, Huyện Đầm Dơi, Tỉnh Cà Mau',
+  'Xã Phú Quốc, Huyện Phú Quốc, Tỉnh Kiên Giang',
+  'Xã Duy Tiên, Huyện Duy Tiên, Tỉnh Hà Nam',
+  'Xã Tân Châu, Huyện Tân Châu, Tỉnh An Giang',
+  'Xã Lạc Thủy, Huyện Lạc Thủy, Tỉnh Hòa Bình',
+  'Xã Cái Bè, Huyện Cái Bè, Tỉnh Tiền Giang',
+  'Xã Mỹ Tho, Huyện Chợ Gạo, Tỉnh Tiền Giang',
+];
+
 const statuses = ['Đã xác định', 'Chưa xác định', 'Vô danh'];
 const levels = [
   'Trung úy',
@@ -549,20 +655,29 @@ const levels = [
   'Trung sĩ',
 ];
 
+const extractProvince = (location: string): string => {
+  const parts = location.split(', ');
+  return parts[parts.length - 1];
+};
+
 const generateMartyrData = (): MartyrSearchViewDataProps[] => {
   const data: MartyrSearchViewDataProps[] = [];
 
-  for (let i = 1; i <= 50; i++) {
+  for (let i = 0; i < 50; i++) {
+    const name = vietnameseNames[i % vietnameseNames.length];
+    const hometown = vietnamLocations[i % vietnamLocations.length];
+    const province = extractProvince(hometown);
+
     data.push({
-      name: `Liệt sĩ ${i}`,
+      name,
       birthYear: `19${Math.floor(Math.random() * 50) + 30}`,
-      province: `Tỉnh ${i}`,
-      hometown: `Xã ${i}, Huyện ${i}, Tỉnh ${i}`,
+      province,
+      hometown,
       deathDate: `${Math.floor(Math.random() * 30) + 1}/${
         Math.floor(Math.random() * 12) + 1
       }/19${Math.floor(Math.random() * 50) + 50}`,
       status: statuses[Math.floor(Math.random() * statuses.length)],
-      unit: `Đơn vị ${i}`,
+      unit: `Đơn vị ${i + 1}`,
       level: levels[Math.floor(Math.random() * levels.length)],
     });
   }
