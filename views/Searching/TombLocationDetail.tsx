@@ -119,7 +119,10 @@ const TombLocationDetail = () => {
       </ScrollView>
       <FilterModalComponent
         isVisible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
+        onClose={() => {
+          setIsModalVisible(false);
+          setRenderFilter([]);
+        }}
         filterData={filterData}
         handleFilterChange={handleFilterChange}
         renderData={renderData}
