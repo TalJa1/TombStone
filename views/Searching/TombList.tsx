@@ -59,13 +59,13 @@ const MapListView2: React.FC = () => {
         contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
         {MapListData.filter(a => a.isVisited === true).map((item, index) => {
           return (
-            <View key={index} style={styles.mapListContainer}>
+            <TouchableOpacity key={index} style={styles.mapListContainer}>
               <Image source={item.img} style={styles.mapListImg} />
               <View style={styles.cityContainer}>
                 <Text style={styles.cityTxt}>{item.city}</Text>
               </View>
               <Text style={styles.titleTxt}>{item.title}</Text>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
@@ -98,13 +98,13 @@ const MapListView: React.FC = () => {
         contentContainerStyle={{paddingLeft: vw(5), columnGap: vw(2)}}>
         {MapListData.map((item, index) => {
           return (
-            <View key={index} style={styles.mapListContainer}>
+            <TouchableOpacity key={index} style={styles.mapListContainer}>
               <Image source={item.img} style={styles.mapListImg} />
               <View style={styles.cityContainer}>
                 <Text style={styles.cityTxt}>{item.city}</Text>
               </View>
               <Text style={styles.titleTxt}>{item.title}</Text>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
