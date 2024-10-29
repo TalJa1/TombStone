@@ -13,7 +13,7 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {InforDetail, MartyrSearchViewDataProps} from '../../services/typeProps';
 import {martyrSearchData} from '../../services/renderData';
 import {backIcon} from '../../assets/svgXML';
-import {vw} from '../../services/styleSheet';
+import {vh, vw} from '../../services/styleSheet';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const SearchResult = () => {
@@ -43,9 +43,51 @@ const SearchResult = () => {
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header />
+          <Main data={renderData} />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const Main: React.FC<{data: MartyrSearchViewDataProps[] | undefined}> = ({
+  data,
+}) => {
+  return (
+    <>
+      {data && (
+        <View style={{paddingHorizontal: vw(5)}}>
+          <Text style={styles.mainTxt}>{`Tổng: ${data.length} kết quả phù hợp`}</Text>
+          <View style={{rowGap: vh(1)}}>
+            {data.map((item, index) => {
+              return (
+                <View key={index} style={styles.itemContainer}>
+                  <View style={styles.topContainer}>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text
+                      style={[
+                        styles.status,
+                        item.status === 'Chưa xác định' && {
+                          backgroundColor: '#F7DAD4',
+                        },
+                      ]}>
+                      {item.status}
+                    </Text>
+                  </View>
+                  <View style={styles.bottomContainer}>
+                    <Text style={styles.date}>
+                      {item.birthYear} - {item.deathDate}
+                    </Text>
+                    <View style={{width: 2, backgroundColor: 'black'}} />
+                    <Text style={styles.hometown}>{item.hometown}</Text>
+                  </View>
+                </View>
+              );
+            })}
+          </View>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -80,4 +122,41 @@ const styles = StyleSheet.create({
     borderRadius: vw(50),
   },
   headerLabel: {fontSize: 18, fontWeight: '700', color: '#547958'},
+  itemContainer: {
+    backgroundColor: '#ECF3A3',
+    borderRadius: 12,
+    paddingHorizontal: vw(2),
+    paddingVertical: vh(1.5),
+  },
+  topContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#000000',
+  },
+  status: {
+    color: '#343434',
+    fontSize: 10,
+    backgroundColor: '#D4D4D4',
+    padding: vw(1),
+    borderRadius: 8,
+  },
+  bottomContainer: {
+    flexDirection: 'row',
+    columnGap: vw(1),
+  },
+  date: {
+    color: '#000000',
+  },
+  hometown: {
+    color: '#000000',
+    flex: 1,
+  },
+  mainTxt: {
+    color: '#868686',
+    marginBottom: vh(1),
+  },
 });
