@@ -19,6 +19,7 @@ import {vietnamLocations, extractProvince} from '../../services/renderData';
 
 const MartyrProfile = () => {
   useStatusBar('white');
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -37,6 +38,10 @@ const MartyrProfile = () => {
 
   const handleStatusChange = (status: string) => {
     setFormData({...formData, status});
+  };
+
+  const handleSearch = () => {
+    navigation.navigate('SearchResult', {data: formData});
   };
 
   return (
@@ -167,7 +172,7 @@ const MartyrProfile = () => {
             </View>
           </View>
           <View style={styles.bottomBtnGrp}>
-            <TouchableOpacity style={styles.applyButton} disabled>
+            <TouchableOpacity style={styles.applyButton} onPress={handleSearch}>
               <Text style={styles.applyButtonText}>Tìm kiếm</Text>
             </TouchableOpacity>
           </View>

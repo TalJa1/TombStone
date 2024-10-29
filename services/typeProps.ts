@@ -85,6 +85,18 @@ export type InforDetail = {
   TombLocation: {
     title: string;
   };
+  SearchData: {
+    data: {
+      name: string;
+      hometown: string;
+      province: string;
+      birthYear: string;
+      deathDate: string;
+      unit: string;
+      rank: string;
+      status: string;
+    };
+  };
 };
 
 export interface SearchingStatusComponentProps {
