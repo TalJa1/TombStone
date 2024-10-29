@@ -1,14 +1,38 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {centerAll, vh, vw} from '../../services/styleSheet';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {MartyrProfileItem} from '../../services/typeProps';
+import {loadData} from '../../services/storage';
+import {MartyrProfile} from '../../services/renderData';
 
 const UploadSuccessfully = () => {
   useStatusBar('black');
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const [tmp, setTmp] = useState<MartyrProfileItem[]>([]);
+
+  const fetchData = async () => {
+    await loadData<MartyrProfileItem[]>('martyrProfileStorage')
+      .then(data => {
+        setTmp(data);
+      })
+      .catch(() => {
+        setTmp(MartyrProfile);
+      });
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, []),
+  );
+
+  const handleFollowRequest = () => {
+    navigation.navigate('StatusDetail', {dataIndex: tmp.length - 1});
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,7 +54,7 @@ const UploadSuccessfully = () => {
           kiểm tra tiến độ và cập nhật tình trạng hồ sơ của bạn để theo dõi
           những thay đổi mới nhất
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleFollowRequest}>
           <Text style={styles.underlineBtnTxt}>Theo dõi yêu cầu tìm kiếm</Text>
         </TouchableOpacity>
         <TouchableOpacity
