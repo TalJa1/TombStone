@@ -26,7 +26,7 @@ const SearchPage = () => {
         navigation.navigate('MartyrProfile');
         break;
       case 2:
-        // navigate to Cập nhật tìm mộ thành công
+        navigation.navigate('SearchingSuccessfully');
         break;
       case 3:
         // navigate to Danh sách mộ chưa có nhân thân (mộ lạ)

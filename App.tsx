@@ -36,6 +36,7 @@ import ADNGuildPage from './views/Home/ADNGuildPage';
 import Profile from './views/Home/Profile';
 import TombLocationDetail from './views/Searching/TombLocationDetail';
 import MartyrProfile from './views/Searching/MartyrProfile';
+import SearchingSuccessfully from './views/Searching/SearchingSuccessfully';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -248,6 +249,12 @@ const App = () => {
         <Stack.Screen
           name="MartyrProfile"
           component={MartyrProfile}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="SearchingSuccessfully"
+          component={SearchingSuccessfully}
           options={{headerShown: false}}
         />
 
