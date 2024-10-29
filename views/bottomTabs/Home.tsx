@@ -159,6 +159,7 @@ const MapListView: React.FC = () => {
 };
 
 const NewsView: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <View>
       <View
@@ -172,7 +173,11 @@ const NewsView: React.FC = () => {
         <Text style={{color: '#547958', fontSize: 18, fontWeight: '700'}}>
           Mới nhất
         </Text>
-        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity
+          style={{flexDirection: 'row', alignItems: 'center'}}
+          onPress={() => {
+            navigation.navigate('SearchingSuccessfully');
+          }}>
           <Text style={{color: '#547958', fontSize: 14}}>Xem thêm</Text>
           {readMoreIcon(vw(5), vw(5))}
         </TouchableOpacity>
