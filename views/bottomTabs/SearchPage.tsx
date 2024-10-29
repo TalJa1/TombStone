@@ -29,7 +29,7 @@ const SearchPage = () => {
         navigation.navigate('SearchingSuccessfully');
         break;
       case 3:
-        // navigate to Danh sách mộ chưa có nhân thân (mộ lạ)
+        navigation.navigate('UndefinedTomb');
         break;
     }
   };

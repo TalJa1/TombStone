@@ -37,6 +37,7 @@ import Profile from './views/Home/Profile';
 import TombLocationDetail from './views/Searching/TombLocationDetail';
 import MartyrProfile from './views/Searching/MartyrProfile';
 import SearchingSuccessfully from './views/Searching/SearchingSuccessfully';
+import UndefinedTomb from './views/Searching/UndefinedTomb';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -255,6 +256,12 @@ const App = () => {
         <Stack.Screen
           name="SearchingSuccessfully"
           component={SearchingSuccessfully}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="UndefinedTomb"
+          component={UndefinedTomb}
           options={{headerShown: false}}
         />
 
