@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+import React, {useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -7,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
 import {useNavigation} from '@react-navigation/native';
@@ -20,6 +20,25 @@ import {vietnamLocations, extractProvince} from '../../services/renderData';
 const MartyrProfile = () => {
   useStatusBar('white');
 
+  const [formData, setFormData] = useState({
+    name: '',
+    hometown: '',
+    province: '',
+    birthYear: '',
+    deathDate: '',
+    unit: '',
+    rank: '',
+    status: '',
+  });
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData({...formData, [field]: value});
+  };
+
+  const handleStatusChange = (status: string) => {
+    setFormData({...formData, status});
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -31,6 +50,8 @@ const MartyrProfile = () => {
               style={styles.input}
               placeholder="Nhập tên liệt sĩ (có dấu, không dấu)"
               placeholderTextColor="#868686"
+              value={formData.name}
+              onChangeText={text => handleInputChange('name', text)}
             />
           </View>
           <View style={styles.row}>
@@ -40,18 +61,21 @@ const MartyrProfile = () => {
                 style={styles.input}
                 placeholder="Quê quán"
                 placeholderTextColor="#868686"
+                value={formData.hometown}
+                onChangeText={text => handleInputChange('hometown', text)}
               />
             </View>
             <View style={styles.halfWidth}>
               <Text style={styles.fieldTitle}>Tỉnh</Text>
               <RNPickerSelect
                 style={pickerSelectStyles}
-                onValueChange={value => console.log(value)}
+                onValueChange={value => handleInputChange('province', value)}
                 items={vietnamLocations.map(location => {
                   const province = extractProvince(location);
                   return {label: province, value: province};
                 })}
                 placeholder={{label: 'Chọn tỉnh', value: ''}}
+                value={formData.province}
               />
             </View>
           </View>
@@ -62,6 +86,8 @@ const MartyrProfile = () => {
                 style={styles.input}
                 placeholder="Ngày sinh"
                 placeholderTextColor="#868686"
+                value={formData.birthYear}
+                onChangeText={text => handleInputChange('birthYear', text)}
               />
             </View>
             <View style={styles.halfWidth}>
@@ -70,6 +96,8 @@ const MartyrProfile = () => {
                 style={styles.input}
                 placeholder="Ngày mất"
                 placeholderTextColor="#868686"
+                value={formData.deathDate}
+                onChangeText={text => handleInputChange('deathDate', text)}
               />
             </View>
           </View>
@@ -80,6 +108,8 @@ const MartyrProfile = () => {
                 style={styles.input}
                 placeholder="Đơn vị"
                 placeholderTextColor="#868686"
+                value={formData.unit}
+                onChangeText={text => handleInputChange('unit', text)}
               />
             </View>
             <View style={styles.halfWidth}>
@@ -88,6 +118,8 @@ const MartyrProfile = () => {
                 style={styles.input}
                 placeholder="Cấp bậc"
                 placeholderTextColor="#868686"
+                value={formData.rank}
+                onChangeText={text => handleInputChange('rank', text)}
               />
             </View>
           </View>
@@ -110,17 +142,20 @@ const MartyrProfile = () => {
                   key={status}
                   style={[
                     styles.statusButton,
+                    formData.status === status && styles.selectedStatusButton,
                     (status === 'Thiếu thông tin' ||
                       status === 'Đủ thông tin') &&
                       styles.disabledStatusButton,
                   ]}
                   disabled={
                     status === 'Thiếu thông tin' || status === 'Đủ thông tin'
-                  }>
+                  }
+                  onPress={() => handleStatusChange(status)}>
                   <Text
                     style={[
                       styles.statusButtonText,
-                      styles.selectedStatusButtonText,
+                      formData.status === status &&
+                        styles.selectedStatusButtonText,
                       (status === 'Thiếu thông tin' ||
                         status === 'Đủ thông tin') &&
                         styles.disabledStatusButtonText,
@@ -226,7 +261,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   selectedStatusButtonText: {
-    color: '#91A895',
+    color: 'white',
   },
   disabledStatusButton: {
     backgroundColor: '#ccc',
