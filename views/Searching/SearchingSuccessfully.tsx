@@ -14,6 +14,8 @@ import useStatusBar from '../../services/useStatusBar';
 import {backIcon, readmoreNextIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 import {HomeNewsData} from '../../services/renderData';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const SearchingSuccessfully = () => {
   useStatusBar('white');
@@ -78,9 +80,13 @@ const Main: React.FC = () => {
 };
 
 const Header: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.headerBackBtn}>
+      <TouchableOpacity
+        style={styles.headerBackBtn}
+        onPress={() => navigation.goBack()}>
         {backIcon(vw(6), vw(6), '#547958')}
       </TouchableOpacity>
       <View style={styles.searchContainer}>
