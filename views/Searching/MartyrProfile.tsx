@@ -19,6 +19,7 @@ import {vietnamLocations, extractProvince} from '../../services/renderData';
 
 const MartyrProfile = () => {
   useStatusBar('white');
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
