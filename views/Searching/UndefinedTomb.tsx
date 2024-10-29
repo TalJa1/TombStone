@@ -13,7 +13,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
+import RNPickerSelect from 'react-native-picker-select';
 import {vh, vw} from '../../services/styleSheet';
+import {extractProvince, vietnamLocations} from '../../services/renderData';
 
 const UndefinedTomb = () => {
   useStatusBar('#547958');
@@ -22,10 +24,33 @@ const UndefinedTomb = () => {
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{flex: 1}}>
           <Header />
-          <Text>Undefined Tomb</Text>
+          <Main />
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const Main: React.FC = () => {
+  return (
+    <View style={styles.main}>
+      <View style={styles.selectGrp}>
+        <View style={styles.mainSelect}>
+          <RNPickerSelect
+            style={pickerSelectStyles}
+            onValueChange={value => console.log(value)}
+            items={vietnamLocations.map(location => {
+              const province = extractProvince(location);
+              return {label: province, value: province};
+            })}
+            placeholder={{label: 'Nghĩa trang trực thuộc tỉnh', value: ''}}
+          />
+        </View>
+        <View style={styles.searchIcon}>
+          {searchIcon(vw(6), vw(6), 'white')}
+        </View>
+      </View>
+    </View>
   );
 };
 
@@ -96,5 +121,43 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     color: 'white',
+  },
+  main: {
+    flex: 1,
+    paddingHorizontal: vw(5),
+    paddingVertical: vh(2),
+  },
+  mainSelect: {
+    borderWidth: 1,
+    borderColor: '#547958',
+    borderRadius: 8,
+    flex: 1,
+  },
+  selectGrp: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: vh(1),
+    columnGap: vw(2),
+  },
+  searchIcon: {
+    backgroundColor: '#343434',
+    borderRadius: vw(50),
+    padding: vw(2),
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    color: '#547958',
+  },
+  inputAndroid: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    color: '#547958',
   },
 });
