@@ -92,7 +92,7 @@ const OnboardingPage = () => {
           ))}
         </View>
         <TouchableOpacity style={styles.btnNext} onPress={handleNextPress}>
-          <Text style={styles.btnNextText}>{nextIcon(vw(8), vw(8))}</Text>
+          {nextIcon(vw(8), vw(8), '#547958')}
         </TouchableOpacity>
       </View>
       <Image
