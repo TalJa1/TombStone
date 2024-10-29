@@ -178,7 +178,7 @@ const NewsView: React.FC = () => {
         </TouchableOpacity>
       </View>
       <View style={{paddingHorizontal: vw(5)}}>
-        {HomeNewsData.map((item, index) => {
+        {HomeNewsData.slice(0, 2).map((item, index) => {
           return (
             <View key={index} style={styles.news}>
               <Image source={item.img} style={styles.newsImg} />

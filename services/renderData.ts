@@ -137,6 +137,34 @@ export const HomeNewsData = [
     title: 'Phát hiện hố chôn tập thể nghi mộ liệt sĩ cạnh quốc lộ 19',
     description: 'H. Đak Pơ, tỉnh Gia Lai',
   },
+  {
+    img: require('../assets/Home/4.png'),
+    status: 'Tìm mộ thành công',
+    date: '20/10/2024',
+    title: 'Liệt sĩ Bùi Văn Vinh',
+    description: 'Phường 1, Quận 5, TP. Hồ Chí Minh',
+  },
+  {
+    img: require('../assets/Home/2.png'),
+    status: 'Phát hiện mộ lạ',
+    date: '21/10/2024',
+    title: 'Phát hiện mộ liệt sĩ tại khu vực rừng núi',
+    description: 'H. Lạc Dương, tỉnh Lâm Đồng',
+  },
+  {
+    img: require('../assets/Home/3.png'),
+    status: 'Tìm mộ thành công',
+    date: '22/10/2024',
+    title: 'Liệt sĩ Hồ Đức Quỳnh',
+    description: 'Xã Bình Minh, H. Bình Chánh, TP. Hồ Chí Minh',
+  },
+  {
+    img: require('../assets/Home/2.png'),
+    status: 'Phát hiện mộ lạ',
+    date: '23/10/2024',
+    title: 'Phát hiện mộ liệt sĩ tại khu vực biên giới',
+    description: 'H. Mộc Châu, tỉnh Sơn La',
+  },
 ];
 
 export const MartyrProfileListData = [
