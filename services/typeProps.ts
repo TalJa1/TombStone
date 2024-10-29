@@ -97,6 +97,18 @@ export type InforDetail = {
       status: string;
     };
   };
+  SearchDataDetail: {
+    data: {
+      name: string;
+      birthYear: string | null;
+      province: string;
+      hometown: string;
+      deathDate: string;
+      status: string;
+      unit: string;
+      level: string;
+    };
+  };
 };
 
 export interface SearchingStatusComponentProps {

@@ -160,7 +160,9 @@ const Main: React.FC<{
                 <TouchableOpacity
                   key={index}
                   style={styles.itemContainer}
-                  onPress={() => {}}>
+                  onPress={() => {
+                    navigation.navigate('SearchResultDetail', {data: item});
+                  }}>
                   <View style={styles.topContainer}>
                     <Text style={styles.name}>{item.name}</Text>
                     <Text
