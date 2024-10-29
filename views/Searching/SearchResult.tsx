@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   },
   mainTxt: {
     color: '#868686',
-    marginBottom: vh(1),
+    marginVertical: vh(1),
   },
   headerDes: {
     paddingHorizontal: vw(5),
