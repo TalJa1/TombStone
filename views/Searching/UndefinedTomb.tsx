@@ -15,7 +15,11 @@ import {useNavigation} from '@react-navigation/native';
 import {backIcon, filterIcon, searchIcon} from '../../assets/svgXML';
 import RNPickerSelect from 'react-native-picker-select';
 import {vh, vw} from '../../services/styleSheet';
-import {extractProvince, vietnamLocations} from '../../services/renderData';
+import {
+  extractProvince,
+  martyrSearchData,
+  vietnamLocations,
+} from '../../services/renderData';
 
 const UndefinedTomb = () => {
   useStatusBar('#547958');
@@ -48,6 +52,40 @@ const Main: React.FC = () => {
         </View>
         <View style={styles.searchIcon}>
           {searchIcon(vw(6), vw(6), 'white')}
+        </View>
+      </View>
+      <View>
+        <Text style={{color: '#868686'}}>
+          Tổng: 45684 mộ liệt sĩ chưa có thân nhân xác nhận.
+        </Text>
+        <View style={{rowGap: vh(1), marginVertical: vh(2)}}>
+          {martyrSearchData
+            .filter(a => a.status === 'Chưa xác định')
+            .map((item, index) => {
+              return (
+                <View key={index} style={styles.itemContainer}>
+                  <View style={styles.topContainer}>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text
+                      style={[
+                        styles.status,
+                        item.status === 'Chưa xác định' && {
+                          backgroundColor: '#F7DAD4',
+                        },
+                      ]}>
+                      {item.status}
+                    </Text>
+                  </View>
+                  <View style={styles.bottomContainer}>
+                    <Text style={styles.date}>
+                      {item.birthYear} - {item.deathDate}
+                    </Text>
+                    <View style={{width: 2, backgroundColor: 'black'}} />
+                    <Text style={styles.hometown}>{item.hometown}</Text>
+                  </View>
+                </View>
+              );
+            })}
         </View>
       </View>
     </View>
@@ -144,6 +182,39 @@ const styles = StyleSheet.create({
     backgroundColor: '#343434',
     borderRadius: vw(50),
     padding: vw(2),
+  },
+  itemContainer: {
+    backgroundColor: '#ECF3A3',
+    borderRadius: 12,
+    paddingHorizontal: vw(2),
+    paddingVertical: vh(1.5),
+  },
+  topContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#000000',
+  },
+  status: {
+    color: '#343434',
+    fontSize: 10,
+    backgroundColor: '#D4D4D4',
+    padding: vw(1),
+    borderRadius: 8,
+  },
+  bottomContainer: {
+    flexDirection: 'row',
+    columnGap: vw(1),
+  },
+  date: {
+    color: '#000000',
+  },
+  hometown: {
+    color: '#000000',
+    flex: 1,
   },
 });
 
