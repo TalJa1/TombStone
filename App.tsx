@@ -39,6 +39,7 @@ import MartyrProfile from './views/Searching/MartyrProfile';
 import SearchingSuccessfully from './views/Searching/SearchingSuccessfully';
 import UndefinedTomb from './views/Searching/UndefinedTomb';
 import SearchResult from './views/Searching/SearchResult';
+import SearchResultDetail from './views/Searching/SearchResultDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -269,6 +270,12 @@ const App = () => {
         <Stack.Screen
           name="SearchResult"
           component={SearchResult}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="SearchResultDetail"
+          component={SearchResultDetail}
           options={{headerShown: false}}
         />
 

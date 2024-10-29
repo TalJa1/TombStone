@@ -157,7 +157,10 @@ const Main: React.FC<{
           <View style={{rowGap: vh(1)}}>
             {data.map((item, index) => {
               return (
-                <View key={index} style={styles.itemContainer}>
+                <TouchableOpacity
+                  key={index}
+                  style={styles.itemContainer}
+                  onPress={() => {}}>
                   <View style={styles.topContainer}>
                     <Text style={styles.name}>{item.name}</Text>
                     <Text
@@ -177,7 +180,7 @@ const Main: React.FC<{
                     <View style={{width: 2, backgroundColor: 'black'}} />
                     <Text style={styles.hometown}>{item.hometown}</Text>
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             })}
           </View>
