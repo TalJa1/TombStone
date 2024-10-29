@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import useStatusBar from '../../services/useStatusBar';
-import {backIcon, searchIcon} from '../../assets/svgXML';
+import {backIcon, readmoreNextIcon, searchIcon} from '../../assets/svgXML';
 import {vh, vw} from '../../services/styleSheet';
 
 const SearchingSuccessfully = () => {
@@ -18,11 +18,23 @@ const SearchingSuccessfully = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Header />
-        <View>
-          <Text>SearchingSuccessfully</Text>
-        </View>
+        <Main />
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const Main: React.FC = () => {
+  return (
+    <View>
+      <View style={styles.mainTitleGrp}>
+        <Text style={styles.mainTitle}>Mới nhất</Text>
+        <TouchableOpacity style={styles.btnReadmore}>
+          <Text style={styles.btnReadmoreTxt}>Xem thêm</Text>
+          {readmoreNextIcon(vw(6), vw(6), '#547958')}
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -78,5 +90,24 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     color: '#000',
+  },
+  mainTitleGrp: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: vw(5),
+    paddingVertical: vh(2),
+  },
+  mainTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#547958',
+  },
+  btnReadmore: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  btnReadmoreTxt: {
+    color: '#547958',
+    marginRight: vw(2),
   },
 });
